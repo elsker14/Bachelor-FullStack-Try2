@@ -21,10 +21,12 @@ public class StudentService {
     //Metoda care va face selectul din baza de date si va lua tot !
     public List<Student> getStudents()
     {
-        return studentRepository.findAll();
+        //select * from student (query in DB)
+        List<Student> studentsDB = studentRepository.findAll();
+
+        //sortam lista care vine din DB
+        Student.sortStudents(studentsDB);
+
+        return studentsDB;
     }
 }
-
-
-//
-//        return studentsDB;
