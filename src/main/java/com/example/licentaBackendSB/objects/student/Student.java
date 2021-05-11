@@ -4,23 +4,46 @@ import com.example.licentaBackendSB.objects.sort.sortingAlgorithms.*;
 import com.example.licentaBackendSB.objects.student.randomizers.nameRandomizer;
 import com.example.licentaBackendSB.objects.student.randomizers.ygsRandomizer;
 
+import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Entity //for hibernate framework
+@Table  //for database
 public class Student {
-
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     //needed for Statistics && Main sources
 
     //Fields -----------------------------------------------------------------------------------------------------------
+    private int id;
     private String nume;
     private String prenume;
     private String grupa;
     private String serie;
     private Integer an;
     private Double medie;
-    private Boolean eligibilCamin;
 
     //Constructor ------------------------------------------------------------------------------------------------------
+
+    public Student(int id, String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
+        this.id = id;
+        this.nume = nume;
+        this.prenume = prenume;
+        this.grupa = grupa;
+        this.serie = serie;
+        this.an = an;
+        this.medie = medie;
+    }
+
     public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
         this.nume = nume;
         this.prenume = prenume;
@@ -29,6 +52,8 @@ public class Student {
         this.an = an;
         this.medie = medie;
     }
+
+    public Student() {}
 
     //GETTERs && SETTERs -----------------------------------------------------------------------------------------------
     public String getNume() {
@@ -79,18 +104,19 @@ public class Student {
         this.medie = medie;
     }
 
-    public Boolean getEligibilCamin() {
-        return eligibilCamin;
+    public int getId() {
+        return id;
     }
 
-    public void setEligibilCamin(Boolean eligibilCamin) {
-        this.eligibilCamin = eligibilCamin;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    //toString
+    //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return  ("nume = '" + nume +
+        return  ("id = " + id +
+                "nume = '" + nume +
                 ", prenume = '" + prenume +
                 ", an = " + an +
                 ", grupa = '" + grupa +
@@ -138,13 +164,14 @@ public class Student {
         List <Student> hardcodedListOfStudents = new ArrayList<>();
         Random rand = new Random();
 
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 22; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
             int year = Character.getNumericValue(group.charAt(1));
 
             hardcodedListOfStudents.add(new Student(
+                    (i + 1),
                     nameRandomizer.getAlphaNumericString(5),      //nume
                     nameRandomizer.getAlphaNumericString(5),      //prenume
                     group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
@@ -156,7 +183,7 @@ public class Student {
 
         return hardcodedListOfStudents;
     }
-    
+
     public static void sortStudents(List <Student> tmp)
     {
         Collections.sort(tmp, new Comparator<Student>() {

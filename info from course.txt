@@ -1,2 +1,52 @@
+Curs Angular Udemy:
+https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466410?start=0#overview
+jitarciuc_antonio@yahoo.com
+Locomondo0822!
+
+
 Info from course
 
+---------------- FLOW ----------------
+
+request -> controller -> service 
+controller : mapping the url
+service : backend method 
+
+---------------- Anotatii ----------------
+
+@RestController	- transforma clasa in controller, adica pe acolo trec requesturile 
+
+service layer : business logic 
+
+@Component : declaram un bean ca sa putem da autowired cand instantiam un obiect al acelei clase 
+dar noi mergem mai departe si o facem sa fie specifica @Service 
+
+
+---------------- Database ----------------
+
+Configuratia pt conectarea la database:
+	spring.datasource.url=jdbc:postgresql://localhost:5432/students
+	spring.datasource.username=
+	spring.datasource.password=
+	spring.jpa.hibernate.ddl-auto=create-drop
+	spring.jpa.show-sql=true
+	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+	spring.jpa.properties.hibernate.format_sql=true
+	
+	PostgreSQL path: C:\Program Files\PostgreSQL\13
+		pass: 1233
+		port: 5432
+		
+	Comenzi pt bash cand te joci cu postgreSQL:
+	1. psql -U postgres : sa te loghezi pe userul postgres cu parola 1233
+	2. \l : afiseaza toate bazele de date 
+	3. \du: afiseaza toti userii 
+	4. \c student: te conectezi la baza de date "student"
+	5. \d student: afiseaza toate coloanele cu tipurile de date
+	6. SELECT * FROM student; : afiseaza tot tabelul
+	
+---------------- Repository pt Student ----------------
+
+public interface StudentRepository extends JpaRepository<Student, Long> : 
+	-deci primul e template object: Student : este tipul de date (definit ca o clasa) cu care vrem repositoryul sa lucreze 
+	-al doilea e IDul de stocare declarat ca field
