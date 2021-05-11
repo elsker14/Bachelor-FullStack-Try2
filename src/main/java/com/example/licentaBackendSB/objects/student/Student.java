@@ -103,7 +103,7 @@ public class Student {
         List <Student> hardcodedListOfStudents = new ArrayList<>();
         Random rand = new Random();
 
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < 10; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
