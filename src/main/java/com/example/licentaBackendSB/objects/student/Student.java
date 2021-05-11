@@ -100,29 +100,6 @@ public class Student {
     }
 
     //Methods for Statistics -------------------------------------------------------------------------------------------
-    public static List <Student> hardcodeStudents()
-    {
-        List <Student> hardcodedListOfStudents = new ArrayList<>();
-        Random rand = new Random();
-
-        for(int i = 0; i < 10; i++)
-        {
-            String group = ygsRandomizer.getRandomGroup();
-            String series = ygsRandomizer.getRandomSeries();
-            int year = Character.getNumericValue(group.charAt(1));
-
-            hardcodedListOfStudents.add(new Student(
-                    nameRandomizer.getAlphaNumericString(5),      //nume
-                    nameRandomizer.getAlphaNumericString(5),      //prenume
-                    group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
-                    series,                                                    //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
-                    year,                                                      //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
-                    (1D + (10D - 1D) * rand.nextDouble())                      //medie
-            ));
-        }
-
-        return hardcodedListOfStudents;
-    }
 
     public static Map<String, Integer> sortByValue(Map<String, Integer> unsortMap, final boolean order)
     {
@@ -154,8 +131,32 @@ public class Student {
         return performanceStatiticsOfSortAlgorithms;
     }
 
-    //Methods for Main -------------------------------------------------------------------------------------------------
+    //Methods for Students ---------------------------------------------------------------------------------------------
 
+    public static List <Student> hardcodeStudents()
+    {
+        List <Student> hardcodedListOfStudents = new ArrayList<>();
+        Random rand = new Random();
+
+        for(int i = 0; i < 10; i++)
+        {
+            String group = ygsRandomizer.getRandomGroup();
+            String series = ygsRandomizer.getRandomSeries();
+            int year = Character.getNumericValue(group.charAt(1));
+
+            hardcodedListOfStudents.add(new Student(
+                    nameRandomizer.getAlphaNumericString(5),      //nume
+                    nameRandomizer.getAlphaNumericString(5),      //prenume
+                    group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
+                    series,                                                    //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
+                    year,                                                      //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
+                    (1D + (10D - 1D) * rand.nextDouble())                      //medie
+            ));
+        }
+
+        return hardcodedListOfStudents;
+    }
+    
     public static void sortStudents(List <Student> tmp)
     {
         Collections.sort(tmp, new Comparator<Student>() {
