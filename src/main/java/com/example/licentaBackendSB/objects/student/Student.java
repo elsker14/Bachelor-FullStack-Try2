@@ -164,7 +164,7 @@ public class Student {
         List <Student> hardcodedListOfStudents = new ArrayList<>();
         Random rand = new Random();
 
-        for(int i = 0; i < 22; i++)
+        for(int i = 0; i < 101; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
@@ -182,17 +182,6 @@ public class Student {
         }
 
         return hardcodedListOfStudents;
-    }
-
-    public static void sortStudents(List <Student> tmp)
-    {
-        Collections.sort(tmp, new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2)
-            {
-                return o2.getMedie().compareTo(o1.getMedie());
-            }
-        });
     }
 
     public static void printStudents(List <Student> tmp)

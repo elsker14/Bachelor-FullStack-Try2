@@ -11,14 +11,17 @@ import java.util.List;
 @RequestMapping(path = "api/v1/students")
 public class StudentController {
 
+    //Field
     private final StudentService studentService;
 
+    //Constructor
     @Autowired
     public StudentController(StudentService studentService)
     {
         this.studentService = studentService;
     }
 
+    //Metoda pentru a afisa toti studentii din baza de date
     @GetMapping
     public List<Student> getStudents()
     {

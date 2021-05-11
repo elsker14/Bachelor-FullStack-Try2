@@ -8,9 +8,18 @@ Info from course
 
 ---------------- FLOW ----------------
 
-request -> controller -> service 
-controller : mapping the url
-service : backend method 
+request -> controller -> service -> repository
+    controller : mapping the url
+    service : backend method
+    repository: interfata pt metode de call in database
+
+StudentConfig:
+    -aici se umple tabelul cu valori
+    -configuram basically baza de date
+
+Student:
+    -clasa model
+    -dupa field-urile ei se mapeaza tabelul student din baza de date student
 
 ---------------- Anotatii ----------------
 
