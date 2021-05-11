@@ -1,6 +1,8 @@
 package com.example.licentaBackendSB.objects.student;
 
 import com.example.licentaBackendSB.objects.sort.sortingAlgorithms.*;
+import com.example.licentaBackendSB.objects.student.randomizers.nameRandomizer;
+import com.example.licentaBackendSB.objects.student.randomizers.ygsRandomizer;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -11,12 +11,16 @@ import java.util.List;
 @RequestMapping(path = "api/v1/students")
 public class StudentController {
 
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService)
+    {
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> getStudents()
     {
-        List<Student> studentsDB = new ArrayList<>();
-        studentsDB = Student.hardcodeStudents();
-
-        return studentsDB;
+        return studentService.getStudents();
     }
 }
