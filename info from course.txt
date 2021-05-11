@@ -59,3 +59,7 @@ Configuratia pt conectarea la database:
 public interface StudentRepository extends JpaRepository<Student, Long> : 
 	-deci primul e template object: Student : este tipul de date (definit ca o clasa) cu care vrem repositoryul sa lucreze 
 	-al doilea e IDul de stocare declarat ca field
+
+---------------- @TRANSIENT ----------------
+https://amigoscode.com/courses/267273/lectures/29454627
+se foloseste pt campuri din clasa ta care nu vrei sa apara in baza de date pentru ca pot fi calculate automat si doar afisate
