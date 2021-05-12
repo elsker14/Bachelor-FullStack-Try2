@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -28,5 +29,18 @@ public class StudentService {
         Student.sortStudents(studentsDB);
 
         return studentsDB;
+    }
+
+    public void addNewStudent(Student student) {
+
+        Optional<Student> studentOptional = studentRepository.findStudentByNameAndForname(student.getNume(), student.getPrenume());
+
+        //daca studentul cu exista cu numele respectiv, aruncam exceptie
+        if(studentOptional.isPresent())
+        {
+            throw new IllegalStateException("Student already exists");
+        }
+        //implicit daca nu exista, il salvam in db
+        studentRepository.save(student);
     }
 }

@@ -64,6 +64,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> :
 	-deci primul e template object: Student : este tipul de date (definit ca o clasa) cu care vrem repositoryul sa lucreze 
 	-al doilea e IDul de stocare declarat ca field
 
+@Query("select s from Student s where s.nume = ?1")
+    -Student este clasa noastra model, care e anotata ca fiind Entity, asta inseamna ca ea e folosita pt crearea tabelului din database
+    -prin urmare s e o instanta a clasei Student si putem accesa orice field din ea
+
 ---------------- @TRANSIENT ----------------
 https://amigoscode.com/courses/267273/lectures/29454627
 se foloseste pt campuri din clasa ta care nu vrei sa apara in baza de date pentru ca pot fi calculate automat si doar afisate

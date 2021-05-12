@@ -164,7 +164,10 @@ public class Student {
         List <Student> hardcodedListOfStudents = new ArrayList<>();
         Random rand = new Random();
 
-        for(int i = 0; i < 199; i++)
+        //manual harcode to test search query => check StudentRepository
+        hardcodedListOfStudents.add(new Student(1, "Iancu", "Jianu", "445", "E", 4, 10D));
+
+        for(int i = 1; i < 199; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
@@ -172,8 +175,8 @@ public class Student {
 
             hardcodedListOfStudents.add(new Student(
                     (i + 1),
-                    nameRandomizer.getAlphaNumericString(5),      //nume
-                    nameRandomizer.getAlphaNumericString(5),      //prenume
+                    nameRandomizer.getAlphaNumericString(5),                //nume
+                    nameRandomizer.getAlphaNumericString(5),                //prenume
                     group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
                     series,                                                    //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
                     year,                                                      //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
