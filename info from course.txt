@@ -82,3 +82,16 @@ se foloseste pt campuri din clasa ta care nu vrei sa apara in baza de date pentr
 ---------------- PUT - UPDATE ----------------
 
 videoul cu <Exercise Solution> arata niste validari
+
+---------------- Executabil JAR al proiectului ----------------
+
+http://localhost:8080/api/v1/students
+
+Maven->clean, then Maven->install
+si Project Files apare target folder
+in terminal:
+    cd target
+    java -jar accessing... .jar
+    java -jar accessing... .jar --server.port=8081 (daca vrei sa rulezi pe alt port)
+
+Jar-ul se poate dockeriza, se poate deploy to a server so have fun
