@@ -95,3 +95,21 @@ in terminal:
     java -jar accessing... .jar --server.port=8081 (daca vrei sa rulezi pe alt port)
 
 Jar-ul se poate dockeriza, se poate deploy to a server so have fun
+
+---------------- Difference between <junit-vintage-engine> and <junit-jupiter-engine> ----------------
+
+junit-vintage-engine :
+
+    Used in Junit-4 Testing.
+    Used to call core classes and annotations.
+    'Assert' which provide assertion methods for performing test.
+    'Assume' used to place assumptions.
+    Use annotation like, @Ignore, @Before, etc...
+
+junit-jupiter-engine :
+
+    Used in Junit-5 Testing
+    Provide some API which helpful to write test cases.
+    'Assertions' provides utility methods of assertion condition for testing.
+    'Assumptions' - utility method provide condition based on assumption.
+    Change the bit of annotation name like, @Disable, @BeforeAll, @BeforeEach, etc...
