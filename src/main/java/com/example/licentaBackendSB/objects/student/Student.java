@@ -24,7 +24,7 @@ public class Student {
     //needed for Statistics && Main sources
 
     //Fields -----------------------------------------------------------------------------------------------------------
-    private int id;
+    private Long id;
     private String nume;
     private String prenume;
     private String grupa;
@@ -34,7 +34,7 @@ public class Student {
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(int id, String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
+    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -104,11 +104,11 @@ public class Student {
         this.medie = medie;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -165,9 +165,9 @@ public class Student {
         Random rand = new Random();
 
         //manual harcode to test search query => check StudentRepository
-        hardcodedListOfStudents.add(new Student(1, "Iancu", "Jianu", "445", "E", 4, 10D));
+        hardcodedListOfStudents.add(new Student(1L, "Iancu", "Jianu", "445", "E", 4, 10D));
 
-        for(int i = 1; i < 199; i++)
+        for(long i = 1; i < 199; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();

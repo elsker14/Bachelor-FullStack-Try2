@@ -1,6 +1,5 @@
 Curs AmigosCode: 
 https://amigoscode.com/courses/267273/lectures/29454614
-!! ai ramas la <Post Mapping> !!
 
 Curs Angular Udemy:
 https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466410?start=0#overview
@@ -9,6 +8,13 @@ Locomondo0822!
 
 
 Info from course
+
+---------------- Request Info ----------------
+
+GET = afisezi informatii
+POST = preiei informatii
+PUT = update
+DELETE = sterge informatii
 
 ---------------- FLOW ----------------
 
@@ -69,5 +75,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> :
     -prin urmare s e o instanta a clasei Student si putem accesa orice field din ea
 
 ---------------- @TRANSIENT ----------------
+
 https://amigoscode.com/courses/267273/lectures/29454627
 se foloseste pt campuri din clasa ta care nu vrei sa apara in baza de date pentru ca pot fi calculate automat si doar afisate
+
+---------------- PUT - UPDATE ----------------
+
+videoul cu <Exercise Solution> arata niste validari
