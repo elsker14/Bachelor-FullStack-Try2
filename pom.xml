@@ -48,6 +48,19 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Framework pt securitate, authentification stuff like that -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Guava Library from Google -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.1-jre</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

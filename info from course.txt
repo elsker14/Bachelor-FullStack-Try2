@@ -1,13 +1,15 @@
-Curs AmigosCode: 
+I. Curs AmigosCode "Get started with SpringBoot":
 https://amigoscode.com/courses/267273/lectures/29454614
 
-Curs Angular Udemy:
+II. Curs AmigosCode "Spring Security":
+https://amigoscode.com/courses/728126/lectures/13124043
+
+III. Curs Angular Udemy:
 https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466410?start=0#overview
 jitarciuc_antonio@yahoo.com
 Locomondo0822!
 
-
-Info from course
+Info from course I. ----------------------------------------------------------------------------------------------------
 
 ---------------- Request Info ----------------
 
@@ -113,3 +115,69 @@ junit-jupiter-engine :
     'Assertions' provides utility methods of assertion condition for testing.
     'Assumptions' - utility method provide condition based on assumption.
     Change the bit of annotation name like, @Disable, @BeforeAll, @BeforeEach, etc...
+
+Info from course II. ---------------------------------------------------------------------------------------------------
+
+in clasa ApplicationSecurityConfig vom configura tot ce este legat de autentificare
+
+Daca vrei sa whitelistezi url-uri INAINTE de a te autentifica:
+    -se scriu ca antMatchers(...)
+    -cum am facut intre simbolul serpisor
+
+protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()    //vrem sa autorizam requesturi
+                .antMatchers("/", "index", "/css/*", "/js/*")
+                .permitAll()
+                                ~~~~~~~~~~~~~~~ .antMatchers("/api/v1/students") ~~~~~~~~~~~~~~~
+                                ~~~~~~~~~~~~~~~ .permitAll() ~~~~~~~~~~~~~~~
+                .anyRequest()           //orice request venit
+                .authenticated()        //trebuie OBLIGATORIU sa fie autentificat
+                .and()                  //si
+                .httpBasic();           //mecanismul prin care verificam clientul care se logheaza cu userul sau cv pe aici
+    }
+
+-------------------- USER CREATI MANUAL --------------------
+
+asa se adauga userii pe care vreau sa ii creez eu manual, carora le dau roluri, username, parola etc
+acel return new InMem returneaza o LISTA de UserDetails, adica o lista de useri
+
+protected UserDetailsService userDetailsService() {
+         UserDetails checuUser = User.builder()
+                .username("checu")
+                .password("1233")
+                .roles("STUDENT")           //ROLE_STUDENT
+                .build();
+
+        return new InMemoryUserDetailsManager(
+                checuUser
+        );
+    }
+
+-TOTUSI nu e suficient atat, e nevoie de un PasswordEncoder
+-Astfel vom folosi BCRYPT Encoder
+    https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
+
+-------------------- Guava Library --------------------
+
+https://guava.dev/releases/28.1-jre/api/docs/index.html?overview-summary.html
+
+-------------------- Roles and Permissions --------------------
+
+Am creat 2 roluri STUDENT si ADMIN declarate intr-un enum si 4 permisiuni declarate in alt enum.
+
+Cele 2 roluri primesc anumite permisiuni
+    ADMIN - toate 4
+    STUDENT - 3, fara course:write
+
+-------------------- URL accesat de un user cu un anumit rol --------------------
+
+Daca vrem sa spunem ce url poate accesa un user, e nevoie sa ii impunem ca are un anumit rol:
+    .antMatchers("/api/**").hasRole(STUDENT.name())
+
+Pe viitor ne intereseaza ca ADMINul sa poata accesa orice, iar STUDENTul sa poata accesa numai informatiile despre el
+In contextul licentei, inseamna ca studentii sa poata vedea daca au intrat sau nu in camin.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ai ramas la Permission Based Authentication
