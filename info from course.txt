@@ -9,6 +9,23 @@ https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466
 jitarciuc_antonio@yahoo.com
 Locomondo0822!
 
+TODO:
+implementeaza ca in URL sa fie specificat rolul userului care il acceseaza:
+    -intial totul se logheaza pe pagina principala
+        adica "api/home", unde va exista un buton numit "api/login"
+
+    -iar in functie de rol
+        va continua la "api/student/students/<index>" si "api/admin/students/all"
+
+    -rol STUDENT:    va putea accesa o pagina personalizata cu datele studentului si daca a fost admis sau nu la camin
+                    ne va duce la pagina "api/student/students/<index>"
+                    index fiind indexul din DB
+
+    -rol ADMIN:  va putea accesa o pagina cu un tabel gigantic ce contine toti studentii ordonati dupa anumite reguli
+                vor fi vreo N tabele in functie de cate N camine exista in ETTI : "api/admin/students/all"
+                iar daca se da click pe un student ne va duce la url-ul "api/admin/students/all/<index>"
+                index fiind indexul din DB
+
 Info from course I. ----------------------------------------------------------------------------------------------------
 
 ---------------- Request Info ----------------
@@ -181,3 +198,4 @@ In contextul licentei, inseamna ca studentii sa poata vedea daca au intrat sau n
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ai ramas la Permission Based Authentication
+https://amigoscode.com/courses/728126/lectures/13124113
