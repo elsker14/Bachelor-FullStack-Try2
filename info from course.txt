@@ -221,6 +221,8 @@ Revenind, pana acum am implementat:
 .csrf().disable()       //todo: explicatie in next section
     -daca nu adaugam treaba asta, nu puteam testa requesturile pe management
 
+CSRF = crooss site request forgery = the action of forging a copy or imitation of a document, signature, banknote or work of art
+
 -------------------- PreAuthorize --------------------
    /*
     @PreAuthorize primeste un string ca argument de felul:

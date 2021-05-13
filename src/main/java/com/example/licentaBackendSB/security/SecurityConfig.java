@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static com.example.licentaBackendSB.security.UserRole.*;
 
@@ -28,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()       //todo: explicatie in next section
+                //configuram CSRF
+                .csrf().disable()
                 .authorizeRequests()    //vrem sa autorizam requesturi
 
                 //Asta e pagina default la care are ORICINE nelogat acces: http://localhost:8080/
