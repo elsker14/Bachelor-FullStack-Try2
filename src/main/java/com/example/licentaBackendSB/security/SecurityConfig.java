@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()           //orice request venit
                 .authenticated()        //trebuie OBLIGATORIU sa fie autentificat
                 .and()                  //si
-                .httpBasic();           //mecanismul prin care verificam clientul care se logheaza cu userul sau cv pe aici
+                //.httpBasic();             //mecanismul prin care verificam clientul care se logheaza cu userul sau cv pe aici
+                .formLogin();
     }
 
     @Override
