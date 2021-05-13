@@ -9,6 +9,9 @@ https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466
 jitarciuc_antonio@yahoo.com
 Locomondo0822!
 
+IV: Exemplu foarte bun de REQUESTURI
+https://spring.io/guides/tutorials/rest/
+
 TODO:
 implementeaza ca in URL sa fie specificat rolul userului care il acceseaza:
     -intial totul se logheaza pe pagina principala
@@ -17,14 +20,18 @@ implementeaza ca in URL sa fie specificat rolul userului care il acceseaza:
     -iar in functie de rol
         va continua la "api/student/students/<index>" si "api/admin/students/all"
 
-    -rol STUDENT:    va putea accesa o pagina personalizata cu datele studentului si daca a fost admis sau nu la camin
-                    ne va duce la pagina "api/student/students/<index>"
-                    index fiind indexul din DB
+    -rol STUDENT:
+        vom folosi "StudentController" : "api/v1/students" => "api/student/students"
+        va putea accesa o pagina personalizata cu datele studentului si daca a fost admis sau nu la camin
+        ne va duce la pagina "api/student/students/<index>"
+        index fiind indexul din DB
 
-    -rol ADMIN:  va putea accesa o pagina cu un tabel gigantic ce contine toti studentii ordonati dupa anumite reguli
-                vor fi vreo N tabele in functie de cate N camine exista in ETTI : "api/admin/students/all"
-                iar daca se da click pe un student ne va duce la url-ul "api/admin/students/all/<index>"
-                index fiind indexul din DB
+    -rol ADMIN:
+        vom folosi "StudentManagementController" : "management/api/v1/students" => "api/admin/students"
+        va putea accesa o pagina cu un tabel gigantic ce contine toti studentii ordonati dupa anumite reguli
+        vor fi vreo N tabele in functie de cate N camine exista in ETTI : "api/admin/students/all"
+        iar daca se da click pe un student ne va duce la url-ul "api/admin/students/all/<index>"
+        index fiind indexul din DB
 
 Info from course I. ----------------------------------------------------------------------------------------------------
 
@@ -199,3 +206,50 @@ In contextul licentei, inseamna ca studentii sa poata vedea daca au intrat sau n
 
 Ai ramas la Permission Based Authentication
 https://amigoscode.com/courses/728126/lectures/13124113
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Revenind, pana acum am implementat:
+    -form auth unde doar bagai user si pass generat de SpringSecurity in consola
+    -apoi am adaugat 2 useri pt form auth
+    -apoi am implementat role-based auth unde in functie de rol, poti vedea ceva
+
+-vom implementa un al 3lea rol, ASSISTANT sau TRAINEE care poate vedea ce vede si adminul, dar nu poate modifica
+
+-------------------- CSRF --------------------
+
+.csrf().disable()       //todo: explicatie in next section
+    -daca nu adaugam treaba asta, nu puteam testa requesturile pe management
+
+-------------------- PreAuthorize --------------------
+   /*
+    @PreAuthorize primeste un string ca argument de felul:
+        "hasRole('ROLE_')"
+        "hasAnyRole('ROLE_')"
+        "hasAuthority('permission')"
+        "hasAnyAuthority('permission')"
+     */
+
+//~~~~~~~~~~~~~~ Am folosit un PreAuthorize si pt asta ~~~~~~~~~~~~~~
+                //Orice url care are ca path /api/** -> are rolul de student
+                //.antMatchers("/api/**").hasRole(STUDENT.name())
+
+                /*
+//~~~~~~~~~~~~~~ also AM FOLOSIT ANOTATIILE PREAUTHORIZE ca sa inlocuim acele 4 antMatchere ~~~~~~~~~~~~~~
+                //Orice url care are ca path /management/api/** -> poate face DEL, POST, PUT daca are oricare rol cu autoritatea de COURSE_WRITE => adica doar ADMIN
+                .antMatchers(HttpMethod.DELETE,"management/api/**").hasAuthority(COURSE_WRITE.getPermission())
+                .antMatchers(HttpMethod.POST,"management/api/**").hasAuthority(COURSE_WRITE.getPermission())
+                .antMatchers(HttpMethod.PUT,"management/api/**").hasAuthority(COURSE_WRITE.getPermission())
+
+                //Orice url care are ca path /management/api/** ->
+                .antMatchers(HttpMethod.GET,"management/api/**").hasAnyRole(ADMIN.name(), ASSISTANT.name())
+                 */
+
+-------------------- Replaced Roles cu Authorities --------------------
+
+UserDetails userUser = User.builder()
+                .username("checu")
+                .password(passwordEncoder.encode("1233"))
+                //.roles(STUDENT.name())           //ROLE_STUDENT
+                 .authorities(STUDENT.getGrantedAuthorities())
+                .build();

@@ -56,20 +56,21 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateStudent(Long studentId, String name, String forename) {
-        Student student = studentRepository.findById(studentId).
+    public void updateStudent(Long studentId, Student newStudent) {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+                    if(newStudent.getNume() != null && newStudent.getNume().length() > 0 && !foundStudent.getNume().equals(newStudent.getNume()))
+                        foundStudent.setNume(newStudent.getNume());
+                    if(newStudent.getPrenume() != null && newStudent.getPrenume().length() > 0 && !foundStudent.getPrenume().equals(newStudent.getPrenume()))
+                        foundStudent.setPrenume(newStudent.getPrenume());
+                    //todo: de implementat update pt toate fieldurile, dar asta abia cand o sa avem platforma si o sa tecem datele intr-un form
+
+                    return studentRepository.save(foundStudent);
+                }).
                 orElseThrow(
                         () -> new IllegalStateException("student with id " + studentId + " does not exist")
                 );
 
-        if(name != null && name.length() > 0 && !student.getNume().equals(name))
-        {
-            student.setNume(name);
-        }
-
-        if(forename != null && forename.length() > 0 && !student.getPrenume().equals(forename))
-        {
-            student.setPrenume(forename);
-        }
     }
 }

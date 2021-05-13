@@ -1,6 +1,6 @@
 package com.example.licentaBackendSB.security;
 
-public enum ApplicationUserPermission {
+public enum UserPermission {
     STUDENT_READ("student:read"),
     STUDENT_WRITE("student:write"),
     COURSE_READ("course:read"),
@@ -8,7 +8,7 @@ public enum ApplicationUserPermission {
 
     private final String permission;
 
-    ApplicationUserPermission(String permission) {
+    UserPermission(String permission) {
         this.permission = permission;
     }
 

@@ -2,6 +2,7 @@ package com.example.licentaBackendSB.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,24 +12,28 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import static com.example.licentaBackendSB.security.ApplicationUserRole.*;
+import static com.example.licentaBackendSB.security.UserRole.*;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
+    public SecurityConfig(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()       //todo: explicatie in next section
                 .authorizeRequests()    //vrem sa autorizam requesturi
+
+                //Asta e pagina default la care are ORICINE nelogat acces: http://localhost:8080/
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/**").hasRole(STUDENT.name())
+
                 .anyRequest()           //orice request venit
                 .authenticated()        //trebuie OBLIGATORIU sa fie autentificat
                 .and()                  //si
@@ -41,18 +46,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
          UserDetails userUser = User.builder()
                 .username("checu")
                 .password(passwordEncoder.encode("1233"))
-                .roles(STUDENT.name())           //ROLE_STUDENT
+                 .authorities(STUDENT.getGrantedAuthorities())
                 .build();
 
         UserDetails adminUser = User.builder()
                 .username("iancu")
                 .password(passwordEncoder.encode("1233"))
-                .roles(ADMIN.name())           //ROLE_ADMIN
+                .authorities(ADMIN.getGrantedAuthorities())
+                .build();
+
+        UserDetails assistantUser = User.builder()
+                .username("lixi")
+                .password(passwordEncoder.encode("1233"))
+                .authorities(ASSISTANT.getGrantedAuthorities())
                 .build();
 
         return new InMemoryUserDetailsManager(
                 userUser,
-                adminUser
+                adminUser,
+                assistantUser
         );
     }
 }

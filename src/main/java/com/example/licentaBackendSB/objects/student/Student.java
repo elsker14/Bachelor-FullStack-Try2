@@ -167,7 +167,7 @@ public class Student {
         //manual harcode to test search query => check StudentRepository
         hardcodedListOfStudents.add(new Student(1L, "Iancu", "Jianu", "445", "E", 4, 10D));
 
-        for(long i = 1; i < 199; i++)
+        for(long i = 1; i < 10; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();

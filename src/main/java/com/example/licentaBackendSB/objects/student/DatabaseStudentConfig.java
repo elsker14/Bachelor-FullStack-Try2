@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class StudentConfig {
+public class DatabaseStudentConfig {
 
     //vom avea un BEAN pe care il folosim sa populam baza de date cu obiecte de tipul Student
     @Bean
