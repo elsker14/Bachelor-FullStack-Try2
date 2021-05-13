@@ -255,3 +255,8 @@ UserDetails userUser = User.builder()
                 //.roles(STUDENT.name())           //ROLE_STUDENT
                  .authorities(STUDENT.getGrantedAuthorities())
                 .build();
+
+-------------------- Remember me Option --------------------
+
+.rememberMe().tokenValiditySeconds() => modificam timpul default de 2 sapt
+.rememberMe().tokenRepository() => in cazul in care avem o baza de date pt a stoca sessionID sau remember-me cookie

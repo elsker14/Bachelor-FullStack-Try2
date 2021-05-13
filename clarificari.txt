@@ -1,0 +1,32 @@
+//todo
+
+Flaguri de prioritate:
+All this intra la FLAG BOOLEAN PRIORITY:
+-orfan de ambii parinti => cazare automata
+-toti studentii studentii de anul1 (buget) => cazare automata
+-cazuri medicale: handicapuri de diferite feluri => cazare automata
+-studentii straini cu bursa de la minister => cazare automata
+-situatie materiala proasta => FLAG camin ieftin
+
+in DB:
+-buget/taxa, daca e taxa => prioritate negativa (adica fundul listii)
+-(optional) categoria de plata
+    --copil de prof: reducere sau deloc
+    --bursier al statului roman: same
+    --orfani: deloc
+    --taxa: plateste dublu
+-lista de preferinte (caminul ales, nr de camere preferat, de stat cu cineva sau mai putin unde)
+
+-camine: Leu A (900), Leu C (300), P20(200) si P23(straini)
+-nr de camere configurabil (nr de locuri)
+-nr de locuri in camera configurabil
+=> DB cu camere, cu caminul, etajul, nr de locuri
+-1000-2000 in toate caminele
+-fara pandemie :
+    Leu A: +33%
+    Leu C: +50%
+-testez pt 10x
+
+Backend:
+-prima data alocare pe camine
+    -vedem mai tarziu camerele

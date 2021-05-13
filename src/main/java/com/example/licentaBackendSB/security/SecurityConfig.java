@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.example.licentaBackendSB.security.UserRole.*;
 
@@ -38,9 +40,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .anyRequest()           //orice request venit
                 .authenticated()        //trebuie OBLIGATORIU sa fie autentificat
-                .and()                  //si
-                //.httpBasic();             //mecanismul prin care verificam clientul care se logheaza cu userul sau cv pe aici
-                .formLogin();
+
+                .and()
+                .formLogin()
+                    .loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/home", true)
+                    .passwordParameter("password")      //asta tre sa dea match cu "name" din login.html
+                    .usernameParameter("username")
+
+                .and()
+                .rememberMe()
+                    .tokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(21))    //defaults to 2 weeks
+                    .key("somethingVerySecured")   //cheia de criptare pt sessionId si expiration date, deobicei e md5
+                    .rememberMeParameter("remember-me")
+
+                .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))      //doar fiindca CSRF e disabled, daca va fi enabled, musai tre sa fie POST
+                    .clearAuthentication(true)
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .logoutSuccessUrl("/login");
     }
 
     @Override
