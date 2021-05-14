@@ -1,5 +1,6 @@
 package com.example.licentaBackendSB.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,6 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
+
+    @Autowired
     public SecurityConfig(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
@@ -67,10 +70,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean       //will be instantiated for us
     protected UserDetailsService userDetailsService() {
-         UserDetails userUser = User.builder()
+        UserDetails userUser = User.builder()
                 .username("checu")
                 .password(passwordEncoder.encode("1233"))
-                 .authorities(STUDENT.getGrantedAuthorities())
+                .authorities(STUDENT.getGrantedAuthorities())
                 .build();
 
         UserDetails adminUser = User.builder()
