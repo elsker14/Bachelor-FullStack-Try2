@@ -38,6 +38,7 @@ public class StudentController {
     {
         List<Student> studentsDB = studentService.getStudents();
         model.addAttribute("listOfStudents", studentsDB);
+        model.addAttribute("isAdmin", "student");
 
         return "pages/students_list";
     }

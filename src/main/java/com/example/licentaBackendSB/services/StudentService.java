@@ -56,6 +56,12 @@ public class StudentService {
         studentRepository.deleteById(studentId);
     }
 
+    public Student editStudent(Long studentId) {
+
+        return studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + studentId));
+    }
+
     @Transactional
     public void updateStudent(Long studentId, Student newStudent) {
         studentRepository.findById(studentId)
@@ -72,6 +78,5 @@ public class StudentService {
                 orElseThrow(
                         () -> new IllegalStateException("student with id " + studentId + " does not exist")
                 );
-
     }
 }

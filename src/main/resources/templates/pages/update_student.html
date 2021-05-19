@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Update Student</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+    <div class="container my-5">
+        <h2 class="mb-5">Update Student</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="#" th:action="@{/admin/students/update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+                            <label for="nume" class="col-form-label">Nume</label>
+                            <input type="text" th:field="*{nume}" class="form-control" id="nume" placeholder="Nume">
+                            <span th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="prenume" class="col-form-label">Prenume</label>     <!-- for = "prenume" tre sa fie acelasi cu id="prenume" -->
+                            <input type="text" th:field="*{prenume}" class="form-control" id="prenume" placeholder="Prenume">
+                            <span th:if="${#fields.hasErrors('prenume')}" th:errors="*{prenume}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <input type="submit" class="btn btn-primary" value="Update Student">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

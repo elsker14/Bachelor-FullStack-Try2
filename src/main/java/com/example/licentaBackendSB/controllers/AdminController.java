@@ -5,6 +5,7 @@ import com.example.licentaBackendSB.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,35 +33,56 @@ public class AdminController {
 
     @GetMapping("students")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
-    public List<Student> getStudents()
+    public String getStudents(Model model)
     {
-        System.out.println("GET: getStudents");
-        return studentService.getStudents();
+        //System.out.println("GET: getStudents");
+        List<Student> studentsDB = studentService.getStudents();
+        model.addAttribute("listOfStudents", studentsDB);
+        model.addAttribute("isAdmin", "admin");
+
+        return "pages/students_list";
     }
 
-    @PostMapping
-    @PreAuthorize("hasAuthority('student:write')")
-    public void registerNewStudent(@RequestBody Student student)
-    {
-        System.out.println("POST: registerNewStudent");
-        studentService.addNewStudent(student);
-    }
+//    @PostMapping
+//    @PreAuthorize("hasAuthority('student:write')")
+//    public void registerNewStudent(@RequestBody Student student)
+//    {
+//        System.out.println("POST: registerNewStudent");
+//        studentService.addNewStudent(student);
+//    }
 
-    @DeleteMapping( path = "{studentId}")
+    @GetMapping( path = "/students/delete/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
-    public void deleteStudent(@PathVariable("studentId") Long id)
+    public String deleteStudent(@PathVariable("studentId") Long id, Model model)
     {
-        System.out.println("DELETE: deleteStudent");
+        System.out.println("Am intrat in DELETE: deleteStudent ca ADMIN");
         studentService.deleteStudent(id);
+        return "redirect:/admin/students";
     }
 
-    @PutMapping(path = "{studentId}")
+    @GetMapping(path = "/students/edit/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
-    public void updateStudent(
+    public String editStudent(
             @PathVariable("studentId") Long studentId,
-            @RequestBody(required = false) Student newStudent)
+            Model model)
     {
-        System.out.println("PUT: updateStudent");
+        //System.out.println("PUT: updateStudent");
+        Student selectedStudent = studentService.editStudent(studentId);        //getting student by id
+        model.addAttribute("selectedStudentById", selectedStudent);
+
+        return "pages/update_student";
+    }
+
+    @PostMapping(path = "/students/update/{studentId}")
+    @PreAuthorize("hasAuthority('student:write')")
+    public String updateStudent(
+            @PathVariable("studentId") Long studentId,
+            Student newStudent,
+            Model model)
+    {
+        System.out.println("Am intrat in PUT: updateStudent ca ADMIN");
         studentService.updateStudent(studentId, newStudent);
+
+        return "redirect:/admin/students";
     }
 }

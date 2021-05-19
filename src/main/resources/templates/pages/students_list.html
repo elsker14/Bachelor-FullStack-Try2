@@ -17,6 +17,12 @@
                 <th>Serie</th>
                 <th>An</th>
                 <th>Medie</th>
+                <div th:switch="${isAdmin}">
+                    <p th:case="'admin'">
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </p>
+                </div>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +34,12 @@
                 <td th:text="${tempStudent.getSerie()}"></td>
                 <td th:text="${tempStudent.getAn()}"></td>
                 <td th:text="${tempStudent.getMedie()}"></td>
+                <div th:switch="${isAdmin}">
+                    <p th:case="'admin'">
+                        <td><a th:href="@{/admin/students/edit/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                        <td><a th:href="@{/admin/students/delete/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                    </p>
+                </div>
             </tr>
         </tbody>
     </table>
