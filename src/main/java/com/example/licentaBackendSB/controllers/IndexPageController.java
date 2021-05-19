@@ -1,4 +1,4 @@
-package com.example.licentaBackendSB.pages;
+package com.example.licentaBackendSB.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,4 +16,5 @@ public class IndexPageController {
 
     @GetMapping("menu")
     public String getMenuView() { return "pages/menu"; }
+
 }

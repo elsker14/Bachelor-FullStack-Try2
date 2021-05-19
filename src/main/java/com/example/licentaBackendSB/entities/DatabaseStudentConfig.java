@@ -1,5 +1,7 @@
-package com.example.licentaBackendSB.objects.student;
+package com.example.licentaBackendSB.entities;
 
+import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.repositories.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

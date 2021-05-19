@@ -47,9 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .loginPage("/login").permitAll()
-                    .defaultSuccessUrl("/menu", true)
                     .passwordParameter("password")      //asta tre sa dea match cu "name" din login.html
                     .usernameParameter("username")
+                    .defaultSuccessUrl("/menu", true)
+
 
                 .and()
                 .rememberMe()

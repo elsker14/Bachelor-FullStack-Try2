@@ -1,4 +1,4 @@
-package com.example.licentaBackendSB.objects.sort;
+package com.example.licentaBackendSB.others.sort;
 
 public class SortAlgo {
 

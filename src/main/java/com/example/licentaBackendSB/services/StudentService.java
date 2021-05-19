@@ -1,11 +1,12 @@
-package com.example.licentaBackendSB.objects.student;
+package com.example.licentaBackendSB.services;
 
+import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service

@@ -1,6 +1,6 @@
-package com.example.licentaBackendSB.objects.sort.sortingAlgorithms;
+package com.example.licentaBackendSB.others.sort.sortingAlgorithms;
 
-import com.example.licentaBackendSB.objects.student.Student;
+import com.example.licentaBackendSB.entities.Student;
 import java.util.List;
 
 public class SelectionSort {

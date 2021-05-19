@@ -1,4 +1,4 @@
-package com.example.licentaBackendSB.objects.student.randomizers;
+package com.example.licentaBackendSB.others.randomizers;
 
 import java.nio.charset.Charset;
 import java.util.Random;

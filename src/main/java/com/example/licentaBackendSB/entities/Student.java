@@ -1,8 +1,8 @@
-package com.example.licentaBackendSB.objects.student;
+package com.example.licentaBackendSB.entities;
 
-import com.example.licentaBackendSB.objects.sort.sortingAlgorithms.*;
-import com.example.licentaBackendSB.objects.student.randomizers.nameRandomizer;
-import com.example.licentaBackendSB.objects.student.randomizers.ygsRandomizer;
+import com.example.licentaBackendSB.others.sort.sortingAlgorithms.*;
+import com.example.licentaBackendSB.others.randomizers.nameRandomizer;
+import com.example.licentaBackendSB.others.randomizers.ygsRandomizer;
 
 import javax.persistence.*;
 import java.util.*;

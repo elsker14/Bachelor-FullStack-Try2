@@ -1,18 +1,7 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
-
-<style>
-    body {
-        background-color: #3e3e3e;
-        color:white;
-    }
-</style>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
 
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
-
-<h1>Home</h1>
-
-<p>Informatii privind cazarea in camine:</p>
 
 <head>
     <meta charset="utf-8">
@@ -20,7 +9,27 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Platforma Cazare Camine</title>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="https://curs.upb.ro/">E-Learning Platform</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/student">Student Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="/admin">Admin Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 </head>
 

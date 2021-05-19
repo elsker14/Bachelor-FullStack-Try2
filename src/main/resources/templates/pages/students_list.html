@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+
+<title>Lista de Studenti Ordonati</title>
+
+<body>
+
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Grupa</th>
+                <th>Serie</th>
+                <th>An</th>
+                <th>Medie</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tempStudent:${listOfStudents}">
+                <td th:text="${tempStudent.getId()}"></td>
+                <td th:text="${tempStudent.getNume()}"></td>
+                <td th:text="${tempStudent.getPrenume()}"></td>
+                <td th:text="${tempStudent.getGrupa()}"></td>
+                <td th:text="${tempStudent.getSerie()}"></td>
+                <td th:text="${tempStudent.getAn()}"></td>
+                <td th:text="${tempStudent.getMedie()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>

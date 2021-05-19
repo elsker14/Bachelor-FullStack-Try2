@@ -1,5 +1,6 @@
-package com.example.licentaBackendSB.objects.student;
+package com.example.licentaBackendSB.repositories;
 
+import com.example.licentaBackendSB.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

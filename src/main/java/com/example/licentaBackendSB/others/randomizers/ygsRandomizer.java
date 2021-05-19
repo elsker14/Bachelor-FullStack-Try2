@@ -1,4 +1,4 @@
-package com.example.licentaBackendSB.objects.student.randomizers;
+package com.example.licentaBackendSB.others.randomizers;
 
 import java.util.ArrayList;
 import java.util.List;

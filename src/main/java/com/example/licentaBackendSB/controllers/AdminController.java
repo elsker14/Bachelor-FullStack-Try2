@@ -1,26 +1,36 @@
-package com.example.licentaBackendSB.objects.student;
+package com.example.licentaBackendSB.controllers;
 
+import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(path = "management/api/v1/students")
-public class StudentManagementController {
+@Controller
+@RequestMapping(path = "admin")
+public class AdminController {
 
     //Field
     private final StudentService studentService;
 
     //Constructor
     @Autowired
-    public StudentManagementController(StudentService studentService)
+    public AdminController(StudentService studentService)
     {
         this.studentService = studentService;
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
+    public String getStudentView()
+    {
+        return "pages/admin";
+    }
+
+    @GetMapping("students")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public List<Student> getStudents()
     {
