@@ -1,4 +1,4 @@
-package com.example.licentaBackendSB.controller;
+package com.example.licentaBackendSB.pages;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,17 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class TemplateController {
+public class IndexPageController {
 
     @GetMapping("login")
     public String getLoginView()
     {
-        return "login";
+        return "pages/login";
     }
 
-    @GetMapping("home")
-    public String getCoursesView()
-    {
-        return "home";
-    }
+    @GetMapping("menu")
+    public String getMenuView() { return "pages/menu"; }
 }
