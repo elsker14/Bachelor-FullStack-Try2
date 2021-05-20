@@ -1,0 +1,71 @@
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+<head>
+    <title>Responsive Sidebar Menu</title>
+    <!--<link rel="stylesheet" type="text/css" href="/static/style.css">-->
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="title">Home</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <span class="title">Profile</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-envelope"></i></span>
+                <span class="title">Messages</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-hand-holding-medical"></i></span>
+                <span class="title">Help</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-cogs"></i></span>
+                <span class="title">Settings</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-key"></i></span>
+                <span class="title">Password</span>
+            </li>
+
+            <li>
+                <a href="#"></a>
+                <span class="icon"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></span>
+                <span class="title">Sign Out</span>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle" onclick="toggleMenu()"></div>
+    <script type="text/javascript">
+        function toggleMenu(){
+            let navigation = document.querySelector('.navigation')
+            let toggle = document.querySelector('.toggle')
+            navigation.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+    </script>
+</body>
