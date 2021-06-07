@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.example.licentaBackendSB.security.UserRole.*;
@@ -90,10 +92,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorities(ASSISTANT.getGrantedAuthorities())
                 .build();
 
+        //todo: CREAZA O BAZA DE DATE PENTRU TOATE CONTURILE DE STUDENT IN CARE BAGI
+            //username:cnp
+            //password:ziuadenastere
+        //hardcodeaza baza de date cu informatiile respective
+        //https://stackoverflow.com/questions/53516952/spring-boot-how-to-check-if-encoded-password-from-db-is-matching-with-password-f
+
+//        String code = passwordEncoder.encode("1233");
+//
+//        System.out.println("PAROLA CODATA!!!!!!!!!!!!!!!!!!!!!!! " + passwordEncoder.matches(code, "1233"));
+//        System.out.println("PAROLA CODATA!!!!!!!!!!!!!!!!!!!!!!! " + passwordEncoder.matches(code, "1234"));
+
+        List<UserDetails> accounts = new ArrayList<>();
+        accounts.add(userUser);
+        accounts.add(adminUser);
+        accounts.add(assistantUser);
+
         return new InMemoryUserDetailsManager(
-                userUser,
-                adminUser,
-                assistantUser
+                accounts
         );
     }
 }

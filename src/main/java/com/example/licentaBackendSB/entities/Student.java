@@ -31,10 +31,11 @@ public class Student {
     private String serie;
     private Integer an;
     private Double medie;
+    private String myToken;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
+    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -42,6 +43,7 @@ public class Student {
         this.serie = serie;
         this.an = an;
         this.medie = medie;
+        this.myToken = myToken;
     }
 
     public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
@@ -112,6 +114,14 @@ public class Student {
         this.id = id;
     }
 
+    public String getMyToken() {
+        return myToken;
+    }
+
+    public void setMyToken(String myToken) {
+        this.myToken = myToken;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
@@ -165,22 +175,25 @@ public class Student {
         Random rand = new Random();
 
         //manual harcode to test search query => check StudentRepository
-        hardcodedListOfStudents.add(new Student(1L, "Iancu", "Jianu", "445", "E", 4, 10D));
+        hardcodedListOfStudents.add(new Student(1L, "Iancu", "Jianu", "445", "E", 4, 10D, shuffleString("iancu"+"jianu")));
 
         for(long i = 1; i < 10; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
             int year = Character.getNumericValue(group.charAt(1));
+            String randomNume = nameRandomizer.getAlphaNumericString(5);
+            String randomPrenume = nameRandomizer.getAlphaNumericString(5);
 
             hardcodedListOfStudents.add(new Student(
                     (i + 1),
-                    nameRandomizer.getAlphaNumericString(5),                //nume
-                    nameRandomizer.getAlphaNumericString(5),                //prenume
+                    randomNume ,                //nume
+                    randomPrenume,                //prenume
                     group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
                     series,                                                    //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
                     year,                                                      //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
-                    (1D + (10D - 1D) * rand.nextDouble())                      //medie
+                    (1D + (10D - 1D) * rand.nextDouble()),                     //medie
+                    shuffleString(randomNume+randomPrenume)
             ));
         }
 
@@ -195,6 +208,17 @@ public class Student {
     public static void printStudents(List <Student> tmp)
     {
         System.out.println(Arrays.toString(tmp.toArray()));
+    }
+
+    public static String shuffleString(String string)
+    {
+        List<String> letters = Arrays.asList(string.split(""));
+        Collections.shuffle(letters);
+        String shuffled = "";
+        for (String letter : letters) {
+            shuffled += letter;
+        }
+        return shuffled;
     }
 
     //Sorting Algorithms returning execution time ----------------------------------------------------------------------

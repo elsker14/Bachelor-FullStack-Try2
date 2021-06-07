@@ -14,11 +14,10 @@ public class IndexPageController {
         return "pages/login";
     }
 
-    //todo: remove it, din pagina principala doar te loghezi
     @GetMapping("menu")
-    public String getMenuView() { return "pages/menu"; }
-
-    @GetMapping("sidebarpage")
-    public String getSideBarView() { return "sidebar/testpage"; }
+    public String getMenuView()
+    {
+        return "pages/menu";
+    }
 
 }

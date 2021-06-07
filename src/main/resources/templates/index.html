@@ -1,10 +1,19 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+<link ref="stylesheet" href="templates/css/style.css">
 <style>
-    body {
-        background-color: #3e3e3e;
-        color:white;
+    body
+    {
+        background-color: whitesmoke;
+        color:black;
+    }
+
+    h4
+    {
+        text-align: center;
+        color: black;
+        font-family: "Times New Roman",serif;
     }
 </style>
 
@@ -12,13 +21,43 @@
 <html>
     <head>
         <meta charset="ISO-8859-1">
-        <title>Licenta</title>
+
+        <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand" aria-label="Index navigation">
+            <a class="navbar-brand" href="https://curs.upb.ro">
+                <span>
+                    UPB E-Learning
+                </span>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login"> Login Page </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
     </head>
 
     <body>
+        <h3 style="text-align: center">
+            <img src="https://bit.ly/3z6sUnT" width="200" height="200" style="text-align: center;vertical-align:middle;margin:50px 0px">
+        </h3>
+
         <div class="container">
-            <h1>Platforma de Cazare a Studentilor in Camine</h1>
-            <a href="/login"> Login Page </a>
+            <h4 class="text-center">
+                Bine ați venit!
+            </h4>
+            <h4>
+                Acest portal reprezintă o platformă pentru gestionarea studenților în camerele de cămin.
+            </h4>
+            <h4>
+                Vă dorim o experiență cât mai plăcută!
+            </h4>
         </div>
+
     </body>
 </html>
