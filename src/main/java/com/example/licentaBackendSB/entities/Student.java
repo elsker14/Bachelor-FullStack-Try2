@@ -1,5 +1,6 @@
 package com.example.licentaBackendSB.entities;
 
+import com.example.licentaBackendSB.others.randomizers.DoBandCNPandGenderRandomizer;
 import com.example.licentaBackendSB.others.sort.sortingAlgorithms.*;
 import com.example.licentaBackendSB.others.randomizers.nameRandomizer;
 import com.example.licentaBackendSB.others.randomizers.ygsRandomizer;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class Student {
 
     @Transient
-    public static List<Student> hardcodedStudents = hardcodeStudents();
+    public static List<Student> hardcodedStudentsList = hardcodeStudents();
 
     //De aici modifici limitele referitoare la numarul de studenti
     @Transient
@@ -43,11 +44,12 @@ public class Student {
     private Double medie;
     private String zi_de_nastere;
     private String cnp;
+    private String genSexual;
     private String myToken;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp) {
+    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp, String genSexual) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -58,6 +60,7 @@ public class Student {
         this.myToken = myToken;
         this.zi_de_nastere = zi_de_nastere;
         this.cnp = cnp;
+        this.genSexual = genSexual;
     }
 
     public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
@@ -136,6 +139,30 @@ public class Student {
         this.myToken = myToken;
     }
 
+    public String getZi_de_nastere() {
+        return zi_de_nastere;
+    }
+
+    public void setZi_de_nastere(String zi_de_nastere) {
+        this.zi_de_nastere = zi_de_nastere;
+    }
+
+    public String getCnp() {
+        return cnp;
+    }
+
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
+    }
+
+    public String getGenSexual() {
+        return genSexual;
+    }
+
+    public void setGenSexual(String genSexual) {
+        this.genSexual = genSexual;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
@@ -199,17 +226,24 @@ public class Student {
                         4,
                         10D,
                         shuffleString("iancu"+"jianu"),
-                        "aa",
-                        "aa"
+                        "14.Martie.1998",
+                        "1980314170059",
+                        "Masculin"
                 ));
 
         for(long i = 1; i < 10; i++)
         {
             String group = ygsRandomizer.getRandomGroup();
             String series = ygsRandomizer.getRandomSeries();
+
             int year = Character.getNumericValue(group.charAt(1));
+
             String randomNume = nameRandomizer.getAlphaNumericString(5);
             String randomPrenume = nameRandomizer.getAlphaNumericString(5);
+
+            String randomDoB = DoBandCNPandGenderRandomizer.getDoB();
+            String randomGender = DoBandCNPandGenderRandomizer.getGender();
+            String randomCNP = DoBandCNPandGenderRandomizer.getCNP(randomDoB, randomGender);
 
             hardcodedListOfStudents.add(new Student(
                     (i + 1),
@@ -220,8 +254,9 @@ public class Student {
                     year,                                                       //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
                     (1D + (10D - 1D) * rand.nextDouble()),                      //medie
                     shuffleString(randomNume+randomPrenume),
-                    "aa",
-                    "aa"
+                    randomDoB,
+                    randomCNP,
+                    randomGender
             ));
         }
 

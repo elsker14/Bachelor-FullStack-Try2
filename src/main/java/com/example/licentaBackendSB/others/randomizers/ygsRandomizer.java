@@ -11,7 +11,7 @@ public class ygsRandomizer {
         //needs to be between ASCII code [65, 71]
         final int minASCIIcodeForSeries = 65;   //A
         final int maxASCIIcodeForSeries = 71;   //G
-        int randomASCII = (int)Math.floor(Math.random()*(maxASCIIcodeForSeries-minASCIIcodeForSeries+1)+minASCIIcodeForSeries);
+        int randomASCII = (int)Math.floor(Math.random()*(maxASCIIcodeForSeries - minASCIIcodeForSeries + 1) + minASCIIcodeForSeries);
 
         return Character.toString((char) randomASCII);
     }

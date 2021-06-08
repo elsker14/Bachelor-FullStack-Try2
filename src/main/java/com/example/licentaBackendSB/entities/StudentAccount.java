@@ -1,5 +1,8 @@
 package com.example.licentaBackendSB.entities;
 
+import com.example.licentaBackendSB.others.randomizers.DoBandCNPandGenderRandomizer;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +10,10 @@ import java.util.List;
 @Entity
 @Table
 public class StudentAccount {
+
+    @Transient
+    static PasswordEncoder passwordEncoder;
+
     @Id
     @SequenceGenerator(
             name = "studentAcc_sequence",
@@ -106,18 +113,21 @@ public class StudentAccount {
 
         for(long i = Student.startIndexing - 1L; i < Student.endIndexing; i++)
         {
+            String username = tmp.get((int) i).getCnp();
+            String password = DoBandCNPandGenderRandomizer.splitDoBbyDot(tmp.get((int) i).getZi_de_nastere());
+            //String encodedPassword = passwordEncoder.encode(password);
+
             studentAccounts.add(new StudentAccount(
                     (i + 1),
                     tmp.get((int) i).getNume(),
                     tmp.get((int) i).getPrenume(),
-                    "null",
-                    "null",
-                    "null",
-                    "null",
-                    "null"
+                    tmp.get((int) i).getZi_de_nastere(),
+                    username,
+                    password,
+                    "encodedPassword",
+                    tmp.get((int) i).getCnp()
             ));
         }
-
 
         return studentAccounts;
     }

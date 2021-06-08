@@ -3,7 +3,6 @@ package com.example.licentaBackendSB.loaders;
 import com.example.licentaBackendSB.entities.Student;
 import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.repositories.StudentAccountsDBRepository;
-import com.example.licentaBackendSB.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class StudentAccountsLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("Loading data from StudentAccountsLoader...");
 
-        List<Student> studentsDB = Student.hardcodedStudents;
+        List<Student> studentsDB = Student.hardcodedStudentsList;
         List<StudentAccount> studentAccountsDB = StudentAccount.hardcodeStudentsAccountsDB(studentsDB);
 
         studentAccountsDBRepository.saveAll(studentAccountsDB);
