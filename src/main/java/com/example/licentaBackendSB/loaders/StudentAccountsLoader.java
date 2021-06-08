@@ -1,5 +1,6 @@
-package com.example.licentaBackendSB.entities;
+package com.example.licentaBackendSB.loaders;
 
+import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.repositories.StudentAccountsDBRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,13 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @Order(2)
 public class StudentAccountsLoader implements CommandLineRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(DatabaseStudentConfig.class);
+    private final Logger logger = LoggerFactory.getLogger(StudentsLoader.class);
 
     @Autowired
     private StudentAccountsDBRepository studentAccountsDBRepository;
@@ -27,7 +26,7 @@ public class StudentAccountsLoader implements CommandLineRunner {
         //studentAccountsDBRepository.saveAll(studentsAccountsDB);
 
         studentAccountsDBRepository.save(
-                new StudentAccountsDB(
+                new StudentAccount(
                         1L,
                         "Iancu",
                         "Jianu",

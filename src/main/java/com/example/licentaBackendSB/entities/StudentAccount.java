@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class StudentAccountsDB {
+public class StudentAccount {
     @Id
     @SequenceGenerator(
             name = "studentAcc_sequence",
@@ -32,7 +32,7 @@ public class StudentAccountsDB {
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public StudentAccountsDB(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String encodedPassword) {
+    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String encodedPassword) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -42,7 +42,7 @@ public class StudentAccountsDB {
         this.encodedPassword = encodedPassword;
     }
 
-    public StudentAccountsDB() {}
+    public StudentAccount() {}
 
     //GETTERs && SETTERs -----------------------------------------------------------------------------------------------
     public Long getId() {
@@ -93,11 +93,11 @@ public class StudentAccountsDB {
     }
 
     //Methods ----------------------------------------------------------------------------------------------------------
-    public static List<StudentAccountsDB> hardcodeStudentsAccountsDB(List<Student> tmp) {
-        List<StudentAccountsDB> studentAccountsDBS = new ArrayList<>();
+    public static List<StudentAccount> hardcodeStudentsAccountsDB(List<Student> tmp) {
+        List<StudentAccount> studentAccounts = new ArrayList<>();
         PasswordEncoder passwordEncoder = null;
 
-        studentAccountsDBS.add(new StudentAccountsDB(
+        studentAccounts.add(new StudentAccount(
                 1L,
                 tmp.get(0).getNume(),
                 tmp.get(0).getPrenume(),
@@ -107,6 +107,6 @@ public class StudentAccountsDB {
                 passwordEncoder.encode("1980314170059")
         ));
 
-        return studentAccountsDBS;
+        return studentAccounts;
     }
 }
