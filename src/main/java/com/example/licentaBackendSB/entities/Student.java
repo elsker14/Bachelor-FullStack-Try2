@@ -11,6 +11,16 @@ import java.util.stream.Collectors;
 @Entity //for hibernate framework
 @Table  //for database
 public class Student {
+
+    @Transient
+    public static List<Student> hardcodedStudents = hardcodeStudents();
+
+    //De aici modifici limitele referitoare la numarul de studenti
+    @Transient
+    public static long startIndexing = 1;
+    @Transient
+    public static long endIndexing = 10;
+
     @Id
     @SequenceGenerator(
             name = "student_sequence",
@@ -31,11 +41,13 @@ public class Student {
     private String serie;
     private Integer an;
     private Double medie;
+    private String zi_de_nastere;
+    private String cnp;
     private String myToken;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken) {
+    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -44,6 +56,8 @@ public class Student {
         this.an = an;
         this.medie = medie;
         this.myToken = myToken;
+        this.zi_de_nastere = zi_de_nastere;
+        this.cnp = cnp;
     }
 
     public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
@@ -175,7 +189,19 @@ public class Student {
         Random rand = new Random();
 
         //manual harcode to test search query => check StudentRepository
-        hardcodedListOfStudents.add(new Student(1L, "Iancu", "Jianu", "445", "E", 4, 10D, shuffleString("iancu"+"jianu")));
+        hardcodedListOfStudents.add(
+                new Student(
+                        1L,
+                        "Iancu",
+                        "Jianu",
+                        "445",
+                        "E",
+                        4,
+                        10D,
+                        shuffleString("iancu"+"jianu"),
+                        "aa",
+                        "aa"
+                ));
 
         for(long i = 1; i < 10; i++)
         {
@@ -187,13 +213,15 @@ public class Student {
 
             hardcodedListOfStudents.add(new Student(
                     (i + 1),
-                    randomNume ,                //nume
-                    randomPrenume,                //prenume
-                    group,                                                     //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
-                    series,                                                    //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
-                    year,                                                      //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
-                    (1D + (10D - 1D) * rand.nextDouble()),                     //medie
-                    shuffleString(randomNume+randomPrenume)
+                    randomNume ,                                                //nume
+                    randomPrenume,                                              //prenume
+                    group,                                                      //grupa, old way: RandomAlphaNumericString.getAlphaNumericString(3)
+                    series,                                                     //serie, old way : RandomAlphaNumericString.getAlphaNumericString(1)
+                    year,                                                       //an, old way: ((int) (Math.random() * (5 - 1)) + 1)
+                    (1D + (10D - 1D) * rand.nextDouble()),                      //medie
+                    shuffleString(randomNume+randomPrenume),
+                    "aa",
+                    "aa"
             ));
         }
 

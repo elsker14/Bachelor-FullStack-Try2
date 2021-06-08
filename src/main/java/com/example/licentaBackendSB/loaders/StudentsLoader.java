@@ -24,7 +24,8 @@ public class StudentsLoader implements CommandLineRunner{
     public void run(String... args) throws Exception {
         logger.info("Loading data from StudentLoader...");
 
-        List <Student> studentsDB = Student.hardcodeStudents();
+        List <Student> studentsDB = Student.hardcodedStudents;
+
         studentRepository.saveAll(studentsDB);
     }
 }

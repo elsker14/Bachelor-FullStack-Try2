@@ -1,6 +1,6 @@
 Advanced Command Liner for more tables:
     https://www.danvega.dev/blog/2017/04/07/spring-boot-command-line-runner/
-
+https://www.amitph.com/spring-boot-runners/
 DE MARE AJUTOR:
 I:\Code Here\1. Licenta\IntelliJ\tutorials-master\spring-boot-modules\spring-boot-crud
 

@@ -1,7 +1,5 @@
 package com.example.licentaBackendSB.entities;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +24,14 @@ public class StudentAccount {
     private String nume;
     private String prenume;
     private String zi_de_nastere;
+    private String cnp;
     private String username;
     private String password;
     private String encodedPassword;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String encodedPassword) {
+    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String encodedPassword, String cnp) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -40,6 +39,7 @@ public class StudentAccount {
         this.username = username;
         this.password = password;
         this.encodedPassword = encodedPassword;
+        this.cnp = cnp;
     }
 
     public StudentAccount() {}
@@ -77,6 +77,14 @@ public class StudentAccount {
         return encodedPassword;
     }
 
+    public String getCnp() {
+        return cnp;
+    }
+
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
 
     @Override
@@ -95,17 +103,21 @@ public class StudentAccount {
     //Methods ----------------------------------------------------------------------------------------------------------
     public static List<StudentAccount> hardcodeStudentsAccountsDB(List<Student> tmp) {
         List<StudentAccount> studentAccounts = new ArrayList<>();
-        PasswordEncoder passwordEncoder = null;
 
-        studentAccounts.add(new StudentAccount(
-                1L,
-                tmp.get(0).getNume(),
-                tmp.get(0).getPrenume(),
-                "14.03.1998",
-                "14031998",
-                "1980314170059",
-                passwordEncoder.encode("1980314170059")
-        ));
+        for(long i = Student.startIndexing - 1L; i < Student.endIndexing; i++)
+        {
+            studentAccounts.add(new StudentAccount(
+                    (i + 1),
+                    tmp.get((int) i).getNume(),
+                    tmp.get((int) i).getPrenume(),
+                    "null",
+                    "null",
+                    "null",
+                    "null",
+                    "null"
+            ));
+        }
+
 
         return studentAccounts;
     }
