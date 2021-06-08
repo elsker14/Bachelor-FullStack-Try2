@@ -1,2 +1,2 @@
-# LicentaBackendSB
-Backend Licenta with SpringBoot 
+# Etti Bachelor Thesis
+
