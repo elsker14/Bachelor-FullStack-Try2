@@ -34,18 +34,16 @@ public class StudentAccount {
     private String cnp;
     private String username;
     private String password;
-    private String encodedPassword;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String encodedPassword, String cnp) {
+    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String cnp) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.zi_de_nastere = zi_de_nastere;
         this.username = username;
         this.password = password;
-        this.encodedPassword = encodedPassword;
         this.cnp = cnp;
     }
 
@@ -80,10 +78,6 @@ public class StudentAccount {
         return password;
     }
 
-    public String getEncodedPassword() {
-        return encodedPassword;
-    }
-
     public String getCnp() {
         return cnp;
     }
@@ -103,7 +97,6 @@ public class StudentAccount {
                 ", zi_de_nastere='" + zi_de_nastere + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", encodedPassword='" + encodedPassword + '\'' +
                 '}';
     }
 
@@ -115,7 +108,6 @@ public class StudentAccount {
         {
             String username = tmp.get((int) i).getCnp();
             String password = DoBandCNPandGenderRandomizer.splitDoBbyDot(tmp.get((int) i).getZi_de_nastere());
-            //String encodedPassword = passwordEncoder.encode(password);
 
             studentAccounts.add(new StudentAccount(
                     (i + 1),
@@ -124,7 +116,6 @@ public class StudentAccount {
                     tmp.get((int) i).getZi_de_nastere(),
                     username,
                     password,
-                    "encodedPassword",
                     tmp.get((int) i).getCnp()
             ));
         }

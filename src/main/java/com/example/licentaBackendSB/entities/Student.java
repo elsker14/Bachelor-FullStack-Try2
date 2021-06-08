@@ -1,5 +1,6 @@
 package com.example.licentaBackendSB.entities;
 
+import com.example.licentaBackendSB.others.randomizers.CountyManager;
 import com.example.licentaBackendSB.others.randomizers.DoBandCNPandGenderRandomizer;
 import com.example.licentaBackendSB.others.sort.sortingAlgorithms.*;
 import com.example.licentaBackendSB.others.randomizers.nameRandomizer;
@@ -46,10 +47,11 @@ public class Student {
     private String cnp;
     private String genSexual;
     private String myToken;
+    private String judet;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp, String genSexual) {
+    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp, String genSexual, String judet) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -61,6 +63,7 @@ public class Student {
         this.zi_de_nastere = zi_de_nastere;
         this.cnp = cnp;
         this.genSexual = genSexual;
+        this.judet = judet;
     }
 
     public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
@@ -163,6 +166,14 @@ public class Student {
         this.genSexual = genSexual;
     }
 
+    public String getJudet() {
+        return judet;
+    }
+
+    public void setJudet(String judet) {
+        this.judet = judet;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
@@ -228,7 +239,8 @@ public class Student {
                         shuffleString("iancu"+"jianu"),
                         "14.Martie.1998",
                         "1980314170059",
-                        "Masculin"
+                        "Masculin",
+                        "Galati"
                 ));
 
         for(long i = 1; i < 10; i++)
@@ -245,6 +257,9 @@ public class Student {
             String randomGender = DoBandCNPandGenderRandomizer.getGender();
             String randomCNP = DoBandCNPandGenderRandomizer.getCNP(randomDoB, randomGender);
 
+            String countyCode = randomCNP.substring(7,9);
+            String randomCounty = CountyManager.getCountyFromTwoDigitCode(countyCode);
+
             hardcodedListOfStudents.add(new Student(
                     (i + 1),
                     randomNume ,                                                //nume
@@ -256,7 +271,8 @@ public class Student {
                     shuffleString(randomNume+randomPrenume),
                     randomDoB,
                     randomCNP,
-                    randomGender
+                    randomGender,
+                    randomCounty
             ));
         }
 

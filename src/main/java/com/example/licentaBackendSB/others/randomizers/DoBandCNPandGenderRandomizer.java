@@ -79,8 +79,12 @@ public class DoBandCNPandGenderRandomizer {
 
         //Generare random a codului de judet
         int startCountyCode = 1;
-        int endCountyCode = 48;
-        int randomCountyCode = rand.nextInt(endCountyCode - startCountyCode) + startCountyCode;
+        int endCountyCode = 52;
+        int randomCountyCode = 48;  //oricare din 47, 48, 49, 50
+        while(!DoBandCNPandGenderRandomizer.checkCountyCode(randomCountyCode))
+        {
+            randomCountyCode = rand.nextInt(endCountyCode - startCountyCode) + startCountyCode;
+        }
 
         //Generare random a ultimelor 4 cifre din cnp
         int startLetter = 0;
@@ -102,6 +106,11 @@ public class DoBandCNPandGenderRandomizer {
                 + randomFourthLetter;
 
         return result;
+    }
+
+    public static Boolean checkCountyCode(int tmp)
+    {
+        return tmp != 47 && tmp != 48 && tmp != 49 && tmp != 50;
     }
 
     public static String splitDoBbyDot(String tmp)

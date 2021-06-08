@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean       //will be instantiated for us
     protected UserDetailsService userDetailsService() {
+
+        //Aici cream 3 conturi de baza, hardcodate pt situatii de urgenta
         UserDetails userUser = User.builder()
                 .username("checu")
                 .password(passwordEncoder.encode("1233"))
@@ -93,22 +95,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorities(ASSISTANT.getGrantedAuthorities())
                 .build();
 
-        //todo: CREAZA O BAZA DE DATE PENTRU TOATE CONTURILE DE STUDENT IN CARE BAGI
-            //username:cnp
-            //password:ziuadenastere
-        //hardcodeaza baza de date cu informatiile respective
-        //https://stackoverflow.com/questions/53516952/spring-boot-how-to-check-if-encoded-password-from-db-is-matching-with-password-f
-
-//        String code = passwordEncoder.encode("1233");
-//
-//        System.out.println("PAROLA CODATA!!!!!!!!!!!!!!!!!!!!!!! " + passwordEncoder.matches(code, "1233"));
-//        System.out.println("PAROLA CODATA!!!!!!!!!!!!!!!!!!!!!!! " + passwordEncoder.matches(code, "1234"));
-
+        //Introducem conturile intr-o lista de conturi pe care o vom trimite spre securitate
         List<UserDetails> accounts = new ArrayList<>();
         accounts.add(userUser);
         accounts.add(adminUser);
         accounts.add(assistantUser);
 
+        //Prelucram tabelul cu conturi pt studenti astfel incat sa cream conturi pt toti studentii
         List <StudentAccount> studentAccountList = StudentAccount.studentAccountsList;
         for (StudentAccount studentAccount : studentAccountList) {
             accounts.add(
