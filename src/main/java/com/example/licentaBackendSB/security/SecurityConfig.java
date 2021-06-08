@@ -1,5 +1,6 @@
 package com.example.licentaBackendSB.security;
 
+import com.example.licentaBackendSB.entities.StudentAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -107,6 +108,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         accounts.add(userUser);
         accounts.add(adminUser);
         accounts.add(assistantUser);
+
+        List <StudentAccount> studentAccountList = StudentAccount.studentAccountsList;
+        for (StudentAccount studentAccount : studentAccountList) {
+            accounts.add(
+                    User.builder()
+                            .username(studentAccount.getUsername())
+                            .password(passwordEncoder.encode(studentAccount.getPassword()))
+                            .authorities(STUDENT.getGrantedAuthorities())
+                            .build()
+            );
+        }
 
         return new InMemoryUserDetailsManager(
                 accounts

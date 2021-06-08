@@ -12,7 +12,7 @@ import java.util.List;
 public class StudentAccount {
 
     @Transient
-    static PasswordEncoder passwordEncoder;
+    public static List<StudentAccount> studentAccountsList = hardcodeStudentsAccountsDB(Student.hardcodedStudentsList);
 
     @Id
     @SequenceGenerator(
