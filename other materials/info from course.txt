@@ -1,6 +1,11 @@
 Advanced Command Liner for more tables:
     https://www.danvega.dev/blog/2017/04/07/spring-boot-command-line-runner/
 https://www.amitph.com/spring-boot-runners/
+
+Contul din sesiunea de logare:
+https://stackoverflow.com/questions/45908100/get-username-in-session-spring-security
+https://stackoverflow.com/questions/63888901/how-securitycontextholder-getcontext-getauthentication-works
+
 DE MARE AJUTOR:
 I:\Code Here\1. Licenta\IntelliJ\tutorials-master\spring-boot-modules\spring-boot-crud
 

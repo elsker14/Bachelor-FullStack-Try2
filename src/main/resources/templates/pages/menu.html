@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:replace="layouts/header :: myheader"></div>
 
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
@@ -30,6 +30,12 @@
             </ul>
         </div>
     </nav>
+
+    <div style="padding-top: 50px">
+        <h1>
+            Salutare drag student, <td th:text="${loggedUsername}"></td>
+        </h1>
+    </div>
 
 </head>
 
