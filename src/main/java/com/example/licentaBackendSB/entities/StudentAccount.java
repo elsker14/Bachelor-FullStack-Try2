@@ -34,10 +34,11 @@ public class StudentAccount {
     private String cnp;
     private String username;
     private String password;
+    private String autoritate;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String cnp) {
+    public StudentAccount(Long id, String nume, String prenume, String zi_de_nastere, String username, String password, String cnp, String autoritate) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -45,6 +46,7 @@ public class StudentAccount {
         this.username = username;
         this.password = password;
         this.cnp = cnp;
+        this.autoritate = autoritate;
     }
 
     public StudentAccount() {}
@@ -86,17 +88,27 @@ public class StudentAccount {
         this.cnp = cnp;
     }
 
+    public String getAutoritate() {
+        return autoritate;
+    }
+
+    public void setAutoritate(String autoritate) {
+        this.autoritate = autoritate;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
 
     @Override
     public String toString() {
-        return "StudentAccountsDB{" +
+        return "StudentAccount{" +
                 "id=" + id +
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", zi_de_nastere='" + zi_de_nastere + '\'' +
+                ", cnp='" + cnp + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", autoritate='" + autoritate + '\'' +
                 '}';
     }
 
@@ -116,7 +128,8 @@ public class StudentAccount {
                     tmp.get((int) i).getZi_de_nastere(),
                     username,
                     password,
-                    tmp.get((int) i).getCnp()
+                    tmp.get((int) i).getCnp(),
+                    "STUDENT"
             ));
         }
 

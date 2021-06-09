@@ -39,12 +39,14 @@ public class IndexPageController {
         {
             model.addAttribute("loggedStudentAccount", loggedAccount.getLoggedUsername());
             model.addAttribute("isLoggedStandardAcc", "true");
+            model.addAttribute("authority", loggedAccount.getAuthorityOfStandardAcc());
         }
         else
         {
             StudentAccount loggedStudentAccount = studentAccountService.getLoggedStudentAccount();
             model.addAttribute("loggedStudentAccount", loggedStudentAccount);
             model.addAttribute("isLoggedStandardAcc", "false");
+            model.addAttribute("authority", loggedStudentAccount.getAutoritate());
         }
         System.out.println("E LOGAT CONTUL STANDARD? " + isLoggedStandardAcc);
         return "pages/menu";

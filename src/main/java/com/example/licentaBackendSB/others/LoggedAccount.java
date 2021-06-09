@@ -31,4 +31,14 @@ public class LoggedAccount {
                 || this.loggedUsername.equals("iancu")
                 || this.loggedUsername.equals("lixi");
     }
+
+    public String getAuthorityOfStandardAcc()
+    {
+        if(this.loggedUsername.equals("checu"))
+            return "STUDENT";
+        else if(this.loggedUsername.equals("iancu"))
+            return "ADMIN";
+        else
+            return "ASSISTANT";
+    }
 }

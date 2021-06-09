@@ -113,6 +113,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             );
         }
 
+        //todo: va trebui sa avem inca 2 tabele pt admini si asistenti
+
         return new InMemoryUserDetailsManager(
                 accounts
         );

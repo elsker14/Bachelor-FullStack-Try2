@@ -10,7 +10,9 @@
     <meta name="author" content="">
 
     <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand">
-        <a class="navbar-brand" href="https://curs.upb.ro/">E-Learning Platform</a>
+        <a class="navbar-brand" href="https://curs.upb.ro/">
+            <span class="fa fa-university"></span> E-Learning Platform
+        </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,15 +20,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/student">Student Page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="/admin">Admin Page</a>
-                </li>
+
+                <div th:switch="${authority}">
+                    <li th:case="'STUDENT'" class="nav-item">
+                        <a class="nav-link" href="/student">Student Page</a>
+                    </li>
+
+                    <li th:case="'ADMIN'" class="nav-item">
+                        <a class="nav-link"  href="/admin">Admin Page</a>
+                    </li>
+
+                    <li th:case="'ASSISTANT'" class="nav-item">
+                        <a class="nav-link"  href="/admin">Assitant Page</a>
+                    </li>
+                </div>
+
             </ul>
         </div>
     </nav>
@@ -35,7 +47,7 @@
         <h1>
 
             <p th:case="'true'">
-                Salutare drag student, <td th:text="${loggedStudentAccount}"></td>
+                Salutare drag coleg, <td th:text="${loggedStudentAccount}"></td>
             </p>
             <p th:case="'false'">
                 Salutare drag student, <td th:text="${loggedStudentAccount.getNume()}"></td> <td th:text="${loggedStudentAccount.getPrenume()}"></td>
