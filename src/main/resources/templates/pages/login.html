@@ -1,6 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    img{
+        opacity: 0.5;
+    }
+
+    img:hover{
+        opacity: 1.0;
+    }
+</style>
+
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
 <head>
@@ -29,25 +39,53 @@
 </head>
 
 <body>
-<div class="container">
-    <form class="card-body form-signin" method="post" action="/login">
-        <h2 class="form-signin-heading"></h2>
-        <p>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-        </p>
+    <div class="row" style="padding-top: 150px">
+        <aside class="col-sm-4" style="padding-left: 100px; padding-right: 200px">
+            <img src="https://bit.ly/3cwAO09" style="width: 350px; height: 350px;">
+        </aside>
 
-        <p>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-        </p>
+        <aside class="col-sm-4" style="padding-left: 50px; padding-right: 100px;">
+            <div class="card">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+                    <hr>
+                    <form class="form-signin" method="post" action="/login">
+                        <h2 class="form-signin-heading"></h2>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input class="form-control" type="text" id="username" name="username" placeholder="Username" required="" autofocus="">
+                            </div>
+                        </div>
 
-        <p>
-            Remember me?
-            <input type="checkbox" id="remember-me" name="remember-me" class="form-control">
-        </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-    </form>
-</div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="padding-bottom: 10px">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password" required="">
+                            </div>
+                        </div>
 
+                            <!--todo pune checkboxul in dreptul label-ului cumva-->
+<!--                        <form id="rememberMe-form">-->
+<!--                            <div class="checkboxes">-->
+<!--                                <label><input type="checkbox" id="remember-me" name="remember-me" class="form-control"><span>Remember me?</span></label>-->
+<!--                            </div>-->
+<!--                        </form>-->
+
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                        </div>
+                    </form>
+                </article>
+            </div>
+        </aside>
+
+        <aside class="col-sm-4" style="padding-left: 50px">
+            <img src="https://bit.ly/3iuaS9p" style="width: 325px; height: 325px;">
+        </aside>
+    </div>
 </body>
