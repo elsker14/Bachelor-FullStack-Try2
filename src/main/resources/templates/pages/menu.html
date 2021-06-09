@@ -31,9 +31,15 @@
         </div>
     </nav>
 
-    <div style="padding-top: 50px">
+    <div th:switch="${isLoggedStandardAcc}" style="padding-top: 50px">
         <h1>
-            Salutare drag student, <td th:text="${loggedUsername}"></td>
+
+            <p th:case="'true'">
+                Salutare drag student, <td th:text="${loggedStudentAccount}"></td>
+            </p>
+            <p th:case="'false'">
+                Salutare drag student, <td th:text="${loggedStudentAccount.getNume()}"></td> <td th:text="${loggedStudentAccount.getPrenume()}"></td>
+            </p>
         </h1>
     </div>
 
