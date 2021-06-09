@@ -1,6 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    #personal-page{
+        padding-left: 830px;
+        font-size: 20px;
+    }
+
+    #admin-page{
+        padding-left: 780px;
+        font-size: 20px;
+    }
+
+    #assistant-page{
+        padding-left: 750px;
+        font-size: 20px;
+    }
+</style>
+
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
 <html>
@@ -28,6 +45,23 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/admin/students">Students List</a>
                     </li>
+
+                    <div th:switch="${isDevAcc}">
+                        <li th:case="'true'" class="nav-item">
+                            <div th:switch="${loggedUsername}">
+                                <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="#">
+                                    <span> Dev Account :: ADMIN </span>
+                                </a>
+                                <a th:case="'lixi'" id="assistant-page" class="nav-link fas fa-code" aria-current="page" href="#">
+                                    <span> Dev Account :: ASISTENT </span>
+                                </a>
+                            </div>
+                        </li>
+
+                        <li th:case="'false'" class="nav-item" id="personal-page">
+                            <a class="nav-link fas fa-user-secret" aria-current="page" href="#" th:text="${loggedUsername}"></a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </nav>

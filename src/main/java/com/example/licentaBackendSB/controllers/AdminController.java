@@ -1,6 +1,7 @@
 package com.example.licentaBackendSB.controllers;
 
 import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.others.LoggedAccount;
 import com.example.licentaBackendSB.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,8 +27,12 @@ public class AdminController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
-    public String getStudentView()
+    public String getStudentView(Model model)
     {
+        LoggedAccount loggedAccount = new LoggedAccount();
+        model.addAttribute("loggedUsername", loggedAccount.getLoggedUsername());
+        model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
+
         return "pages/admin";
     }
 
@@ -35,7 +40,6 @@ public class AdminController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getStudents(Model model)
     {
-        //System.out.println("GET: getStudents");
         List<Student> studentsDB = studentService.getStudents();
         model.addAttribute("listOfStudents", studentsDB);
         model.addAttribute("isAdmin", "admin");
@@ -55,7 +59,6 @@ public class AdminController {
     @PreAuthorize("hasAuthority('student:write')")
     public String deleteStudent(@PathVariable("studentId") Long id, Model model)
     {
-        System.out.println("Am intrat in DELETE: deleteStudent ca ADMIN");
         studentService.deleteStudent(id);
         return "redirect:/admin/students";
     }
@@ -66,7 +69,6 @@ public class AdminController {
             @PathVariable("studentId") Long studentId,
             Model model)
     {
-        //System.out.println("PUT: updateStudent");
         Student selectedStudent = studentService.editStudent(studentId);        //getting student by id
         model.addAttribute("selectedStudentById", selectedStudent);
 
@@ -80,7 +82,6 @@ public class AdminController {
             Student newStudent,
             Model model)
     {
-        System.out.println("Am intrat in PUT: updateStudent ca ADMIN");
         studentService.updateStudent(studentId, newStudent);
 
         return "redirect:/admin/students";

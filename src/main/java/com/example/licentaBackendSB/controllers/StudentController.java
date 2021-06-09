@@ -1,6 +1,7 @@
 package com.example.licentaBackendSB.controllers;
 
 import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.others.LoggedAccount;
 import com.example.licentaBackendSB.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,8 +27,12 @@ public class StudentController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public String getStudentView()
+    public String getStudentView(Model model)
     {
+        LoggedAccount loggedAccount = new LoggedAccount();
+        model.addAttribute("loggedUsername", loggedAccount.getLoggedUsername());
+        model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
+
         return "pages/student";
     }
 

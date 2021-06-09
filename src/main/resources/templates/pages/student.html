@@ -1,6 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    #personal-page{
+        padding-left: 690px;
+        font-size: 20px;
+    }
+    #dev-page{
+        padding-left: 750px;
+        font-size: 20px;
+    }
+</style>
+
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
 <html>
@@ -28,6 +39,19 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/student/students">Students List</a>
                     </li>
+                    <div th:switch="${isDevAcc}">
+                        <li th:case="'true'" class="nav-item" id="dev-page">
+                            <a class="nav-link fas fa-code" aria-current="page" href="#">
+                                <span> Dev Account :: STUDENT </span>
+                            </a>
+                        </li>
+
+                        <li th:case="'false'" class="nav-item" id="personal-page">
+                            <a class="nav-link fas fa-user-secret" aria-current="page" href="#">
+                                Student Account :: <span th:text="${loggedUsername}"></span>
+                            </a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </nav>
