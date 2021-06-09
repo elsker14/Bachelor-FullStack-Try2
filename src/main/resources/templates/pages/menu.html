@@ -1,6 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    #welcome-message{
+        font-family: "Times New Roman",serif;
+        font-weight: bolder;
+    }
+</style>
+
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
 <head>
@@ -22,7 +29,7 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Homepage<span class="sr-only">(current)</span></a>
                 </li>
 
                 <div th:switch="${authority}">
@@ -43,7 +50,7 @@
         </div>
     </nav>
 
-    <div th:switch="${isLoggedStandardAcc}" style="padding-top: 50px">
+    <div th:switch="${isLoggedStandardAcc}" id="welcome-message" style="padding-top: 50px">
         <h1>
 
             <p th:case="'true'">

@@ -1,4 +1,4 @@
-//todo
+//todo pentru aranjarea in camine trebuie urmate urmatoarele reguli
 
 Flaguri de prioritate:
 All this intra la FLAG BOOLEAN PRIORITY:

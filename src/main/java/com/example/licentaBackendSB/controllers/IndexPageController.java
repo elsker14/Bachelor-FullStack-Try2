@@ -48,7 +48,7 @@ public class IndexPageController {
             model.addAttribute("isLoggedStandardAcc", "false");
             model.addAttribute("authority", loggedStudentAccount.getAutoritate());
         }
-        System.out.println("E LOGAT CONTUL STANDARD? " + isLoggedStandardAcc);
+
         return "pages/menu";
     }
 

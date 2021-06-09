@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//todo: cand faci o operatie de delete, edit, ar trebui modificarile astea sa fie facute si in tabelul cu conturi studenti!!!!
+
 @Controller
 @RequestMapping(path = "admin")
 public class AdminController {

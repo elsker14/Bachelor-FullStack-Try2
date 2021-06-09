@@ -3,11 +3,11 @@
 
 <style>
     #personal-page{
-        padding-left: 690px;
+        padding-left: 650px;
         font-size: 20px;
     }
     #dev-page{
-        padding-left: 750px;
+        padding-left: 700px;
         font-size: 20px;
     }
 </style>
@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Homepage<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
@@ -41,13 +41,13 @@
                     </li>
                     <div th:switch="${isDevAcc}">
                         <li th:case="'true'" class="nav-item" id="dev-page">
-                            <a class="nav-link fas fa-code" aria-current="page" href="#">
+                            <a class="nav-link fas fa-code" aria-current="page" href="/student/mypage">
                                 <span> Dev Account :: STUDENT </span>
                             </a>
                         </li>
 
                         <li th:case="'false'" class="nav-item" id="personal-page">
-                            <a class="nav-link fas fa-user-secret" aria-current="page" href="#">
+                            <a class="nav-link fas fa-user-secret" aria-current="page" href="/student/mypage">
                                 Student Account :: <span th:text="${loggedUsername}"></span>
                             </a>
                         </li>

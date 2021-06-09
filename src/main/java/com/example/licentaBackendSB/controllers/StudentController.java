@@ -47,4 +47,11 @@ public class StudentController {
 
         return "pages/students_list";
     }
+
+    @GetMapping("/mypage")
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    public String getMyPage()
+    {
+        return "pages/mypage";
+    }
 }
