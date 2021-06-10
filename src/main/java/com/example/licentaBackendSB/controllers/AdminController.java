@@ -49,6 +49,13 @@ public class AdminController {
         return "pages/students_list";
     }
 
+    @GetMapping("/devAdminPage")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
+    public String getDevAdminPage(Model model)
+    {
+        return "pages/devAdminPage";
+    }
+
 //    @PostMapping
 //    @PreAuthorize("hasAuthority('student:write')")
 //    public void registerNewStudent(@RequestBody Student student)

@@ -71,34 +71,33 @@
                         <h3><b>Username: </b>       <span th:text="${loggedStudentAccount.getUsername()}"></span></h3>
                         <h3><b>Password: </b>
                             <input type="password" th:value="${loggedStudentAccount.getPassword()}" id="myInput" style="width: 150px; background: transparent; border-color: transparent;">
-                            <span onclick="myFunction()"><i class="far fa-eye" id="eyecon"></i></span>
+                            <span onclick="togglePasswordFromCodedToVisibile()"><i class="far fa-eye" id="eyecon"></i></span>
                         </h3>
                         <hr class="solid">
                         <h3><b>Grupa: </b>          <span th:text="${infoStudent.getGrupa()}"></span></h3>
                         <h3><b>Serie: </b>          <span th:text="${infoStudent.getSerie()}"></span></h3>
                         <h3><b>An de studiu: </b>   <span th:text="${infoStudent.getAn()}"></span></h3>
-                        <hr class="solid">
-                        <h3><b>Medie: </b>          <span th:text="${infoStudent.getMedie()}"></span></h3>
-                        <h3><b>My Token: </b>       <span th:text="${infoStudent.getMyToken()}"></span></h3>
-                        <!-- todo: aici va veni campul pt friend token -->
                     </p>
                 </div>
             </div>
             <div class="card bg-light text-left">
                 <div class="card-body">
                     <p class="card-text">
-                        hihihi
+                        <h3><b>Medie: </b>          <span th:text="${infoStudent.getMedie()}"></span></h3>
+                        <h3><b>My Token: </b>       <span th:text="${infoStudent.getMyToken()}"></span></h3>
+                        <hr class="solid">
+                    <!-- todo: aici va veni campul pt friend token -->
                     </p>
                 </div>
             </div>
         </div>
     </body>
-
 </html>
 
 <!-- SCRIPTURI JS -->
+
 <script>
-    function myFunction()
+    function togglePasswordFromCodedToVisibile()
     {
         $('#eyecon').toggleClass("fa-eye fa-eye-slash");
         const x = document.getElementById("myInput");
@@ -113,5 +112,6 @@
         }
     }
 
+    //make password textbox read only
     document.getElementById("myInput").readOnly = true;
 </script>

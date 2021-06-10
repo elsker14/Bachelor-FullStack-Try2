@@ -25,7 +25,7 @@ public class IndexPageController {
     @GetMapping("login")
     public String getLoginView()
     {
-        return "pages/login";
+        return "pages/layer 1/login";
     }
 
     @GetMapping("menu")

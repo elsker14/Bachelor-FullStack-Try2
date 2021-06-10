@@ -49,10 +49,10 @@
                     <div th:switch="${isDevAcc}">
                         <li th:case="'true'" class="nav-item">
                             <div th:switch="${loggedUsername}">
-                                <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="/student/mypage">
+                                <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
                                     <span> Dev Account :: ADMIN </span>
                                 </a>
-                                <a th:case="'lixi'" id="assistant-page" class="nav-link fas fa-code" aria-current="page" href="/student/mypage">
+                                <a th:case="'lixi'" id="assistant-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
                                     <span> Dev Account :: ASISTENT </span>
                                 </a>
                             </div>

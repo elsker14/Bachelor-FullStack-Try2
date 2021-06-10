@@ -56,15 +56,33 @@ public class StudentController {
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public String getMyPage(Model model)
     {
-        StudentAccount loggedStudentAccount = studentAccountService.getLoggedStudentAccount();
-        Student infoStudent = studentService.findStudentByNameAndSurname(loggedStudentAccount);
 
         LoggedAccount loggedAccount = new LoggedAccount();
 
-        model.addAttribute("loggedStudentAccount", loggedStudentAccount);
-        model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
-        model.addAttribute("infoStudent", infoStudent);
+        if(loggedAccount.checkIfStandardAccLogged())
+        {
+            model.addAttribute("devUsernameAccount", loggedAccount.getLoggedUsername());
+        }
+        else
+        {
+            StudentAccount loggedStudentAccount = studentAccountService.getLoggedStudentAccount();
+            //query call in db to get info of logged student
+            Student infoStudent = studentService.findStudentByNameAndSurname(loggedStudentAccount);
+
+            //getting info about logged acc (credentials) && student info
+            model.addAttribute("loggedStudentAccount", loggedStudentAccount);
+            model.addAttribute("infoStudent", infoStudent);
+            //checkup in case we log in with a dev account
+            model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
+        }
 
         return "pages/mypage";
+    }
+
+    @GetMapping("/devStudentPage")
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    public String getDevStudentPage(Model model)
+    {
+        return "pages/devStudentPage";
     }
 }
