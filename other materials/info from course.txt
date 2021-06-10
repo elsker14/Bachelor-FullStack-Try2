@@ -9,6 +9,9 @@ Contul din sesiunea de logare:
 Pentru formularul de login:
     https://webdesignerwall.com/wdw-snippet/login-form-sign-in-form-bootstrap-4-login-card
 
+JQuery:
+    https://stackoverflow.com/questions/2194992/jquery-is-not-defined
+
 DE MARE AJUTOR:
 I:\Code Here\1. Licenta\IntelliJ\tutorials-master\spring-boot-modules\spring-boot-crud
 
