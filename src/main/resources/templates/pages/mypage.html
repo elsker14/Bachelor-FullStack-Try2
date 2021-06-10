@@ -19,6 +19,11 @@
     .card-body {
         padding: 2px 16px;
     }
+
+    /* Solid border */
+    hr.solid {
+        border-top: 3px solid #bbb;
+    }
 </style>
 
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
@@ -62,11 +67,20 @@
                         <h3><b>Prenume: </b>        <span th:text="${loggedStudentAccount.getPrenume()}"></span></h3>
                         <h3><b>Zi de nastere: </b>  <span th:text="${loggedStudentAccount.getZi_de_nastere()}"></span></h3>
                         <h3><b>CNP: </b>            <span th:text="${loggedStudentAccount.getCnp()}"></span></h3>
+                        <hr class="solid">
                         <h3><b>Username: </b>       <span th:text="${loggedStudentAccount.getUsername()}"></span></h3>
                         <h3><b>Password: </b>
                             <input type="password" th:value="${loggedStudentAccount.getPassword()}" id="myInput" style="width: 150px; background: transparent; border-color: transparent;">
                             <span onclick="myFunction()"><i class="far fa-eye" id="eyecon"></i></span>
                         </h3>
+                        <hr class="solid">
+                        <h3><b>Grupa: </b>          <span th:text="${infoStudent.getGrupa()}"></span></h3>
+                        <h3><b>Serie: </b>          <span th:text="${infoStudent.getSerie()}"></span></h3>
+                        <h3><b>An de studiu: </b>   <span th:text="${infoStudent.getAn()}"></span></h3>
+                        <hr class="solid">
+                        <h3><b>Medie: </b>          <span th:text="${infoStudent.getMedie()}"></span></h3>
+                        <h3><b>My Token: </b>       <span th:text="${infoStudent.getMyToken()}"></span></h3>
+                        <!-- todo: aici va veni campul pt friend token -->
                     </p>
                 </div>
             </div>
@@ -98,4 +112,6 @@
             x.type = "password";
         }
     }
+
+    document.getElementById("myInput").readOnly = true;
 </script>

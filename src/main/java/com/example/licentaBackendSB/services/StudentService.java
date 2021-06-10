@@ -1,6 +1,7 @@
 package com.example.licentaBackendSB.services;
 
 import com.example.licentaBackendSB.entities.Student;
+import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,20 @@ public class StudentService {
         Student.sortStudents(studentsDB);
 
         return studentsDB;
+    }
+
+    public Student findStudentByNameAndSurname(StudentAccount studentAccount)
+    {
+        Optional<Student> foundStudent = studentRepository.findStudentByNameAndForname(studentAccount.getNume(), studentAccount.getPrenume());
+
+        if(foundStudent.isPresent())
+        {
+            return foundStudent.get();
+        }
+        else
+        {
+            throw new IllegalStateException("Student doens't exist!");
+        }
     }
 
     public void addNewStudent(Student student) {

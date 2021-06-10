@@ -57,10 +57,13 @@ public class StudentController {
     public String getMyPage(Model model)
     {
         StudentAccount loggedStudentAccount = studentAccountService.getLoggedStudentAccount();
+        Student infoStudent = studentService.findStudentByNameAndSurname(loggedStudentAccount);
+
         LoggedAccount loggedAccount = new LoggedAccount();
 
         model.addAttribute("loggedStudentAccount", loggedStudentAccount);
         model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
+        model.addAttribute("infoStudent", infoStudent);
 
         return "pages/mypage";
     }
