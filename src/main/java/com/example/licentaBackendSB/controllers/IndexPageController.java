@@ -49,7 +49,7 @@ public class IndexPageController {
             model.addAttribute("authority", loggedStudentAccount.getAutoritate());
         }
 
-        return "pages/menu";
+        return "pages/layer 2/menu";
     }
 
 }

@@ -37,7 +37,7 @@ public class StudentController {
         model.addAttribute("loggedUsername", loggedAccount.getLoggedUsername());
         model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
 
-        return "pages/student";
+        return "pages/layer 3/student";
     }
 
     //Metoda pentru a afisa toti studentii din baza de date
@@ -49,7 +49,7 @@ public class StudentController {
         model.addAttribute("listOfStudents", studentsDB);
         model.addAttribute("isAdmin", "student");
 
-        return "pages/students_list";
+        return "pages/layer 4/students_list";
     }
 
     @GetMapping("/mypage")
@@ -76,13 +76,13 @@ public class StudentController {
             model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
         }
 
-        return "pages/mypage";
+        return "pages/layer 4/info pages/mypage";
     }
 
     @GetMapping("/devStudentPage")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public String getDevStudentPage(Model model)
     {
-        return "pages/devStudentPage";
+        return "pages/layer 4/info pages/devStudentPage";
     }
 }

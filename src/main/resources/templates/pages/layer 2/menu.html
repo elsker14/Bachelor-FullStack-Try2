@@ -57,6 +57,7 @@
                 Salutare drag coleg, <td th:text="${loggedStudentAccount}"></td>
             </p>
             <p th:case="'false'">
+                <!-- todo de vazut ce i de facut cu metodele alea getNume getPrenume-->
                 Salutare drag student, <td th:text="${loggedStudentAccount.getNume()}"></td> <td th:text="${loggedStudentAccount.getPrenume()}"></td>
             </p>
         </h1>

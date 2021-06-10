@@ -35,7 +35,7 @@ public class AdminController {
         model.addAttribute("loggedUsername", loggedAccount.getLoggedUsername());
         model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
 
-        return "pages/admin";
+        return "pages/layer 3/admin";
     }
 
     @GetMapping("students")
@@ -46,14 +46,14 @@ public class AdminController {
         model.addAttribute("listOfStudents", studentsDB);
         model.addAttribute("isAdmin", "admin");
 
-        return "pages/students_list";
+        return "pages/layer 4/students_list";
     }
 
     @GetMapping("/devAdminPage")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getDevAdminPage(Model model)
     {
-        return "pages/devAdminPage";
+        return "pages/layer 4/info pages/devAdminPage";
     }
 
 //    @PostMapping
@@ -81,7 +81,7 @@ public class AdminController {
         Student selectedStudent = studentService.editStudent(studentId);        //getting student by id
         model.addAttribute("selectedStudentById", selectedStudent);
 
-        return "pages/update_student";
+        return "pages/layer 4/crud students_list/update_student";
     }
 
     @PostMapping(path = "/students/update/{studentId}")
