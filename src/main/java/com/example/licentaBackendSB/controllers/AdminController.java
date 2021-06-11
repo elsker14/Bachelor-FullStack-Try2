@@ -2,6 +2,7 @@ package com.example.licentaBackendSB.controllers;
 
 import com.example.licentaBackendSB.entities.Student;
 import com.example.licentaBackendSB.others.LoggedAccount;
+import com.example.licentaBackendSB.services.StudentAccountService;
 import com.example.licentaBackendSB.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,17 +20,20 @@ public class AdminController {
 
     //Field
     private final StudentService studentService;
+    private final StudentAccountService studentAccountService;
 
     //Constructor
     @Autowired
-    public AdminController(StudentService studentService)
+    public AdminController(StudentService studentService, StudentAccountService studentAccountService)
     {
         this.studentService = studentService;
+        this.studentAccountService = studentAccountService;
     }
 
+    /* ~~~~~~~~~~~ AdminView ~~~~~~~~~~~ */
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
-    public String getStudentView(Model model)
+    public String getAdminView(Model model)
     {
         LoggedAccount loggedAccount = new LoggedAccount();
         model.addAttribute("loggedUsername", loggedAccount.getLoggedUsername());
@@ -38,6 +42,7 @@ public class AdminController {
         return "pages/layer 3/admin";
     }
 
+    /* ~~~~~~~~~~~ Studen List ~~~~~~~~~~~ */
     @GetMapping("students")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getStudents(Model model)
@@ -49,13 +54,16 @@ public class AdminController {
         return "pages/layer 4/students_list";
     }
 
+    /* ~~~~~~~~~~~ Dev Admin Page ~~~~~~~~~~~ */
     @GetMapping("/devAdminPage")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getDevAdminPage(Model model)
     {
+        //todo adauga campuri si fa frumos
         return "pages/layer 4/info pages/devAdminPage";
     }
 
+    /* ~~~~~~~~~~~ Register New Admin/Assistant ~~~~~~~~~~~ */
 //    @PostMapping
 //    @PreAuthorize("hasAuthority('student:write')")
 //    public void registerNewStudent(@RequestBody Student student)
@@ -64,14 +72,26 @@ public class AdminController {
 //        studentService.addNewStudent(student);
 //    }
 
+    /* ~~~~~~~~~~~ Register New Student ~~~~~~~~~~~ */
+//    @PostMapping
+//    @PreAuthorize("hasAuthority('student:write')")
+//    public void registerNewStudent(@RequestBody Student student)
+//    {
+//        System.out.println("POST: registerNewStudent");
+//        studentService.addNewStudent(student);
+//    }
+
+    /* ~~~~~~~~~~~ DELETE Student ~~~~~~~~~~~ */
     @GetMapping( path = "/students/delete/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
     public String deleteStudent(@PathVariable("studentId") Long id, Model model)
     {
         studentService.deleteStudent(id);
+        studentAccountService.deleteStudent(id);
         return "redirect:/admin/students";
     }
 
+    /* ~~~~~~~~~~~ Get ID of Student ~~~~~~~~~~~ */
     @GetMapping(path = "/students/edit/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
     public String editStudent(
@@ -84,6 +104,7 @@ public class AdminController {
         return "pages/layer 4/crud students_list/update_student";
     }
 
+    /* ~~~~~~~~~~~ Update Student and Redirect to Student List ~~~~~~~~~~~ */
     @PostMapping(path = "/students/update/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
     public String updateStudent(
@@ -91,6 +112,8 @@ public class AdminController {
             Student newStudent,
             Model model)
     {
+        //campuri comune modificabile: nume, prenume
+        //campuri comune nemodificabile: cnp, zi_de_nastere
         studentService.updateStudent(studentId, newStudent);
 
         return "redirect:/admin/students";

@@ -23,7 +23,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    //Metoda care va face selectul din baza de date si va lua tot !
+    /*  ~~~~~~~~~~~ Get List of Students ~~~~~~~~~~~ */
     public List<Student> getStudents()
     {
         //select * from student (query in DB)
@@ -35,9 +35,10 @@ public class StudentService {
         return studentsDB;
     }
 
+    /*  ~~~~~~~~~~~ Find Student by Name and Surname ~~~~~~~~~~~ */
     public Student findStudentByNameAndSurname(StudentAccount studentAccount)
     {
-        Optional<Student> foundStudent = studentRepository.findStudentByNameAndForname(studentAccount.getNume(), studentAccount.getPrenume());
+        Optional<Student> foundStudent = studentRepository.findStudentByNameAndSurname(studentAccount.getNume(), studentAccount.getPrenume());
 
         if(foundStudent.isPresent())
         {
@@ -49,9 +50,10 @@ public class StudentService {
         }
     }
 
+    /*  ~~~~~~~~~~~ Add new Student ~~~~~~~~~~~ */
     public void addNewStudent(Student student) {
 
-        Optional<Student> studentOptional = studentRepository.findStudentByNameAndForname(student.getNume(), student.getPrenume());
+        Optional<Student> studentOptional = studentRepository.findStudentByNameAndSurname(student.getNume(), student.getPrenume());
 
         //daca studentul cu exista cu numele respectiv, aruncam exceptie
         if(studentOptional.isPresent())
@@ -62,21 +64,25 @@ public class StudentService {
         studentRepository.save(student);
     }
 
+    /*  ~~~~~~~~~~~ Delete Student from Student Table ~~~~~~~~~~~ */
     public void deleteStudent(long studentId) {
         boolean exists = studentRepository.existsById(studentId);
         if(!exists)
         {
             throw new IllegalStateException("Student with id " + studentId + " doesn't exist");
         }
+
         studentRepository.deleteById(studentId);
     }
 
+    /*  ~~~~~~~~~~~ Get Id of Student ~~~~~~~~~~~ */
     public Student editStudent(Long studentId) {
 
         return studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + studentId));
     }
 
+    /*  ~~~~~~~~~~~ Update Student ~~~~~~~~~~~ */
     @Transactional
     public void updateStudent(Long studentId, Student newStudent) {
         studentRepository.findById(studentId)

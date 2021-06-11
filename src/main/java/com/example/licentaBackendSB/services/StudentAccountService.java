@@ -21,7 +21,7 @@ public class StudentAccountService {
         this.studentAccountsDBRepository = studentAccountsDBRepository;
     }
 
-    //Metoda care sa preia toate conturile de studenti din DB si il intoarce pe cel logat in sesiunea curenta <3
+    /*  ~~~~~~~~~~~ Get Logged Account from Current Session ~~~~~~~~~~~ */
     public StudentAccount getLoggedStudentAccount()
     {
         StudentAccount result = new StudentAccount();
@@ -38,5 +38,16 @@ public class StudentAccountService {
         }
         
         return result;
+    }
+
+    /*  ~~~~~~~~~~~ Delete Student from Student Table ~~~~~~~~~~~ */
+    public void deleteStudent(long studentId) {
+        boolean exists = studentAccountsDBRepository.existsById(studentId);
+        if(!exists)
+        {
+            throw new IllegalStateException("StudentAccount with id " + studentId + " doesn't exist");
+        }
+
+        studentAccountsDBRepository.deleteById(studentId);
     }
 }
