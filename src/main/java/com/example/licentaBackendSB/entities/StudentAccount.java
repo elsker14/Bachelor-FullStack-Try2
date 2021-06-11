@@ -96,6 +96,26 @@ public class StudentAccount {
         this.autoritate = autoritate;
     }
 
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
+    }
+
+    public void setZi_de_nastere(String zi_de_nastere) {
+        this.zi_de_nastere = zi_de_nastere;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
 
     @Override

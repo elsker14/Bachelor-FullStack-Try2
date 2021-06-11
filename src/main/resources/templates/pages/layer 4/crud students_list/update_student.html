@@ -1,6 +1,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    #update-btn.center, #back-btn.center
+    {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    #edit-image
+    {
+        width: 300px;
+        height: 300px;
+
+    }
+</style>
+
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
     <head>
@@ -17,23 +36,83 @@
             <div class="col-md-6">
                 <form action="#" th:action="@{/admin/students/update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
                     <div class="row">
+                        <!-- TEORIE: for = "id_camp_in_frontend" tre sa fie acelasi cu id="id_camp_in_frontend" -->
+                        <!-- Campuri Comune -->
+                        <div class="col-md-6">
+                            <!-- update nume -->
+                            <div class="form-group row-md-6">
+                                <label for="nume" class="col-form-label">Nume</label>
+                                <input type="text" th:field="*{nume}" class="form-control" id="nume" placeholder="Nume">
+                                <span th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}" class="text-danger"></span>
+                            </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="nume" class="col-form-label">Nume</label>
-                            <input type="text" th:field="*{nume}" class="form-control" id="nume" placeholder="Nume">
-                            <span th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}" class="text-danger"></span>
+                            <!-- update prenume -->
+                            <div class="form-group row-md-6">
+                                <label for="prenume" class="col-form-label">Prenume</label>
+                                <input type="text" th:field="*{prenume}" class="form-control" id="prenume" placeholder="Prenume">
+                                <span th:if="${#fields.hasErrors('prenume')}" th:errors="*{prenume}" class="text-danger"></span>
+                            </div>
+
+                            <!-- update cnp -->
+                            <div class="form-group row-md-6">
+                                <label for="cnp" class="col-form-label">CNP</label>
+                                <input type="text" th:field="*{cnp}" class="form-control" id="cnp" placeholder="cnp">
+                                <span th:if="${#fields.hasErrors('cnp')}" th:errors="*{cnp}" class="text-danger"></span>
+                            </div>
+
+                            <!-- update zi_de_nastere -->
+                            <div class="form-group row-md-6">
+                                <label for="zi_de_nastere" class="col-form-label">Zi de nastere</label>
+                                <input type="text" th:field="*{zi_de_nastere}" class="form-control" id="zi_de_nastere" placeholder="zi_de_nastere">
+                                <span th:if="${#fields.hasErrors('zi_de_nastere')}" th:errors="*{zi_de_nastere}" class="text-danger"></span>
+                            </div>
                         </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="prenume" class="col-form-label">Prenume</label>     <!-- for = "prenume" tre sa fie acelasi cu id="prenume" -->
-                            <input type="text" th:field="*{prenume}" class="form-control" id="prenume" placeholder="Prenume">
-                            <span th:if="${#fields.hasErrors('prenume')}" th:errors="*{prenume}" class="text-danger"></span>
+                        <!-- Campuri Necomune -->
+                        <div class="col-md-6">
+                            <!-- update an -->
+                            <div class="form-group row-md-6">
+                                <label for="an" class="col-form-label">An de studiu</label>
+                                <input type="text" th:field="*{an}" class="form-control" id="an" placeholder="an">
+                                <span th:if="${#fields.hasErrors('an')}" th:errors="*{an}" class="text-danger"></span>
+                            </div>
+
+                            <!-- update grupa -->
+                            <div class="form-group row-md-6">
+                                <label for="grupa" class="col-form-label">Grupa</label>
+                                <input type="text" th:field="*{grupa}" class="form-control" id="grupa" placeholder="grupa">
+                                <span th:if="${#fields.hasErrors('grupa')}" th:errors="*{grupa}" class="text-danger"></span>
+                            </div>
+
+                            <!-- update serie -->
+                            <div class="form-group row-md-6">
+                                <label for="serie" class="col-form-label">Serie</label>
+                                <input type="text" th:field="*{serie}" class="form-control" id="serie" placeholder="serie">
+                                <span th:if="${#fields.hasErrors('serie')}" th:errors="*{serie}" class="text-danger"></span>
+                            </div>
+
+                            <!-- update prenume -->
+                            <div class="form-group row-md-6">
+                                <label for="judet" class="col-form-label">Judet</label>
+                                <input type="text" th:field="*{judet}" class="form-control" id="judet" placeholder="judet">
+                                <span th:if="${#fields.hasErrors('judet')}" th:errors="*{judet}" class="text-danger"></span>
+                            </div>
                         </div>
+                        
+                        <!-- Edit Clip Art image -->
+<!--                        todo pune imaginea in dreapta-->
+<!--                        <div class="col-md-6">-->
+<!--                            <img src="https://syr.us/5Ge" id="edit-image">-->
+<!--                        </div>-->
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mt-5">
-                            <input type="submit" class="btn btn-primary" value="Update Student">
+                            <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Student">
+                        </div>
+
+                        <div class="col-md-6 mt-5">
+                            <input id="back-btn" type="submit" class="btn btn-warning center" value="Back to students list" href="/students">
                         </div>
                     </div>
 

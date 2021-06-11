@@ -114,7 +114,9 @@ public class AdminController {
     {
         //campuri comune modificabile: nume, prenume
         //campuri comune nemodificabile: cnp, zi_de_nastere
+        //campuri necomune student: an, grupa, serie, judet
         studentService.updateStudent(studentId, newStudent);
+        studentAccountService.updateStudent(studentId, newStudent);
 
         return "redirect:/admin/students";
     }
