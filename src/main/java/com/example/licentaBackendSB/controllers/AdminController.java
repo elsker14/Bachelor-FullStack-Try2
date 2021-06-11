@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//todo: cand faci o operatie de delete, edit, ar trebui modificarile astea sa fie facute si in tabelul cu conturi studenti!!!!
-
 @Controller
 @RequestMapping(path = "admin")
 public class AdminController {
@@ -59,7 +57,7 @@ public class AdminController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getDevAdminPage(Model model)
     {
-        //todo adauga campuri si fa frumos
+        //todo adauga campuri si fa frumos devAdminPage
         return "pages/layer 4/info pages/devAdminPage";
     }
 

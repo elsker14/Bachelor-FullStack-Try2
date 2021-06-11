@@ -45,9 +45,10 @@ public class Student {
     private Double medie;
     private String zi_de_nastere;
     private String cnp;
+    private String judet;
     private String genSexual;
     private String myToken;
-    private String judet;
+    //private String friendToken;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 

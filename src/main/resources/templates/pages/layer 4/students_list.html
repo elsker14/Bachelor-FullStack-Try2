@@ -45,17 +45,18 @@
                     <th>Id</th>
                     <th>Nume</th>
                     <th>Prenume</th>
-                    <th>Gen</th>
-                    <th>Judet</th>
-                    <th>CNP</th>
-                    <th>Zi de nastere</th>
                     <th>Grupa</th>
                     <th>Serie</th>
                     <th>An</th>
                     <th>Medie</th>
-                    <th>MyToken</th>
+
                     <div th:switch="${isAdmin}">
                         <p th:case="'admin'">
+                            <th>CNP</th>
+                            <th>Zi de nastere</th>
+                            <th>Judet</th>
+                            <th>MyToken</th>
+                            <th>Gen</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </p>
@@ -67,17 +68,18 @@
                     <td th:text="${tempStudent.getId()}"></td>
                     <td th:text="${tempStudent.getNume()}"></td>
                     <td th:text="${tempStudent.getPrenume()}"></td>
-                    <td th:text="${tempStudent.getGenSexual()}"></td>
-                    <td th:text="${tempStudent.getJudet()}"></td>
-                    <td th:text="${tempStudent.getCnp()}"></td>
-                    <td th:text="${tempStudent.getZi_de_nastere()}"></td>
                     <td th:text="${tempStudent.getGrupa()}"></td>
                     <td th:text="${tempStudent.getSerie()}"></td>
                     <td th:text="${tempStudent.getAn()}"></td>
                     <td th:text="${tempStudent.getMedie()}"></td>
-                    <td th:text="${tempStudent.getMyToken()}"></td>
+
                     <div th:switch="${isAdmin}">
                         <p th:case="'admin'">
+                            <td th:text="${tempStudent.getCnp()}"></td>
+                            <td th:text="${tempStudent.getZi_de_nastere()}"></td>
+                            <td th:text="${tempStudent.getJudet()}"></td>
+                            <td th:text="${tempStudent.getMyToken()}"></td>
+                            <td th:text="${tempStudent.getGenSexual()}"></td>
                             <td><a th:href="@{/admin/students/edit/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/admin/students/delete/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                         </p>
