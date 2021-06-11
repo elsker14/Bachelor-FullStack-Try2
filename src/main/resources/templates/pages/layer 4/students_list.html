@@ -56,6 +56,8 @@
                             <th>Zi de nastere</th>
                             <th>Judet</th>
                             <th>MyToken</th>
+                            <th>FriendToken</th>
+                            <th>Camin ales</th>
                             <th>Gen</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -79,6 +81,8 @@
                             <td th:text="${tempStudent.getZi_de_nastere()}"></td>
                             <td th:text="${tempStudent.getJudet()}"></td>
                             <td th:text="${tempStudent.getMyToken()}"></td>
+                            <td th:text="${tempStudent.getFriendToken()}"></td>
+                            <td th:text="${tempStudent.getCaminPreferat()}"></td>
                             <td th:text="${tempStudent.getGenSexual()}"></td>
                             <td><a th:href="@{/admin/students/edit/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/admin/students/delete/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>

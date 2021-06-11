@@ -48,11 +48,26 @@ public class Student {
     private String judet;
     private String genSexual;
     private String myToken;
-    //private String friendToken;
+    private String friendToken;
+    private String camin_preferat;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
-    public Student(Long id, String nume, String prenume, String grupa, String serie, Integer an, Double medie, String myToken, String zi_de_nastere, String cnp, String genSexual, String judet) {
+    public Student(Long id,
+                   String nume,
+                   String prenume,
+                   String grupa,
+                   String serie,
+                   Integer an,
+                   Double medie,
+                   String myToken,
+                   String zi_de_nastere,
+                   String cnp,
+                   String genSexual,
+                   String judet,
+                   String friendToken,
+                   String camin_preferat)
+    {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -65,15 +80,8 @@ public class Student {
         this.cnp = cnp;
         this.genSexual = genSexual;
         this.judet = judet;
-    }
-
-    public Student(String nume, String prenume, String grupa, String serie, Integer an, Double medie) {
-        this.nume = nume;
-        this.prenume = prenume;
-        this.grupa = grupa;
-        this.serie = serie;
-        this.an = an;
-        this.medie = medie;
+        this.friendToken = friendToken;
+        this.camin_preferat = camin_preferat;
     }
 
     public Student() {}
@@ -175,6 +183,22 @@ public class Student {
         this.judet = judet;
     }
 
+    public String getFriendToken() {
+        return friendToken;
+    }
+
+    public void setFriendToken(String friendToken) {
+        this.friendToken = friendToken;
+    }
+
+    public String getCaminPreferat() {
+        return camin_preferat;
+    }
+
+    public void setCaminPreferat(String camin_preferat) {
+        this.camin_preferat = camin_preferat;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
@@ -241,7 +265,9 @@ public class Student {
                         "14.Martie.1998",
                         "1980314170059",
                         "Masculin",
-                        "Galati"
+                        "Galati",
+                        "null",
+                        "null"
                 ));
 
         for(long i = 1; i < 10; i++)
@@ -273,7 +299,9 @@ public class Student {
                     randomDoB,
                     randomCNP,
                     randomGender,
-                    randomCounty
+                    randomCounty,
+                    "null",
+                    "null"
             ));
         }
 
