@@ -75,7 +75,7 @@ public class StudentService {
         studentRepository.deleteById(studentId);
     }
 
-    /*  ~~~~~~~~~~~ Get Id of Student ~~~~~~~~~~~ */
+    /*  ~~~~~~~~~~~ Get Id of Student to update Student && FriendToken ~~~~~~~~~~~ */
     public Student editStudent(Long studentId) {
 
         return studentRepository.findById(studentId)
@@ -150,6 +150,48 @@ public class StudentService {
                             && !foundStudent.getJudet().equals(newStudent.getJudet()))
                     {
                         foundStudent.setJudet(newStudent.getJudet());
+                    }
+
+                    return studentRepository.save(foundStudent);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
+    }
+
+    /*  ~~~~~~~~~~~ Update Only FriendToken ~~~~~~~~~~~ */
+    @Transactional
+    public void updateFriendToken(Long studentId, Student newStudent) {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+
+                    /** update friendToken*/
+                    if(newStudent.getFriendToken() != null
+                            && newStudent.getFriendToken().length() > 0
+                            && !foundStudent.getFriendToken().equals(newStudent.getFriendToken()))
+                    {
+                        foundStudent.setFriendToken(newStudent.getFriendToken());
+                    }
+
+                    return studentRepository.save(foundStudent);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
+    }
+
+    /*  ~~~~~~~~~~~ Clear FriendToken ~~~~~~~~~~~ */
+    @Transactional
+    public void clearFriendToken(Long studentId, Student selectedStudent) {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+
+                    /** update friendToken*/
+                    if(!foundStudent.getFriendToken().equals("null"))
+                    {
+                        foundStudent.setFriendToken(selectedStudent.getFriendToken());
                     }
 
                     return studentRepository.save(foundStudent);

@@ -1,0 +1,66 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
+
+<style>
+    #update-btn.center, #back-btn.center
+    {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    #edit-image
+    {
+        width: 300px;
+        height: 300px;
+
+    }
+</style>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">Update Friend Token</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/student/mypage/update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
+                <div class="row">
+                    <!-- TEORIE: for = "id_camp_in_frontend" tre sa fie acelasi cu id="id_camp_in_frontend" -->
+                    <div class="col-md-6">
+
+                        <!-- update friendToken -->
+                        <div class="form-group row-md-6">
+                            <label for="friendToken" class="col-form-label">FriendToken</label>
+                            <input type="text" th:field="*{friendToken}" class="form-control" id="friendToken" placeholder="friendToken">
+                            <span th:if="${#fields.hasErrors('friendToken')}" th:errors="*{friendToken}" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Friend Token">
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <input id="back-btn" type="submit" class="btn btn-warning center" value="Back to myPage" href="/mypage">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

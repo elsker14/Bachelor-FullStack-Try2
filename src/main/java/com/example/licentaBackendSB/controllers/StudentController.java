@@ -29,6 +29,7 @@ public class StudentController {
         this.studentAccountService = studentAccountService;
     }
 
+    /* ~~~~~~~~~~~ StudentView ~~~~~~~~~~~ */
     @GetMapping
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public String getStudentView(Model model)
@@ -40,6 +41,7 @@ public class StudentController {
         return "pages/layer 3/student";
     }
 
+    /* ~~~~~~~~~~~ Get list of Students ~~~~~~~~~~~ */
     //Metoda pentru a afisa toti studentii din baza de date
     @GetMapping("/students")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
@@ -52,33 +54,7 @@ public class StudentController {
         return "pages/layer 4/students_list";
     }
 
-    @GetMapping("/mypage")
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
-    public String getMyPage(Model model)
-    {
-
-        LoggedAccount loggedAccount = new LoggedAccount();
-
-        if(loggedAccount.checkIfStandardAccLogged())
-        {
-            model.addAttribute("devUsernameAccount", loggedAccount.getLoggedUsername());
-        }
-        else
-        {
-            StudentAccount loggedStudentAccount = studentAccountService.getLoggedStudentAccount();
-            //query call in db to get info of logged student
-            Student infoStudent = studentService.findStudentByNameAndSurname(loggedStudentAccount);
-
-            //getting info about logged acc (credentials) && student info
-            model.addAttribute("loggedStudentAccount", loggedStudentAccount);
-            model.addAttribute("infoStudent", infoStudent);
-            //checkup in case we log in with a dev account
-            model.addAttribute("isDevAcc", loggedAccount.checkIfStandardAccLogged().toString());
-        }
-
-        return "pages/layer 4/info pages/mypage";
-    }
-
+    /* ~~~~~~~~~~~ Get devStudentPage View ~~~~~~~~~~~ */
     @GetMapping("/devStudentPage")
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public String getDevStudentPage(Model model)

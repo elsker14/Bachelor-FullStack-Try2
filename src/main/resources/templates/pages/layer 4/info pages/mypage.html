@@ -85,8 +85,12 @@
                     <p class="card-text">
                         <h3><b>Medie: </b>          <span th:text="${infoStudent.getMedie()}"></span></h3>
                         <h3><b>My Token: </b>       <span th:text="${infoStudent.getMyToken()}"></span></h3>
+
                         <hr class="solid">
-                        <h3><b>Friend Token: </b>       <span th:text="${infoStudent.getFriendToken()}"></span></h3>
+                        <h3><b>Friend Token: </b>   <span th:text="${infoStudent.getFriendToken()}"></span>
+                            <td><a th:href="@{/student/mypage/edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                            <td><a th:href="@{/student/mypage/clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-edit ml-2"></i></a></td>
+                        </h3>
                         <hr class="solid">
                         <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span></h3>
                     </p>

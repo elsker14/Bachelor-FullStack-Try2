@@ -82,14 +82,14 @@ public class AdminController {
     /* ~~~~~~~~~~~ DELETE Student ~~~~~~~~~~~ */
     @GetMapping( path = "/students/delete/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
-    public String deleteStudent(@PathVariable("studentId") Long id, Model model)
+    public String deleteStudent(@PathVariable("studentId") Long id)
     {
         studentService.deleteStudent(id);
         studentAccountService.deleteStudent(id);
         return "redirect:/admin/students";
     }
 
-    /* ~~~~~~~~~~~ Get ID of Student ~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~ Get Student knowing ID ~~~~~~~~~~~ */
     @GetMapping(path = "/students/edit/{studentId}")
     @PreAuthorize("hasAuthority('student:write')")
     public String editStudent(
@@ -107,8 +107,7 @@ public class AdminController {
     @PreAuthorize("hasAuthority('student:write')")
     public String updateStudent(
             @PathVariable("studentId") Long studentId,
-            Student newStudent,
-            Model model)
+            Student newStudent)
     {
         //campuri comune modificabile: nume, prenume
         //campuri comune nemodificabile: cnp, zi_de_nastere
