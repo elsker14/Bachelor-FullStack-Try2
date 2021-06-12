@@ -51,7 +51,8 @@ public class StudentService {
     }
 
     /*  ~~~~~~~~~~~ Add new Student ~~~~~~~~~~~ */
-    public void addNewStudent(Student student) {
+    public void addNewStudent(Student student)
+    {
 
         Optional<Student> studentOptional = studentRepository.findStudentByNameAndSurname(student.getNume(), student.getPrenume());
 
@@ -65,7 +66,8 @@ public class StudentService {
     }
 
     /*  ~~~~~~~~~~~ Delete Student from Student Table ~~~~~~~~~~~ */
-    public void deleteStudent(long studentId) {
+    public void deleteStudent(long studentId)
+    {
         boolean exists = studentRepository.existsById(studentId);
         if(!exists)
         {
@@ -76,7 +78,8 @@ public class StudentService {
     }
 
     /*  ~~~~~~~~~~~ Get Id of Student to update Student && FriendToken ~~~~~~~~~~~ */
-    public Student editStudent(Long studentId) {
+    public Student editStudent(Long studentId)
+    {
 
         return studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + studentId));
@@ -84,7 +87,8 @@ public class StudentService {
 
     /*  ~~~~~~~~~~~ Update Student ~~~~~~~~~~~ */
     @Transactional
-    public void updateStudent(Long studentId, Student newStudent) {
+    public void updateStudent(Long studentId, Student newStudent)
+    {
         studentRepository.findById(studentId)
                 .map(foundStudent -> {
                     //Validari si Verificari
@@ -161,7 +165,8 @@ public class StudentService {
 
     /*  ~~~~~~~~~~~ Update (THIS) with FriendToken ~~~~~~~~~~~ */
     @Transactional
-    public void updateFriendToken(Long studentId, Student newStudent) {
+    public void updateFriendToken(Long studentId, Student newStudent)
+    {
         studentRepository.findById(studentId)
                 .map(foundStudent -> {
                     //Validari si Verificari
@@ -184,7 +189,8 @@ public class StudentService {
 
     /*  ~~~~~~~~~~~ Clear FriendToken ~~~~~~~~~~~ */
     @Transactional
-    public void clearFriendToken(Long studentId, Student selectedStudent) {
+    public void clearFriendToken(Long studentId, Student selectedStudent)
+    {
         studentRepository.findById(studentId)
                 .map(foundStudent -> {
                     //Validari si Verificari
@@ -202,7 +208,7 @@ public class StudentService {
                 );
     }
 
-    /* Validate if friend token exists in db */
+    /* ~~~~~~~~~~~ Validate if friend token exists in db ~~~~~~~~~~~ */
     public String validateFriendToken(Student selectedStudent)
     {
         if(studentRepository.validateFriendTokenExists(selectedStudent.getFriendToken()))
@@ -215,11 +221,11 @@ public class StudentService {
         }
     }
 
-    /* Get second Student knowing his token */
-    public Student findStudentByMyToken(String hisToken)
+    /* ~~~~~~~~~~~ Get second Student knowing his token ~~~~~~~~~~~ */
+    public Optional<Student> findStudentByMyToken(String hisToken)
     {
         Optional <Student> selectedStudent = studentRepository.findStudentByMyToken(hisToken);
 
-        return selectedStudent.get();
+        return selectedStudent;
     }
 }

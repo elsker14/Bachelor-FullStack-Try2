@@ -65,14 +65,13 @@
     <h2 class="mb-5">Update Friend Token</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/student/mypage/update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
+            <form action="#" th:action="@{/student/mypage/ft-update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
                 <div class="row">
                     <!-- TEORIE: for = "id_camp_in_frontend" tre sa fie acelasi cu id="id_camp_in_frontend" -->
                     <div class="col-md-6">
-
                         <!-- update friendToken -->
                         <div class="form-group row-md-6">
-                            <label for="friendToken" class="col-form-label">FriendToken</label>
+                            <label for="friendToken" class="col-form-label"><h4><b>FriendToken: </b></h4></label>
                             <input type="text" th:field="*{friendToken}" class="form-control" id="friendToken" placeholder="friendToken">
                             <span th:if="${#fields.hasErrors('friendToken')}" th:errors="*{friendToken}" class="text-danger"></span>
                         </div>

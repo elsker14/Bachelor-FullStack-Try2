@@ -88,11 +88,22 @@
 
                         <hr class="solid">
                         <h3><b>Friend Token: </b>   <span th:text="${infoStudent.getFriendToken()}"></span>
-                            <td><a th:href="@{/student/mypage/edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                            <td><a th:href="@{/student/mypage/clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
+                            <td><a th:href="@{/student/mypage/ft-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                            <td><a th:href="@{/student/mypage/ft-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
+                        <span th:if="${infoStudent.getFriendToken() != 'null'}">
+                            <li>
+                                Nume: <td th:text="${yourFriend.get().getNume()}"></td>
+                            </li>
+                            <li>
+                                Prenume: <td th:text="${yourFriend.get().getPrenume()}"></td>
+                            </li>
+                        </span>
                         <hr class="solid">
-                        <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span></h3>
+                        <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span>
+                            <td><a th:href="@{/student/mypage/camin-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-success"><i class="fas fa-user-edit ml-2"></i></a></td>
+                            <td><a th:href="@{/student/mypage/camin-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-warning"><i class="fas fa-user-times ml-2"></i></a></td>
+                        </h3>
                     </p>
                 </div>
             </div>
