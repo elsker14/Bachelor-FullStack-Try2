@@ -159,17 +159,18 @@ public class StudentService {
                 );
     }
 
-    /*  ~~~~~~~~~~~ Update Only FriendToken ~~~~~~~~~~~ */
+    /*  ~~~~~~~~~~~ Update (THIS) with FriendToken ~~~~~~~~~~~ */
     @Transactional
     public void updateFriendToken(Long studentId, Student newStudent) {
         studentRepository.findById(studentId)
                 .map(foundStudent -> {
                     //Validari si Verificari
 
-                    /** update friendToken*/
+                    /** update kid#1 with friendtoken*/
                     if(newStudent.getFriendToken() != null
                             && newStudent.getFriendToken().length() > 0
-                            && !foundStudent.getFriendToken().equals(newStudent.getFriendToken()))
+                            && !foundStudent.getFriendToken().equals(newStudent.getFriendToken())
+                            && !foundStudent.getMyToken().equals(newStudent.getFriendToken()))
                     {
                         foundStudent.setFriendToken(newStudent.getFriendToken());
                     }
@@ -212,5 +213,13 @@ public class StudentService {
         {
             return "Friend Token doesn't exist in database!";
         }
+    }
+
+    /* Get second Student knowing his token */
+    public Student findStudentByMyToken(String hisToken)
+    {
+        Optional <Student> selectedStudent = studentRepository.findStudentByMyToken(hisToken);
+
+        return selectedStudent.get();
     }
 }

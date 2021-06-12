@@ -17,4 +17,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     //checks if exists friend token in db
     @Query("select case when (count(s.myToken) > 0) then true else false end from Student s  where s.myToken = ?1")
     Boolean validateFriendTokenExists(String friendToken);
+
+    //get student knowing mytoken
+    @Query("select s from Student s where s.myToken = ?1")
+    Optional<Student> findStudentByMyToken(String myToken);
 }

@@ -5,6 +5,7 @@ import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.others.LoggedAccount;
 import com.example.licentaBackendSB.services.StudentAccountService;
 import com.example.licentaBackendSB.services.StudentService;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -74,13 +75,22 @@ public class MyPageController {
     @PostMapping(path = "/update/{studentId}")
     public String updateFriendToken(
             @PathVariable("studentId") Long studentId,
-            Student newStudent,
-            BindingResult bindingResult,
-            Model model)
+            Student newStudent)
     {
         String isError = studentService.validateFriendToken(newStudent);
         if(isError.equals("All good!"))
+        {
+            //Kid#1 preia friendTokenul introdus in frontend
             studentService.updateFriendToken(studentId, newStudent);
+            //Cautam pe Kid#2 dupa tokenul din frontend
+            Student secondStudent = studentService.findStudentByMyToken(newStudent.getFriendToken());
+            //Cautam Kid#1 dupa id
+            Student firstStudent = studentService.editStudent(studentId);
+            //Setam LOCAL la Kid#2 friendTokenul de la Kid#1
+            secondStudent.setFriendToken(firstStudent.getMyToken());
+            //Kid#2 preia friendTokenul de la Kid#2 local
+            studentService.updateFriendToken(secondStudent.getId(), secondStudent);
+        }
 
         return "redirect:/student/mypage";
     }
@@ -90,9 +100,20 @@ public class MyPageController {
     public String clearFriendToken(
             @PathVariable("studentId") Long studentId)
     {
-        Student selectedStudent = studentService.editStudent(studentId);
-        selectedStudent.setFriendToken("null");
-        studentService.clearFriendToken(studentId, selectedStudent);
+        //Preluam studentul actual adica Kid#1 stiind Id-ul
+        Student firstStudent = studentService.editStudent(studentId);
+        //Preluam studentul al doilea, adica Kid#2 fiindca cunoastem tokenul lui ce este trecut ca friendToken la Kid#1
+        Student secondStudent = studentService.findStudentByMyToken(firstStudent.getFriendToken());
+
+        //Setam local "null" la Kid#1
+        firstStudent.setFriendToken("null");
+        //Setam local "null" la Kid#2
+        secondStudent.setFriendToken("null");
+
+        //Updatam in db Kid#1 cu campul friendToken din Kid#1 local
+        studentService.clearFriendToken(firstStudent.getId(), firstStudent);
+        //Updatam in db Kid#2 cu campul friendToken din Kid#1 local
+        studentService.clearFriendToken(secondStudent.getId(), secondStudent);
 
         return "redirect:/student/mypage";
     }

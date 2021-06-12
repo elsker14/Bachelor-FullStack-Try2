@@ -12,6 +12,9 @@ Pentru formularul de login:
 JQuery:
     https://stackoverflow.com/questions/2194992/jquery-is-not-defined
 
+Diferenta dintre controller si rest controller:
+    https://stackabuse.com/controller-and-restcontroller-annotations-in-spring-boot
+
 DE MARE AJUTOR:
 I:\Code Here\1. Licenta\IntelliJ\tutorials-master\spring-boot-modules\spring-boot-crud
 
