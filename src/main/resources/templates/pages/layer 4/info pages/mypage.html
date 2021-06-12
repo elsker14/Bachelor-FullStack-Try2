@@ -89,7 +89,7 @@
                         <hr class="solid">
                         <h3><b>Friend Token: </b>   <span th:text="${infoStudent.getFriendToken()}"></span>
                             <td><a th:href="@{/student/mypage/edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                            <td><a th:href="@{/student/mypage/clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-edit ml-2"></i></a></td>
+                            <td><a th:href="@{/student/mypage/clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
                         <hr class="solid">
                         <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span></h3>
@@ -101,3 +101,22 @@
 </html>
 
 <!-- SCRIPTURI JS -->
+<script>
+    function togglePasswordFromCodedToVisibile()
+    {
+        $('#eyecon').toggleClass("fa-eye fa-eye-slash");
+        const x = document.getElementById("myInput");
+
+        if (x.type === "password") //in loc de a defini o variabila poti folosi jquery ul : $('#myInput')
+        {
+            x.type = "text";
+        }
+        else
+        {
+            x.type = "password";
+        }
+    }
+
+    //make password textbox read only
+    document.getElementById("myInput").readOnly = true;
+</script>

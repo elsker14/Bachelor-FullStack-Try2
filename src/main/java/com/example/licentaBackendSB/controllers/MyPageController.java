@@ -82,7 +82,6 @@ public class MyPageController {
         if(isError.equals("All good!"))
             studentService.updateFriendToken(studentId, newStudent);
 
-
         return "redirect:/student/mypage";
     }
 
