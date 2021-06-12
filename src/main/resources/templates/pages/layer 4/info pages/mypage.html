@@ -92,18 +92,67 @@
                             <td><a th:href="@{/student/mypage/ft-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
                         <span th:if="${infoStudent.getFriendToken() != 'null'}">
-                            <li>
-                                Nume: <td th:text="${yourFriend.get().getNume()}"></td>
-                            </li>
-                            <li>
-                                Prenume: <td th:text="${yourFriend.get().getPrenume()}"></td>
-                            </li>
+                            <h4>
+                                <b>Nume: </b><td th:text="${yourFriend.get().getNume()}"></td>
+                            </h4>
+                            <h4>
+                                <b>Prenume: </b><td th:text="${yourFriend.get().getPrenume()}"></td>
+                            </h4>
                         </span>
                         <hr class="solid">
                         <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span>
                             <td><a th:href="@{/student/mypage/camin-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-success"><i class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/student/mypage/camin-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-warning"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
+                        <span th:if="${infoStudent.getCaminPreferat() != 'null'}">
+                            <div th:switch="${infoStudent.getCaminPreferat()}">
+                                <div th:case="${'Leu A'}">
+                                    <h4>
+                                        <b>Locatie: </b> Complex Studentesc Leu
+                                    </h4>
+                                    <h4>
+                                        <b>Bloc: </b><td th:text="${infoStudent.getCaminPreferat()}"></td>
+                                    </h4>
+                                    <h4>
+                                        <b>Statie de metrou: </b> Politehnica
+                                    </h4>
+                                </div>
+                                <div th:case="${'Leu C'}">
+                                    <h4>
+                                        <b>Locatie: </b> Complex Studentesc Leu
+                                    </h4>
+                                    <h4>
+                                        <b>Bloc: </b><td th:text="${infoStudent.getCaminPreferat()}"></td>
+                                    </h4>
+                                    <h4>
+                                        <b>Statie de metrou: </b> Politehnica
+                                    </h4>
+                                </div>
+                                <div th:case="${'P20'}">
+                                    <h4>
+                                        <b>Locatie: </b> Complex Studentesc Regie
+                                    </h4>
+                                    <h4>
+                                        <b>Bloc: </b><td th:text="${infoStudent.getCaminPreferat()}"></td>
+                                    </h4>
+                                    <h4>
+                                        <b>Statie de metrou: </b> Grozavesti sau Petrache Poenaru
+                                    </h4>
+                                </div>
+                                <div th:case="${'P23'}">
+                                    <h4>
+                                        <b>Locatie: </b> Complex Studentesc Regie
+                                    </h4>
+                                    <h4>
+                                        <b>Bloc: </b><td th:text="${infoStudent.getCaminPreferat()}"></td>
+                                    </h4>
+                                    <h4>
+                                        <b>Statie de metrou: </b> Grozavesti sau Petrache Poenaru
+                                    </h4>
+                                </div>
+                            </div>
+
+                            </span>
                     </p>
                 </div>
             </div>

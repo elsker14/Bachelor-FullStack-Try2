@@ -3,6 +3,7 @@ package com.example.licentaBackendSB.controllers;
 import com.example.licentaBackendSB.entities.Student;
 import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.others.LoggedAccount;
+import com.example.licentaBackendSB.others.Validator;
 import com.example.licentaBackendSB.services.StudentAccountService;
 import com.example.licentaBackendSB.services.StudentService;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
@@ -67,7 +68,7 @@ public class MyPageController {
         return "pages/layer 4/info pages/mypage";
     }
 
-    /* ~~~~~~~~~~~ Get Student knowing the ID ~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~ Get Student knowing the ID for setting the Friend Token ~~~~~~~~~~~ */
     @GetMapping(path = "/ft-edit/{studentId}")
     public String editFriendToken(
             @PathVariable("studentId") Long studentId,
@@ -123,6 +124,43 @@ public class MyPageController {
         studentService.clearFriendToken(firstStudent.getId(), firstStudent);
         //Updatam in db Kid#2 cu campul friendToken din Kid#1 local
         studentService.clearFriendToken(secondStudent.get().getId(), secondStudent.get());
+
+        return "redirect:/student/mypage";
+    }
+
+    /* ~~~~~~~~~~~ Get Student knowing the ID for setting the Camin ~~~~~~~~~~~ */
+    @GetMapping(path = "/camin-edit/{studentId}")
+    public String editCamin(
+            @PathVariable("studentId") Long studentId,
+            Model model)
+    {
+        Student selectedStudent = studentService.editStudent(studentId);
+        model.addAttribute("selectedStudentById", selectedStudent);
+
+        return "pages/layer 4/info pages/update_camin/update_camin";
+    }
+
+    /* ~~~~~~~~~~~ Update Student Camin and Redirect to MyPage ~~~~~~~~~~~ */
+    @PostMapping(path = "/camin-update/{studentId}")
+    public String updateCamin(
+            @PathVariable("studentId") Long studentId,
+            Student newStudent,
+            Model model)
+    {
+        if(Validator.checkCaminSpelling(newStudent.getCaminPreferat()))
+            studentService.updateCamin(studentId, newStudent);
+
+        return "redirect:/student/mypage";
+    }
+
+    /* ~~~~~~~~~~~ Clear Camin and Update with null and Redirect to MyPage ~~~~~~~~~~~ */
+    @RequestMapping(path = "/camin-clear/{studentId}")
+    public String clearCamin(
+            @PathVariable("studentId") Long studentId)
+    {
+        Student selectedStudent = studentService.editStudent(studentId);
+        selectedStudent.setCaminPreferat("null");
+        studentService.clearCamin(selectedStudent.getId(), selectedStudent);
 
         return "redirect:/student/mypage";
     }

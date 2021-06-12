@@ -195,7 +195,7 @@ public class StudentService {
                 .map(foundStudent -> {
                     //Validari si Verificari
 
-                    /** update friendToken*/
+                    /** clear friendToken and replace with null*/
                     if(!foundStudent.getFriendToken().equals("null"))
                     {
                         foundStudent.setFriendToken(selectedStudent.getFriendToken());
@@ -227,5 +227,49 @@ public class StudentService {
         Optional <Student> selectedStudent = studentRepository.findStudentByMyToken(hisToken);
 
         return selectedStudent;
+    }
+
+    /*  ~~~~~~~~~~~ Update Student Camin ~~~~~~~~~~~ */
+    @Transactional
+    public void updateCamin(Long studentId, Student newStudent)
+    {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+
+                    /** update nume*/
+                    if(newStudent.getCaminPreferat() != null
+                            && newStudent.getCaminPreferat().length() > 0
+                            && !foundStudent.getCaminPreferat().equals(newStudent.getCaminPreferat()))
+                    {
+                        foundStudent.setCaminPreferat(newStudent.getCaminPreferat());
+                    }
+
+                    return studentRepository.save(foundStudent);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
+    }
+
+    /*  ~~~~~~~~~~~ Clear Camin ~~~~~~~~~~~ */
+    @Transactional
+    public void clearCamin(Long studentId, Student selectedStudent)
+    {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+
+                    /** clear camin and replace with null*/
+                    if(!foundStudent.getCaminPreferat().equals("null"))
+                    {
+                        foundStudent.setCaminPreferat(selectedStudent.getCaminPreferat());
+                    }
+
+                    return studentRepository.save(foundStudent);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
     }
 }

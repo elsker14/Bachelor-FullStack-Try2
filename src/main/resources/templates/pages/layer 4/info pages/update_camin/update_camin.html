@@ -24,25 +24,33 @@
 
 <body>
 <div class="container my-5">
-    <h2 class="mb-5">Update Friend Token</h2>
+    <h2 class="mb-5">Update Camin</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/student/mypage/ft-update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
+            <form action="#" th:action="@{/student/mypage/camin-update/{studentId}(studentId=${selectedStudentById.getId()})}" th:object="${selectedStudentById}" method="post">
                 <div class="row">
                     <!-- TEORIE: for = "id_camp_in_frontend" tre sa fie acelasi cu id="id_camp_in_frontend" -->
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <!-- update friendToken -->
                         <div class="form-group row-md-6">
-                            <label for="friendToken" class="col-form-label"><h4><b>FriendToken: </b></h4></label>
-                            <input type="text" th:field="*{friendToken}" class="form-control" id="friendToken" placeholder="friendToken">
-                            <span th:if="${#fields.hasErrors('friendToken')}" th:errors="*{friendToken}" class="text-danger"></span>
+                            <label for="camin_preferat" class="col-form-label"><h4><b>Camin ales: </b></h4></label>
+                            <input type="text" th:field="*{caminPreferat}" class="form-control" id="camin_preferat" placeholder="camin_preferat">
+                            <span th:if="${#fields.hasErrors('caminPreferat')}" th:errors="*{caminPreferat}" class="text-danger"></span>
                         </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <b>Optiunile de camine disponibile:</b>
+                        <li>Complex studentesc Leu: bloc Leu A</li>
+                        <li>Complex studentesc Leu: bloc Leu C</li>
+                        <li>Complex studentesc Regie: bloc P20</li>
+                        <li>Complex studentesc Regie: bloc P23</li>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mt-5">
-                        <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Friend Token">
+                        <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Camin">
                     </div>
 
                     <div class="col-md-6 mt-5">
