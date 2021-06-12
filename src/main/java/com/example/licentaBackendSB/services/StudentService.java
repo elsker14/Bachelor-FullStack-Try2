@@ -200,4 +200,17 @@ public class StudentService {
                         () -> new IllegalStateException("student with id " + studentId + " does not exist")
                 );
     }
+
+    /* Validate if friend token exists in db */
+    public String validateFriendToken(Student selectedStudent)
+    {
+        if(studentRepository.validateFriendTokenExists(selectedStudent.getFriendToken()))
+        {
+            return "All good!";
+        }
+        else
+        {
+            return "Friend Token doesn't exist in database!";
+        }
+    }
 }

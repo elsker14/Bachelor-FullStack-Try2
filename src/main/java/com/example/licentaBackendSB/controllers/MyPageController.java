@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.transaction.Transactional;
 
 @Controller
 @RequestMapping(path = "/student/mypage")
@@ -76,9 +75,13 @@ public class MyPageController {
     public String updateFriendToken(
             @PathVariable("studentId") Long studentId,
             Student newStudent,
+            BindingResult bindingResult,
             Model model)
     {
-        studentService.updateFriendToken(studentId, newStudent);
+        String isError = studentService.validateFriendToken(newStudent);
+        if(isError.equals("All good!"))
+            studentService.updateFriendToken(studentId, newStudent);
+
 
         return "redirect:/student/mypage";
     }

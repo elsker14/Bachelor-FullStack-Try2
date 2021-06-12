@@ -12,11 +12,42 @@
         transform: translate(-50%, -50%);
     }
 
-    #edit-image
-    {
-        width: 300px;
-        height: 300px;
+    /* STIL PT MESAJELE DE VERIFICARE DACA TOKENU EXISTA */
+    /* The message box is shown when the user clicks on the password field */
+    #message {
+        display:none;
+        background: #f1f1f1;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 10px;
+    }
 
+    #message p {
+        padding: 10px 35px;
+        font-size: 18px;
+    }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+    .valid:before {
+        position: relative;
+        left: -35px;
+        content: "&#10004;";
+    }
+
+    /* Add a red text color and an "x" icon when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+    .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "&#10006;";
     }
 </style>
 
@@ -57,10 +88,28 @@
                         <input id="back-btn" type="submit" class="btn btn-warning center" value="Back to myPage" href="/mypage">
                     </div>
                 </div>
-
+                <br>
+                <br>
+                <br>
             </form>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+<!-- SCRIPTURI JS -->
+
+<!--<script type = text/javascript>-->
+<!--    var inputFriendToken = document.getElementById("friendToken");-->
+
+<!--    // When the user clicks on the password field, show the message box-->
+<!--    inputFriendToken.onfocus = function() {-->
+<!--        document.getElementById("message").style.display = "block";-->
+<!--    }-->
+
+<!--    // When the user clicks outside of the password field, hide the message box-->
+<!--    inputFriendToken.onblur = function() {-->
+<!--        document.getElementById("message").style.display = "none";-->
+<!--    }-->
+<!--</script>-->

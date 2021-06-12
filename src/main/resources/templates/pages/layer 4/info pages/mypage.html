@@ -101,23 +101,3 @@
 </html>
 
 <!-- SCRIPTURI JS -->
-
-<script>
-    function togglePasswordFromCodedToVisibile()
-    {
-        $('#eyecon').toggleClass("fa-eye fa-eye-slash");
-        const x = document.getElementById("myInput");
-
-        if (x.type === "password") //in loc de a defini o variabila poti folosi jquery ul : $('#myInput')
-        {
-            x.type = "text";
-        }
-        else
-        {
-            x.type = "password";
-        }
-    }
-
-    //make password textbox read only
-    document.getElementById("myInput").readOnly = true;
-</script>
