@@ -105,6 +105,9 @@
                             <td><a th:href="@{/student/mypage/camin-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-warning"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
                         <span th:if="${infoStudent.getCaminPreferat() != 'null'}">
+                            <h3>
+                                <b>Camin repartizat: </b> <!-- todo: pune caminul repartizat aici -->
+                            </h3>
                             <div th:switch="${infoStudent.getCaminPreferat()}">
                                 <div th:case="${'Leu A'}">
                                     <h4>
@@ -151,8 +154,7 @@
                                     </h4>
                                 </div>
                             </div>
-
-                            </span>
+                        </span>
                     </p>
                 </div>
             </div>
