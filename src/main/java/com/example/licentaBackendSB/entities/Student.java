@@ -308,7 +308,7 @@ public class Student {
         return hardcodedListOfStudents;
     }
 
-    public static void sortStudents(List <Student> tmp)
+    public static void sortStudents(List <Student> tmp)     //todo : modifica comparatorul pt mai multe reguli
     {
         tmp.sort((o1, o2) -> o2.getMedie().compareTo(o1.getMedie()));
     }

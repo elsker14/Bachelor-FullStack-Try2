@@ -40,7 +40,7 @@ public class AdminController {
         return "pages/layer 3/admin";
     }
 
-    /* ~~~~~~~~~~~ Studen List ~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~ Student List ~~~~~~~~~~~ */
     @GetMapping("students")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getStudents(Model model)

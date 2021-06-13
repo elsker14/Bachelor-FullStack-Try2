@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
+
+<style>
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+        border-radius: 5px;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Add some padding inside the card container */
+    .card-body {
+        padding: 2px 16px;
+    }
+
+    /* Solid border */
+    hr.solid {
+        border-top: 3px solid #bbb;
+    }
+</style>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+
+<html>
+
+    <body>
+
+        <header>
+
+            <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand">
+                <a class="navbar-brand" href="https://curs.upb.ro/">
+                    <span class="fa fa-university"></span> E-Learning Platform
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto" id="navi">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Homepage<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/admin">Admin Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+
+        <div class="card-deck" style="padding-top: 50px">
+            <div class="card bg-light text-left">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3><b>Camin:</b> Leu A</h3>
+                        <a class="nav-link" aria-current="page" href="/admin/camine/leuAlist">Leu A Students List</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light text-left">
+                <div class="card-body">
+                    <p class="card-text">
+                    <h3><b>Camin:</b> Leu C</h3>
+                    <a class="nav-link" aria-current="page" href="/admin/camine/leuClist">Leu C Students List</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light text-left">
+                <div class="card-body">
+                    <p class="card-text">
+                    <h3><b>Camin:</b> P20</h3>
+                    <a class="nav-link" aria-current="page" href="/admin/camine/P20list">P20 Students List</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light text-left">
+                <div class="card-body">
+                    <p class="card-text">
+                    <h3><b>Camin:</b> P23</h3>
+                    <a class="nav-link" aria-current="page" href="/admin/camine/P23list">P23 Students List</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

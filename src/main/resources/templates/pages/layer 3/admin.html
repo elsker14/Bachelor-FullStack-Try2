@@ -16,60 +16,79 @@
         padding-left: 700px;
         font-size: 20px;
     }
+
+    #navi ul{
+        display: flex;
+    }
+
+    #navi ul li:last-child{
+        margin-left: auto;
+    }
+
+    #navi ul{
+        list-style: none;
+        padding: 5px;
+    }
+
+    #navi li{
+        margin:0 10px;
+    }
 </style>
 
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
 
 <html>
-
-    <head>
-
-        <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand">
-            <a class="navbar-brand" href="https://curs.upb.ro/">
-                <span class="fa fa-university"></span> E-Learning Platform
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Homepage<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/students">Students List</a>
-                    </li>
-
-                    <div th:switch="${isDevAcc}">
-                        <li th:case="'true'" class="nav-item">
-                            <div th:switch="${loggedUsername}">
-                                <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
-                                    <span> Dev Account :: ADMIN </span>
-                                </a>
-                                <a th:case="'lixi'" id="assistant-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
-                                    <span> Dev Account :: ASISTENT </span>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li th:case="'false'" class="nav-item" id="personal-page">
-                            <a class="nav-link fas fa-user-secret" aria-current="page" href="#" th:text="${loggedUsername}"></a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-
-    </head>
-
     <body>
+        <header>
 
+            <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand" id="navi">
+                <a class="navbar-brand" href="https://curs.upb.ro/">
+                    <span class="fa fa-university"></span> E-Learning Platform
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- https://stackoverflow.com/questions/67957683/what-css-must-i-apply-to-get-rid-of-this-useless-spacing?noredirect=1#comment120115375_67957683 -->
+                <!-- todo rezolva navbaru sa nu se mai puna cuvintele unu peste altu -->
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav" id="nav_ul">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Homepage<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/admin/students">Students List</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/admin/camine">Camine Page</a>
+                        </li>
+
+                        <div th:switch="${isDevAcc}">
+                            <li th:case="'true'" class="nav-item">
+                                <div th:switch="${loggedUsername}">
+                                    <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
+                                        <span> Dev Account :: ADMIN </span>
+                                    </a>
+                                    <a th:case="'lixi'" id="assistant-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">
+                                        <span> Dev Account :: ASISTENT </span>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li th:case="'false'" class="nav-item" id="personal-page">
+                                <a class="nav-link fas fa-user-secret" aria-current="page" href="#" th:text="${loggedUsername}"></a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
     </body>
 
 </html>

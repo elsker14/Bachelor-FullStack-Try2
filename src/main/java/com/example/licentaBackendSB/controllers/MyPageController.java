@@ -115,15 +115,18 @@ public class MyPageController {
         //Preluam studentul al doilea, adica Kid#2 fiindca cunoastem tokenul lui ce este trecut ca friendToken la Kid#1
         Optional<Student> secondStudent = studentService.findStudentByMyToken(firstStudent.getFriendToken());
 
-        //Setam local "null" la Kid#1
-        firstStudent.setFriendToken("null");
-        //Setam local "null" la Kid#2
-        secondStudent.get().setFriendToken("null");
+        if(!firstStudent.getFriendToken().equals("null") && !secondStudent.get().getFriendToken().equals("null"))
+        {
+            //Setam local "null" la Kid#1
+            firstStudent.setFriendToken("null");
+            //Setam local "null" la Kid#2
+            secondStudent.get().setFriendToken("null");
 
-        //Updatam in db Kid#1 cu campul friendToken din Kid#1 local
-        studentService.clearFriendToken(firstStudent.getId(), firstStudent);
-        //Updatam in db Kid#2 cu campul friendToken din Kid#1 local
-        studentService.clearFriendToken(secondStudent.get().getId(), secondStudent.get());
+            //Updatam in db Kid#1 cu campul friendToken din Kid#1 local
+            studentService.clearFriendToken(firstStudent.getId(), firstStudent);
+            //Updatam in db Kid#2 cu campul friendToken din Kid#1 local
+            studentService.clearFriendToken(secondStudent.get().getId(), secondStudent.get());
+        }
 
         return "redirect:/student/mypage";
     }
@@ -159,8 +162,11 @@ public class MyPageController {
             @PathVariable("studentId") Long studentId)
     {
         Student selectedStudent = studentService.editStudent(studentId);
-        selectedStudent.setCaminPreferat("null");
-        studentService.clearCamin(selectedStudent.getId(), selectedStudent);
+        if(!selectedStudent.getCaminPreferat().equals("null"))
+        {
+            selectedStudent.setCaminPreferat("null");
+            studentService.clearCamin(selectedStudent.getId(), selectedStudent);
+        }
 
         return "redirect:/student/mypage";
     }
