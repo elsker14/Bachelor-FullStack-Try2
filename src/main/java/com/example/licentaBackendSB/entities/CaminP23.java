@@ -112,4 +112,21 @@ public class CaminP23 {
     public void setFriendToken(String friendToken) {
         this.friendToken = friendToken;
     }
+
+    //Others methods
+    public static CaminP23 convertStudentToCaminP23(Student tmp)
+    {
+        CaminP23 result = new CaminP23();
+
+        result.setId(tmp.getId());
+        result.setNume(tmp.getNume());
+        result.setPrenume(tmp.getPrenume());
+        result.setCnp(tmp.getCnp());
+        result.setMedie(tmp.getMedie());
+        result.setAn(tmp.getAn());
+        result.setFriendToken(tmp.getFriendToken());
+        result.setMyToken(tmp.getMyToken());
+
+        return result;
+    }
 }

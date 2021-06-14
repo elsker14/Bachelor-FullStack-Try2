@@ -112,4 +112,21 @@ public class CaminLeuC {
     public void setFriendToken(String friendToken) {
         this.friendToken = friendToken;
     }
+
+    //Others methods
+    public static CaminLeuC convertStudentToCaminLeuC(Student tmp)
+    {
+        CaminLeuC result = new CaminLeuC();
+
+        result.setId(tmp.getId());
+        result.setNume(tmp.getNume());
+        result.setPrenume(tmp.getPrenume());
+        result.setCnp(tmp.getCnp());
+        result.setMedie(tmp.getMedie());
+        result.setAn(tmp.getAn());
+        result.setFriendToken(tmp.getFriendToken());
+        result.setMyToken(tmp.getMyToken());
+
+        return result;
+    }
 }

@@ -1,23 +1,18 @@
 package com.example.licentaBackendSB.controllers;
 
-import com.example.licentaBackendSB.entities.Student;
-import com.example.licentaBackendSB.entities.StudentAccount;
+import com.example.licentaBackendSB.entities.*;
 import com.example.licentaBackendSB.others.LoggedAccount;
 import com.example.licentaBackendSB.others.Validator;
-import com.example.licentaBackendSB.services.StudentAccountService;
-import com.example.licentaBackendSB.services.StudentService;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
+import com.example.licentaBackendSB.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Controller
@@ -27,13 +22,26 @@ public class MyPageController {
     //Fields
     private final StudentService studentService;
     private final StudentAccountService studentAccountService;
+    private final CaminLeuAService caminLeuAService;
+    private final CaminLeuCService caminLeuCService;
+    private final CaminP20Service caminP20Service ;
+    private final CaminP23Service caminP23Service;
 
     //Constructor
     @Autowired
-    public MyPageController(StudentService studentService, StudentAccountService studentAccountService)
+    public MyPageController(StudentService studentService,
+                            StudentAccountService studentAccountService,
+                            CaminLeuAService caminLeuAService,
+                            CaminLeuCService caminLeuCService,
+                            CaminP20Service caminP20Service,
+                            CaminP23Service caminP23Service)
     {
         this.studentService = studentService;
         this.studentAccountService = studentAccountService;
+        this.caminLeuAService = caminLeuAService;
+        this.caminLeuCService = caminLeuCService;
+        this.caminP20Service = caminP20Service;
+        this.caminP23Service = caminP23Service;
     }
 
     /* ~~~~~~~~~~~ Get MyPage View ~~~~~~~~~~~ */
@@ -151,7 +159,23 @@ public class MyPageController {
             Model model)
     {
         if(Validator.checkCaminSpelling(newStudent.getCaminPreferat()))
+        {
             studentService.updateCamin(studentId, newStudent);
+
+            //Preluam studentul care isi adauga camin
+            Student selectedStudent = studentService.editStudent(studentId);
+            //Modificam local din ce avea la camin cu ce a ales
+            selectedStudent.setCaminPreferat(newStudent.getCaminPreferat());
+
+            //Introducem studentul local cu caminul modificat in tabelul corespunzator
+            switch (selectedStudent.getCaminPreferat())
+            {
+                case "Leu A": caminLeuAService.introduceNewStudentCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(selectedStudent)); break;
+                case "Leu C": caminLeuCService.introduceNewStudentCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(selectedStudent)); break;
+                case "P20": caminP20Service.introduceNewStudentCaminP20(CaminP20.convertStudentToCaminP20(selectedStudent)); break;
+                case "P23": caminP23Service.introduceNewStudentCaminP23(CaminP23.convertStudentToCaminP23(selectedStudent)); break;
+            }
+        }
 
         return "redirect:/student/mypage";
     }
@@ -166,6 +190,15 @@ public class MyPageController {
         {
             selectedStudent.setCaminPreferat("null");
             studentService.clearCamin(selectedStudent.getId(), selectedStudent);
+
+//            switch (selectedStudent.getCaminPreferat())
+//            {
+//                case "Leu A":
+//                case "Leu C":
+//                case "P20":
+//                case "P23":
+//                default: //call pt null
+//            }
         }
 
         return "redirect:/student/mypage";

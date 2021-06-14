@@ -1,6 +1,8 @@
 package com.example.licentaBackendSB.services;
 
+import com.example.licentaBackendSB.entities.CaminLeuA;
 import com.example.licentaBackendSB.entities.CaminP20;
+import com.example.licentaBackendSB.entities.CaminP23;
 import com.example.licentaBackendSB.repositories.CaminP20Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,11 @@ public class CaminP20Service {
         List <CaminP20> caminP20List = caminP20Repository.findAll();
 
         return caminP20List;
+    }
+
+    /*  ~~~~~~~~~~~ Introduce Student in the Camin Table Corespunzator ~~~~~~~~~~~ */
+    public void introduceNewStudentCaminP20(CaminP20 newStudentCamin)
+    {
+        caminP20Repository.save(newStudentCamin);
     }
 }

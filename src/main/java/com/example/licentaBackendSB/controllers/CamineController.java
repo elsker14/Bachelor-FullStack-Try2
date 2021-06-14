@@ -60,8 +60,8 @@ public class CamineController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getLeuCStudents(Model model)
     {
-        List <CaminLeuC> caminLeuAList = caminLeuCService.getLeuCStudents();
-        model.addAttribute("listOfLeuCStudents", caminLeuAList);
+        List <CaminLeuC> caminLeuCList = caminLeuCService.getLeuCStudents();
+        model.addAttribute("listOfLeuCStudents", caminLeuCList);
 
         return "pages/layer 4/camine/leuClist";
     }
