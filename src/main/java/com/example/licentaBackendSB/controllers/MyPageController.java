@@ -108,6 +108,31 @@ public class MyPageController {
             secondStudent.get().setFriendToken(firstStudent.getMyToken());
             //Kid#2 preia friendTokenul de la Kid#2 local
             studentService.updateFriendToken(secondStudent.get().getId(), secondStudent.get());
+
+//            //Verificam daca camin e !null
+//            if(!firstStudent.getCaminPreferat().equals("null"))
+//            {
+//                //daca nu e null, dam update in tabelul pt caminul respectiv
+//                switch (firstStudent.getCaminPreferat())
+//                {
+//                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(firstStudent.getId(), CaminLeuA.convertStudentToCaminLeuA(firstStudent));break;
+//                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(firstStudent.getId(), CaminLeuC.convertStudentToCaminLeuC(firstStudent));break;
+//                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(firstStudent.getId(), CaminP20.convertStudentToCaminP20(firstStudent));break;
+//                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(firstStudent.getId(), CaminP23.convertStudentToCaminP23(firstStudent));break;
+//                }
+//            }
+//
+//            if(!secondStudent.get().getCaminPreferat().equals("null"))
+//            {
+//                //daca nu e null, dam update in tabelul pt caminul respectiv
+//                switch (secondStudent.get().getCaminPreferat())
+//                {
+//                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(secondStudent.get().getId(), CaminLeuA.convertStudentToCaminLeuA(secondStudent.get()));break;
+//                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(secondStudent.get().getId(), CaminLeuC.convertStudentToCaminLeuC(secondStudent.get()));break;
+//                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(secondStudent.get().getId(), CaminP20.convertStudentToCaminP20(secondStudent.get()));break;
+//                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(secondStudent.get().getId(), CaminP23.convertStudentToCaminP23(secondStudent.get()));break;
+//                }
+//            }
         }
 
         return "redirect:/student/mypage";
@@ -170,10 +195,10 @@ public class MyPageController {
             //Introducem studentul local cu caminul modificat in tabelul corespunzator
             switch (selectedStudent.getCaminPreferat())
             {
-                case "Leu A": caminLeuAService.introduceNewStudentCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(selectedStudent)); break;
-                case "Leu C": caminLeuCService.introduceNewStudentCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(selectedStudent)); break;
-                case "P20": caminP20Service.introduceNewStudentCaminP20(CaminP20.convertStudentToCaminP20(selectedStudent)); break;
-                case "P23": caminP23Service.introduceNewStudentCaminP23(CaminP23.convertStudentToCaminP23(selectedStudent)); break;
+                case "Leu A":   caminLeuAService.introduceNewStudentCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(selectedStudent)); break;
+                case "Leu C":   caminLeuCService.introduceNewStudentCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(selectedStudent)); break;
+                case "P20":     caminP20Service.introduceNewStudentCaminP20(CaminP20.convertStudentToCaminP20(selectedStudent)); break;
+                case "P23":     caminP23Service.introduceNewStudentCaminP23(CaminP23.convertStudentToCaminP23(selectedStudent)); break;
             }
         }
 
@@ -188,17 +213,17 @@ public class MyPageController {
         Student selectedStudent = studentService.editStudent(studentId);
         if(!selectedStudent.getCaminPreferat().equals("null"))
         {
+            switch (selectedStudent.getCaminPreferat())
+            {
+                case "Leu A":   caminLeuAService.deleteStudentInCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(selectedStudent)); break;
+                case "Leu C":   caminLeuCService.deleteStudentInCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(selectedStudent)); break;
+                case "P20":     caminP20Service.deleteStudentInCaminP20(CaminP20.convertStudentToCaminP20(selectedStudent)); break;
+                case "P23":     caminP23Service.deleteStudentInCaminP23(CaminP23.convertStudentToCaminP23(selectedStudent)); break;
+            }
+
+            //Intai stergem din tabel persoana respectiva si dupa ii stergem optiunea aleasa
             selectedStudent.setCaminPreferat("null");
             studentService.clearCamin(selectedStudent.getId(), selectedStudent);
-
-//            switch (selectedStudent.getCaminPreferat())
-//            {
-//                case "Leu A":
-//                case "Leu C":
-//                case "P20":
-//                case "P23":
-//                default: //call pt null
-//            }
         }
 
         return "redirect:/student/mypage";

@@ -36,4 +36,38 @@ public class CaminLeuAService {
     {
         caminLeuARepository.save(newStudentCamin);
     }
+
+    /* ~~~~~~~~~~~ Delete Student in the Camin Table Corespunzator ~~~~~~~~~~~ */
+    public void deleteStudentInCaminLeuA(CaminLeuA selectedStudentCamin)
+    {
+        caminLeuARepository.deleteByNumePrenumeMyTokenCNP(
+                selectedStudentCamin.getMyToken(),
+                selectedStudentCamin.getCnp(),
+                selectedStudentCamin.getNume(),
+                selectedStudentCamin.getPrenume());
+    }
+
+    /*  ~~~~~~~~~~~ Update Student from Camin Leu A with FriendToken ~~~~~~~~~~~ */
+    @Transactional
+    public void updateFriendTokenOfStudentInCaminLeuA(Long studentId, CaminLeuA newStudentCamin)
+    {
+        caminLeuARepository.findById(studentId)
+                .map(foundStudentCamin -> {
+                    //Validari si Verificari
+
+                    /** update student with friendtoken in camin table*/
+                    if(newStudentCamin.getFriendToken() != null
+                            && newStudentCamin.getFriendToken().length() > 0
+                            && !foundStudentCamin.getFriendToken().equals(newStudentCamin.getFriendToken())
+                            && !foundStudentCamin.getMyToken().equals(newStudentCamin.getFriendToken()))
+                    {
+                        foundStudentCamin.setFriendToken(newStudentCamin.getFriendToken());
+                    }
+
+                    return caminLeuARepository.save(foundStudentCamin);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
+    }
 }
