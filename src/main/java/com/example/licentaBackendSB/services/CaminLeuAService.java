@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaminLeuAService {
@@ -49,25 +50,10 @@ public class CaminLeuAService {
 
     /*  ~~~~~~~~~~~ Update Student from Camin Leu A with FriendToken ~~~~~~~~~~~ */
     @Transactional
-    public void updateFriendTokenOfStudentInCaminLeuA(Long studentId, CaminLeuA newStudentCamin)
+    public void updateFriendTokenOfStudentInCaminLeuA(CaminLeuA studentCamin)
     {
-        caminLeuARepository.findById(studentId)
-                .map(foundStudentCamin -> {
-                    //Validari si Verificari
-
-                    /** update student with friendtoken in camin table*/
-                    if(newStudentCamin.getFriendToken() != null
-                            && newStudentCamin.getFriendToken().length() > 0
-                            && !foundStudentCamin.getFriendToken().equals(newStudentCamin.getFriendToken())
-                            && !foundStudentCamin.getMyToken().equals(newStudentCamin.getFriendToken()))
-                    {
-                        foundStudentCamin.setFriendToken(newStudentCamin.getFriendToken());
-                    }
-
-                    return caminLeuARepository.save(foundStudentCamin);
-                }).
-                orElseThrow(
-                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
-                );
+        Optional<CaminLeuA> studentDinCaminLeuA = caminLeuARepository.getStudentFromCamin(studentCamin.getCnp());
+        studentDinCaminLeuA.get().setFriendToken(studentCamin.getFriendToken());
+        studentDinCaminLeuA.ifPresent(caminLeuA -> caminLeuARepository.updateFriendTokenFromStudentInCamin(caminLeuA.getFriendToken(), caminLeuA.getCnp()));
     }
 }

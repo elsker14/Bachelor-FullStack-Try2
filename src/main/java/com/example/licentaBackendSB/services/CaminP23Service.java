@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaminP23Service {
@@ -52,25 +53,10 @@ public class CaminP23Service {
 
     /*  ~~~~~~~~~~~ Update Student from Camin P23 with FriendToken ~~~~~~~~~~~ */
     @Transactional
-    public void updateFriendTokenOfStudentInCaminP23(Long studentId, CaminP23 newStudentCamin)
+    public void updateFriendTokenOfStudentInCaminP23(CaminP23 studentCamin)
     {
-        caminP23Repository.findById(studentId)
-                .map(foundStudentCamin -> {
-                    //Validari si Verificari
-
-                    /** update student with friendtoken in camin table*/
-                    if(newStudentCamin.getFriendToken() != null
-                            && newStudentCamin.getFriendToken().length() > 0
-                            && !foundStudentCamin.getFriendToken().equals(newStudentCamin.getFriendToken())
-                            && !foundStudentCamin.getMyToken().equals(newStudentCamin.getFriendToken()))
-                    {
-                        foundStudentCamin.setFriendToken(newStudentCamin.getFriendToken());
-                    }
-
-                    return caminP23Repository.save(foundStudentCamin);
-                }).
-                orElseThrow(
-                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
-                );
+        Optional<CaminP23> studentDinCaminP23 = caminP23Repository.getStudentFromCamin(studentCamin.getCnp());
+        studentDinCaminP23.get().setFriendToken(studentCamin.getFriendToken());
+        studentDinCaminP23.ifPresent(caminP23 -> caminP23Repository.updateFriendTokenFromStudentInCamin(caminP23.getFriendToken(), caminP23.getCnp()));
     }
 }

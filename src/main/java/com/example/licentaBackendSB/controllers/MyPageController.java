@@ -109,30 +109,30 @@ public class MyPageController {
             //Kid#2 preia friendTokenul de la Kid#2 local
             studentService.updateFriendToken(secondStudent.get().getId(), secondStudent.get());
 
-//            //Verificam daca camin e !null
-//            if(!firstStudent.getCaminPreferat().equals("null"))
-//            {
-//                //daca nu e null, dam update in tabelul pt caminul respectiv
-//                switch (firstStudent.getCaminPreferat())
-//                {
-//                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(firstStudent.getId(), CaminLeuA.convertStudentToCaminLeuA(firstStudent));break;
-//                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(firstStudent.getId(), CaminLeuC.convertStudentToCaminLeuC(firstStudent));break;
-//                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(firstStudent.getId(), CaminP20.convertStudentToCaminP20(firstStudent));break;
-//                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(firstStudent.getId(), CaminP23.convertStudentToCaminP23(firstStudent));break;
-//                }
-//            }
-//
-//            if(!secondStudent.get().getCaminPreferat().equals("null"))
-//            {
-//                //daca nu e null, dam update in tabelul pt caminul respectiv
-//                switch (secondStudent.get().getCaminPreferat())
-//                {
-//                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(secondStudent.get().getId(), CaminLeuA.convertStudentToCaminLeuA(secondStudent.get()));break;
-//                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(secondStudent.get().getId(), CaminLeuC.convertStudentToCaminLeuC(secondStudent.get()));break;
-//                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(secondStudent.get().getId(), CaminP20.convertStudentToCaminP20(secondStudent.get()));break;
-//                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(secondStudent.get().getId(), CaminP23.convertStudentToCaminP23(secondStudent.get()));break;
-//                }
-//            }
+            //Verificam daca camin e !null
+            if(!firstStudent.getCaminPreferat().equals("null"))
+            {
+                //daca nu e null, dam update in tabelul pt caminul respectiv
+                switch (firstStudent.getCaminPreferat())
+                {
+                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(firstStudent));break;
+                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(firstStudent));break;
+                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(CaminP20.convertStudentToCaminP20(firstStudent));break;
+                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(firstStudent));break;
+                }
+            }
+
+            if(!secondStudent.get().getCaminPreferat().equals("null"))
+            {
+                //daca nu e null, dam update in tabelul pt caminul respectiv
+                switch (secondStudent.get().getCaminPreferat())
+                {
+                    case "Leu A":   caminLeuAService.updateFriendTokenOfStudentInCaminLeuA(CaminLeuA.convertStudentToCaminLeuA(secondStudent.get()));break;
+                    case "Leu C":   caminLeuCService.updateFriendTokenOfStudentInCaminLeuC(CaminLeuC.convertStudentToCaminLeuC(secondStudent.get()));break;
+                    case "P20":     caminP20Service.updateFriendTokenOfStudentInCaminP20(CaminP20.convertStudentToCaminP20(secondStudent.get()));break;
+                    case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(secondStudent.get()));break;
+                }
+            }
         }
 
         return "redirect:/student/mypage";

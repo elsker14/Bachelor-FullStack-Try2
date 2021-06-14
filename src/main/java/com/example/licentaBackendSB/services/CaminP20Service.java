@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CaminP20Service {
@@ -42,7 +43,6 @@ public class CaminP20Service {
     /* ~~~~~~~~~~~ Delete Student in the Camin Table Corespunzator ~~~~~~~~~~~ */
     public void deleteStudentInCaminP20(CaminP20 selectedStudentCamin)
     {
-//        caminP20Repository.deleteById(selectedStudentCamin.getId());
         caminP20Repository.deleteByNumePrenumeMyTokenCNP(
                 selectedStudentCamin.getMyToken(),
                 selectedStudentCamin.getCnp(),
@@ -52,25 +52,10 @@ public class CaminP20Service {
 
     /*  ~~~~~~~~~~~ Update Student from Camin P20 with FriendToken ~~~~~~~~~~~ */
     @Transactional
-    public void updateFriendTokenOfStudentInCaminP20(Long studentId, CaminP20 newStudentCamin)
+    public void updateFriendTokenOfStudentInCaminP20(CaminP20 studentCamin)
     {
-        caminP20Repository.findById(studentId)
-                .map(foundStudentCamin -> {
-                    //Validari si Verificari
-
-                    /** update student with friendtoken in camin table*/
-                    if(newStudentCamin.getFriendToken() != null
-                            && newStudentCamin.getFriendToken().length() > 0
-                            && !foundStudentCamin.getFriendToken().equals(newStudentCamin.getFriendToken())
-                            && !foundStudentCamin.getMyToken().equals(newStudentCamin.getFriendToken()))
-                    {
-                        foundStudentCamin.setFriendToken(newStudentCamin.getFriendToken());
-                    }
-
-                    return caminP20Repository.save(foundStudentCamin);
-                }).
-                orElseThrow(
-                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
-                );
+        Optional<CaminP20> studentDinCaminP20 = caminP20Repository.getStudentFromCamin(studentCamin.getCnp());
+        studentDinCaminP20.get().setFriendToken(studentCamin.getFriendToken());
+        studentDinCaminP20.ifPresent(caminP20 -> caminP20Repository.updateFriendTokenFromStudentInCamin(caminP20.getFriendToken(), caminP20.getCnp()));
     }
 }
