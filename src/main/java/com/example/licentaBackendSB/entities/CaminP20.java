@@ -18,6 +18,7 @@ public class CaminP20 {
     )
 
     //Fields
+    private Long id;
     private String nume;
     private String prenume;
     private String cnp;
@@ -27,13 +28,15 @@ public class CaminP20 {
     private String friendToken;
 
     //Constructor
-    public CaminP20(String nume,
-                     String prenume,
-                     String cnp,
-                     Double medie,
-                     Integer an,
-                     String myToken,
-                     String friendToken) {
+    public CaminP20(Long id,
+                    String nume,
+                    String prenume,
+                    String cnp,
+                    Double medie,
+                    Integer an,
+                    String myToken,
+                    String friendToken) {
+        this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.cnp = cnp;
@@ -46,6 +49,13 @@ public class CaminP20 {
     public CaminP20() {}
 
     //Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNume() {
         return nume;

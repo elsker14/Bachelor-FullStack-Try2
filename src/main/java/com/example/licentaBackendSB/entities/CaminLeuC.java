@@ -18,6 +18,7 @@ public class CaminLeuC {
     )
 
     //Fields
+    private Long id;
     private String nume;
     private String prenume;
     private String cnp;
@@ -27,13 +28,15 @@ public class CaminLeuC {
     private String friendToken;
 
     //Constructor
-    public CaminLeuC(String nume,
+    public CaminLeuC(Long id,
+                     String nume,
                      String prenume,
                      String cnp,
                      Double medie,
                      Integer an,
                      String myToken,
                      String friendToken) {
+        this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.cnp = cnp;
@@ -46,6 +49,13 @@ public class CaminLeuC {
     public CaminLeuC() {}
 
     //Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNume() {
         return nume;

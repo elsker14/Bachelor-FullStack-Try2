@@ -1,3 +1,63 @@
-<h3>
-    P20
-</h3>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+<html>
+
+<header>
+    <nav class="fixed-top navbar navbar-dark bg-dark navbar-expand">
+        <a class="navbar-brand" href="https://curs.upb.ro/">
+            <span class="fa fa-university"></span> E-Learning Platform
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Homepage <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/admin/camine">Camine Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<body>
+<table class="table table-striped table-responsive" style="padding-top:50px">
+    <thead>
+    <tr>
+        <th>Database Id</th>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>CNP</th>
+        <th>Medie</th>
+        <th>An</th>
+        <th>MyToken</th>
+        <th>FriendToken</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tempStudentfromP20:${listOfP20Students}">
+        <td th:text="${tempStudentfromP20.getId()}"></td>
+        <td th:text="${tempStudentfromP20.getNume()}"></td>
+        <td th:text="${tempStudentfromP20.getPrenume()}"></td>
+        <td th:text="${tempStudentfromP20.getCnp()}"></td>
+        <td th:text="${tempStudentfromP20.getMedie()}"></td>
+        <td th:text="${tempStudentfromP20.getAn()}"></td>
+        <td th:text="${tempStudentfromP20.getMyToken()}"></td>
+        <td th:text="${tempStudentfromP20.getFriendToken()}"></td>
+    </tbody>
+</table>
+
+</body>
+
+</html>
