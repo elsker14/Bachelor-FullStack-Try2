@@ -34,7 +34,17 @@
                         <!-- update friendToken -->
                         <div class="form-group row-md-6">
                             <label for="camin_preferat" class="col-form-label"><h4><b>Camin ales: </b></h4></label>
-                            <input type="text" th:field="*{caminPreferat}" class="form-control" id="camin_preferat" placeholder="camin_preferat">
+<!--                            <input type="text" th:field="*{caminPreferat}" class="form-control" id="camin_preferat" placeholder="camin_preferat">-->
+                            <select id="camin_preferat" name="camin_preferat" th:field="*{caminPreferat}">
+                                <optgroup label="Zona Leu">
+                                    <option value="Leu A">Leu A</option>
+                                    <option value="Leu C">Leu C</option>
+                                </optgroup>
+                                <optgroup label="Zona Regie">
+                                    <option value="P20">P20</option>
+                                    <option value="P23">P23</option>
+                                </optgroup>
+                            </select>
                             <span th:if="${#fields.hasErrors('caminPreferat')}" th:errors="*{caminPreferat}" class="text-danger"></span>
                         </div>
                     </div>
