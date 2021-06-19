@@ -100,6 +100,9 @@ public class MyPageController {
         {
             //Kid#1 preia friendTokenul introdus in frontend
             studentService.updateFriendToken(studentId, newStudent);
+            //Cautam Kid#1 dupa id
+            Student firstStudent = studentService.editStudent(studentId);
+            /*
             //Cautam pe Kid#2 dupa tokenul din frontend
             Optional <Student> secondStudent = studentService.findStudentByMyToken(newStudent.getFriendToken());
             //Cautam Kid#1 dupa id
@@ -108,7 +111,7 @@ public class MyPageController {
             secondStudent.get().setFriendToken(firstStudent.getMyToken());
             //Kid#2 preia friendTokenul de la Kid#2 local
             studentService.updateFriendToken(secondStudent.get().getId(), secondStudent.get());
-
+            */
             //Verificam daca camin e !null
             if(!firstStudent.getCaminPreferat().equals("null"))
             {
@@ -121,7 +124,7 @@ public class MyPageController {
                     case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(firstStudent));break;
                 }
             }
-
+            /*
             if(!secondStudent.get().getCaminPreferat().equals("null"))
             {
                 //daca nu e null, dam update in tabelul pt caminul respectiv
@@ -133,6 +136,7 @@ public class MyPageController {
                     case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(secondStudent.get()));break;
                 }
             }
+            */
         }
 
         return "redirect:/student/mypage";
@@ -145,13 +149,17 @@ public class MyPageController {
     {
         //Preluam studentul actual adica Kid#1 stiind Id-ul
         Student firstStudent = studentService.editStudent(studentId);
+        /*
         //Preluam studentul al doilea, adica Kid#2 fiindca cunoastem tokenul lui ce este trecut ca friendToken la Kid#1
         Optional<Student> secondStudent = studentService.findStudentByMyToken(firstStudent.getFriendToken());
-
-        if(!firstStudent.getFriendToken().equals("null") && !secondStudent.get().getFriendToken().equals("null"))
+        */
+        if(!firstStudent.getFriendToken().equals("null") /*&& !secondStudent.get().getFriendToken().equals("null")*/)
         {
             //Setam local "null" la Kid#1
             firstStudent.setFriendToken("null");
+            //Updatam in db Kid#1 cu campul friendToken din Kid#1 local
+            studentService.clearFriendToken(firstStudent.getId(), firstStudent);
+            /*
             //Setam local "null" la Kid#2
             secondStudent.get().setFriendToken("null");
 
@@ -159,7 +167,7 @@ public class MyPageController {
             studentService.clearFriendToken(firstStudent.getId(), firstStudent);
             //Updatam in db Kid#2 cu campul friendToken din Kid#1 local
             studentService.clearFriendToken(secondStudent.get().getId(), secondStudent.get());
-
+            */
             //Verificam daca camin e !null
             if(!firstStudent.getCaminPreferat().equals("null"))
             {
@@ -172,7 +180,7 @@ public class MyPageController {
                     case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(firstStudent));break;
                 }
             }
-
+            /*
             if(!secondStudent.get().getCaminPreferat().equals("null"))
             {
                 //daca nu e null, dam update in tabelul pt caminul respectiv
@@ -184,6 +192,7 @@ public class MyPageController {
                     case "P23":     caminP23Service.updateFriendTokenOfStudentInCaminP23(CaminP23.convertStudentToCaminP23(secondStudent.get()));break;
                 }
             }
+            */
         }
 
         return "redirect:/student/mypage";
