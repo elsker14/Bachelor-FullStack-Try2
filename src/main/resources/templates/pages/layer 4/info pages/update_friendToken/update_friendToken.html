@@ -34,7 +34,7 @@
                         <!-- update friendToken -->
                         <div class="form-group row-md-6">
                             <label for="friendToken" class="col-form-label"><h4><b>FriendToken: </b></h4></label>
-                            <input type="text" th:field="*{friendToken}" class="form-control" id="friendToken" placeholder="friendToken">
+                            <input type="text" th:field="*{friendToken}" onkeyup="successTypeFriendToken()" class="form-control" id="friendToken" placeholder="friendToken">
                             <span th:if="${#fields.hasErrors('friendToken')}" th:errors="*{friendToken}" class="text-danger"></span>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
 
                 <div class="row">
                     <div class="col-md-6 mt-5">
-                        <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Friend Token">
+                        <input id="update-btn" disabled type="submit" class="btn btn-primary center" value="Update Friend Token">
                     </div>
 
                     <div class="col-md-6 mt-5">
@@ -58,3 +58,22 @@
 </div>
 </body>
 </html>
+
+<!-- SCRIPTURI JS -->
+
+<script>
+    //daca introduci friendToken diferit de null, poti da update, daca nu, nu
+    //daca campul e null, te poti intoarce la mypage, daca nu, nu
+    function successTypeFriendToken() {
+        if(document.getElementById("friendToken").value === "null")
+        {
+            document.getElementById('update-btn').disabled = true;
+            document.getElementById('back-btn').disabled = false;
+        }
+        else
+        {
+            document.getElementById('update-btn').disabled = false;
+            document.getElementById('back-btn').disabled = true;
+        }
+    }
+</script>

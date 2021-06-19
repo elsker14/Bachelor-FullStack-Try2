@@ -87,9 +87,9 @@
                         <h3><b>My Token: </b>       <span th:text="${infoStudent.getMyToken()}"></span></h3>
 
                         <hr class="solid">
-                        <h3><b>Friend Token: </b>   <span th:text="${infoStudent.getFriendToken()}"></span>
-                            <td><a th:href="@{/student/mypage/ft-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                            <td><a th:href="@{/student/mypage/ft-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
+                        <h3><b>Friend Token: </b>   <span id="friendTokenText" th:text="${infoStudent.getFriendToken()}"></span>
+                            <td><a id="update-btn-ft" th:href="@{/student/mypage/ft-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                            <td><a id="clear-btn-ft" th:href="@{/student/mypage/ft-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                         </h3>
                         <span th:if="${infoStudent.getFriendToken() != 'null'}">
                             <h4>

@@ -34,8 +34,8 @@
                         <!-- update friendToken -->
                         <div class="form-group row-md-6">
                             <label for="camin_preferat" class="col-form-label"><h4><b>Camin ales: </b></h4></label>
-<!--                            <input type="text" th:field="*{caminPreferat}" class="form-control" id="camin_preferat" placeholder="camin_preferat">-->
                             <select id="camin_preferat" name="camin_preferat" th:field="*{caminPreferat}">
+                                <option value="null">null</option>
                                 <optgroup label="Zona Leu">
                                     <option value="Leu A">Leu A</option>
                                     <option value="Leu C">Leu C</option>
@@ -60,11 +60,11 @@
 
                 <div class="row">
                     <div class="col-md-6 mt-5">
-                        <input id="update-btn" type="submit" class="btn btn-success center" value="Update Camin">
+                        <input id="update-btn-camin" type="submit" class="btn btn-success center" value="Update Camin">
                     </div>
 
                     <div class="col-md-6 mt-5">
-                        <input id="back-btn" type="submit" class="btn btn-warning center" value="Back to myPage" href="/mypage">
+                        <input id="back-btn-camin" type="submit" class="btn btn-warning center" value="Back to myPage" href="/mypage">
                     </div>
                 </div>
                 <br>
