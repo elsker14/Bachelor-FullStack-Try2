@@ -113,7 +113,7 @@ public class CaminLeuA {
         this.friendToken = friendToken;
     }
 
-    //Others methods
+    //Methods
     public static CaminLeuA convertStudentToCaminLeuA(Student tmp)
     {
         CaminLeuA result = new CaminLeuA();
