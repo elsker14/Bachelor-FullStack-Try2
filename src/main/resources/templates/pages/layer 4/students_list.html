@@ -32,19 +32,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Homepage <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Acasa<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/menu">Menu Page</a>
+                        <a class="nav-link" aria-current="page" href="/menu">Meniu</a>
                     </li>
 
                     <div th:switch="${isAdmin}">
                         <li class="nav-item" th:case="'admin'">
-                            <a class="nav-link" aria-current="page" href="/admin">Admin Page</a>
+                            <a class="nav-link" aria-current="page" href="/admin">Pagina principala</a>
                         </li>
 
                         <li class="nav-item" th:case="'student'">
-                            <a class="nav-link" aria-current="page" href="/student">Student Page</a>
+                            <a class="nav-link" aria-current="page" href="/student">Pagina principala</a>
                         </li>
                     </div>
 
@@ -109,18 +109,15 @@
                             <td th:text="${tempStudent.getFriendToken()}"></td>
                             <td th:text="${tempStudent.getCaminPreferat()}"></td>
                             <td th:text="${tempStudent.getGenSexual()}"></td>
-                            <th th:text="${tempStudent.getFlagCazSpecial()}"></th>
-                            <div th:switch="${tempStudent.getFlagCazSpecial()}">
-                                <td th:case="'Nu'">
-                                    <a th:href="@{/admin/students/setFlag/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-outline-success"><i class="fas fa-toggle-on"></i></a>
-                                </td>
-                                <td th:case="'Da'">
-                                    <a th:href="@{/admin/students/setFlag/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-toggle-off"></i></a>
-                                </td>
-                            </div>
+                            <td th:text="${tempStudent.getFlagCazSpecial()}"></td>
+                            <td th:if="${tempStudent.getFlagCazSpecial() == 'Nu'}">
+                                <a th:href="@{/admin/students/setFlag/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-outline-success"><i class="fas fa-toggle-on"></i></a>
+                            </td>
+                            <td th:if="${tempStudent.getFlagCazSpecial() == 'Da'}">
+                                <a th:href="@{/admin/students/setFlag/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-outline-danger"><i class="fas fa-toggle-off"></i></a>
+                            </td>
                             <td><a th:href="@{/admin/students/edit/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/admin/students/delete/{studentId}(studentId=${tempStudent.getId()})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
-
                         </p>
                     </div>
                 </tr>
