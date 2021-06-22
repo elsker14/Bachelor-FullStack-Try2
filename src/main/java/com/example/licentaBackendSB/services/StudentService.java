@@ -274,4 +274,29 @@ public class StudentService {
                         () -> new IllegalStateException("student with id " + studentId + " does not exist")
                 );
     }
+
+    /*  ~~~~~~~~~~~ Update Flag from Nu to Da and reverse ~~~~~~~~~~~ */
+    @Transactional
+    public void updateFlag(Long studentId)
+    {
+        studentRepository.findById(studentId)
+                .map(foundStudent -> {
+                    //Validari si Verificari
+
+                    /** update flag */
+                    if(foundStudent.getFlagCazSpecial().equals("Nu"))
+                    {
+                        foundStudent.setFlagCazSpecial("Da");
+                    }
+                    else
+                    {
+                        foundStudent.setFlagCazSpecial("Nu");
+                    }
+
+                    return studentRepository.save(foundStudent);
+                }).
+                orElseThrow(
+                        () -> new IllegalStateException("student with id " + studentId + " does not exist")
+                );
+    }
 }

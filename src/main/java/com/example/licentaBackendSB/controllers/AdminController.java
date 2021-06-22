@@ -117,4 +117,15 @@ public class AdminController {
 
         return "redirect:/admin/students";
     }
+
+    /* ~~~~~~~~~~~ Update Student and Redirect to Student List ~~~~~~~~~~~ */
+    @RequestMapping(path = "/students/setFlag/{studentId}")
+    @PreAuthorize("hasAuthority('student:write')")
+    public String updateFlag(
+            @PathVariable("studentId") Long studentId)
+    {
+        studentService.updateFlag(studentId);
+
+        return "redirect:/admin/students";
+    }
 }
