@@ -2,27 +2,13 @@
 <div th:replace="layouts/header :: myheader"></div>
 
 <style>
-    #personal-page{
-        padding-left: 780px;
-        font-size: 20px;
-    }
-
-    #admin-page{
-        padding-left: 730px;
-        font-size: 20px;
-    }
-
-    #assistant-page{
-        padding-left: 700px;
-        font-size: 20px;
+    #tipCont{
+        padding-left: 525px;
+        font-size: larger;
     }
 
     #navi ul{
         display: flex;
-    }
-
-    #navi ul li:last-child{
-        margin-left: auto;
     }
 
     #navi ul{
@@ -68,7 +54,7 @@
                             <a class="nav-link" aria-current="page" href="/admin/camine">Camine Page</a>
                         </li>
 
-                        <div th:switch="${isDevAcc}">
+                        <div th:switch="${isDevAcc}" id="tipCont">
                             <li th:case="'true'" class="nav-item">
                                 <div th:switch="${loggedUsername}">
                                     <a th:case="'iancu'" id="admin-page" class="nav-link fas fa-code" aria-current="page" href="/admin/devAdminPage">

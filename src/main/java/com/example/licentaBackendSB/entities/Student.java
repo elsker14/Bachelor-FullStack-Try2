@@ -50,6 +50,7 @@ public class Student {
     private String myToken;
     private String friendToken;
     private String camin_preferat;
+    private String flagCazSpecial;
 
     //Constructor ------------------------------------------------------------------------------------------------------
 
@@ -66,7 +67,8 @@ public class Student {
                    String genSexual,
                    String judet,
                    String friendToken,
-                   String camin_preferat)
+                   String camin_preferat,
+                   String flagCazSpecial)
     {
         this.id = id;
         this.nume = nume;
@@ -82,6 +84,7 @@ public class Student {
         this.judet = judet;
         this.friendToken = friendToken;
         this.camin_preferat = camin_preferat;
+        this.flagCazSpecial = flagCazSpecial;
     }
 
     public Student() {}
@@ -199,6 +202,14 @@ public class Student {
         this.camin_preferat = camin_preferat;
     }
 
+    public String getFlagCazSpecial() {
+        return flagCazSpecial;
+    }
+
+    public void setFlagCazSpecial(String flagCazSpecial) {
+        this.flagCazSpecial = flagCazSpecial;
+    }
+
     //toString ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
@@ -267,7 +278,8 @@ public class Student {
                         "Masculin",
                         "Galati",
                         "null",
-                        "null"
+                        "null",
+                        "Nu"
                 ));
 
         for(long i = 1; i < 10; i++)
@@ -301,7 +313,8 @@ public class Student {
                     randomGender,
                     randomCounty,
                     "null",
-                    "null"
+                    "null",
+                    "Nu"
             ));
         }
 
