@@ -1,6 +1,5 @@
 package com.example.licentaBackendSB.services;
 
-import com.example.licentaBackendSB.entities.CaminLeuA;
 import com.example.licentaBackendSB.entities.Student;
 import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.repositories.StudentRepository;
@@ -14,7 +13,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
-    //Field
+    //Fields
     private final StudentRepository studentRepository;
 
     //Constructor

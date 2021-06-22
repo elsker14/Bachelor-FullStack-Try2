@@ -1,13 +1,7 @@
 package com.example.licentaBackendSB.controllers;
 
-import com.example.licentaBackendSB.entities.CaminLeuA;
-import com.example.licentaBackendSB.entities.CaminLeuC;
-import com.example.licentaBackendSB.entities.CaminP20;
-import com.example.licentaBackendSB.entities.CaminP23;
-import com.example.licentaBackendSB.services.CaminLeuAService;
-import com.example.licentaBackendSB.services.CaminLeuCService;
-import com.example.licentaBackendSB.services.CaminP20Service;
-import com.example.licentaBackendSB.services.CaminP23Service;
+import com.example.licentaBackendSB.entities.*;
+import com.example.licentaBackendSB.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,14 +20,16 @@ public class CamineController {
     private final CaminLeuCService caminLeuCService;
     private final CaminP20Service caminP20Service;
     private final CaminP23Service caminP23Service;
+    private final CaminService caminService;
 
     //Constructor
     @Autowired
-    public CamineController(CaminLeuAService caminLeuAService, CaminLeuCService caminLeuCService, CaminP20Service caminP20Service, CaminP23Service caminP23Service) {
+    public CamineController(CaminLeuAService caminLeuAService, CaminLeuCService caminLeuCService, CaminP20Service caminP20Service, CaminP23Service caminP23Service, CaminService caminService) {
         this.caminLeuAService = caminLeuAService;
         this.caminLeuCService = caminLeuCService;
         this.caminP20Service = caminP20Service;
         this.caminP23Service = caminP23Service;
+        this.caminService = caminService;
     }
 
     /* ~~~~~~~~~~~ Get Camine View ~~~~~~~~~~~ */
@@ -41,6 +37,9 @@ public class CamineController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ASSISTANT')")
     public String getCaminePage(Model model)
     {
+        List<Camin> camineList = caminService.getCamine();
+        model.addAttribute("listOfCamine", camineList);
+
         return "pages/layer 4/camine_page";
     }
 
