@@ -113,6 +113,9 @@
                             </h4>
                         </span>
                         <hr class="solid">
+                        <h3>
+                            <b>Eligibil pentru caz special: </b><span th:text="${infoStudent.getFlagCazSpecial()}"></span>
+                        </h3>
                         <h3><b>Camin ales: </b>       <span th:text="${infoStudent.getCaminPreferat()}"></span>
                             <td><a th:href="@{/student/mypage/camin-edit/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-success"><i class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/student/mypage/camin-clear/{studentId}(studentId=${infoStudent.getId()})}" class="btn btn-outline-warning"><i class="fas fa-user-times ml-2"></i></a></td>
