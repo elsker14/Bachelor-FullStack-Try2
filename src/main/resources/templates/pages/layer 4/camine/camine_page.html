@@ -41,6 +41,12 @@
         display: inline-block;
         font-size: medium;
     }
+
+    #optiuniCaminLeuA, #optiuniCaminLeuC, #optiuniCaminP20, #optiuniCaminP23{
+        padding: 0;
+        margin: 20px;
+        list-style: square;
+    }
 </style>
 
 <!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
@@ -82,8 +88,8 @@
                 <div class="card-body">
                     <p class="card-text" id="cardLeuA">
                         <h3><b>Camin:</b> Leu A</h3>
-                        <ul>
-                            <li style="font-size: 20px">
+                        <ul id="optiuniCaminLeuA">
+                            <li style="font-size: 19px">
                                 <span>
                                     <b id="textLeuA" style="font-size: 25px">Lista aplicantilor: </b>
                                     <a href="/admin/camine/leuAlist">
@@ -91,16 +97,25 @@
                                     </a>
                                 </span>
                             </li>
-                            <li style="font-size: 20px">
+                            <li style="font-size: 19px">
                                 <b style="font-size: 25px">Info camin:</b>
-                                <span th:if="${listOfCamine.get(0).getCapacitate()} == 0" style="color: darkred">needitat</span>
-                                <span th:unless="${listOfCamine.get(0).getCapacitate()} == 0" style="color: greenyellow">editat</span>
+                                <span th:if="${leuA.checkIfValuesAreZero()}" style="color: darkred">needitat</span>
+                                <span th:unless="${leuA.checkIfValuesAreZero()}" style="color: darkgreen">editat</span>
 
-                                <a th:if="${listOfCamine.get(0).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(0).getId()})}">
+                                <!-- edit and update -->
+                                <a th:if="${leuA.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${leuA.getId()})}">
                                     <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkred"></i>
                                 </a>
-                                <a th:unless="${listOfCamine.get(0).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(0).getId()})}">
-                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: greenyellow"></i>
+                                <a th:unless="${leuA.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${leuA.getId()})}">
+                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkgreen"></i>
+                                </a>
+
+                                <!-- clear -->
+                                <a th:if="${leuA.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${leuA.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkred"></i>
+                                </a>
+                                <a th:unless="${leuA.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${leuA.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkgreen"></i>
                                 </a>
                             </li>
                          </ul>
@@ -111,8 +126,8 @@
                 <div class="card-body">
                     <p class="card-text">
                         <h3><b>Camin:</b> Leu C</h3>
-                        <ul>
-                            <li style="font-size: 20px">
+                        <ul id="optiuniCaminLeuC">
+                            <li style="font-size: 19px">
                                     <span>
                                         <b id="textLeuC" style="font-size: 25px">Lista aplicantilor: </b>
                                         <a href="/admin/camine/leuClist">
@@ -120,16 +135,25 @@
                                         </a>
                                     </span>
                             </li>
-                            <li style="font-size: 20px">
+                            <li style="font-size: 19px">
                                 <b style="font-size: 25px">Info camin:</b>
-                                <span th:if="${listOfCamine.get(1).getCapacitate()} == 0" style="color: darkred">needitat</span>
-                                <span th:unless="${listOfCamine.get(1).getCapacitate()} == 0" style="color: greenyellow">editat</span>
+                                <span th:if="${leuC.checkIfValuesAreZero()}" style="color: darkred">needitat</span>
+                                <span th:unless="${leuC.checkIfValuesAreZero()}" style="color: darkgreen">editat</span>
 
-                                <a th:if="${listOfCamine.get(1).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(1).getId()})}">
+                                <!-- edit and update -->
+                                <a th:if="${leuC.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${leuC.getId()})}">
                                     <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkred"></i>
                                 </a>
-                                <a th:unless="${listOfCamine.get(1).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(1).getId()})}">
-                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: greenyellow"></i>
+                                <a th:unless="${leuC.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${leuC.getId()})}">
+                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkgreen"></i>
+                                </a>
+
+                                <!-- clear -->
+                                <a th:if="${leuC.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${leuC.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkred"></i>
+                                </a>
+                                <a th:unless="${leuC.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${leuC.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkgreen"></i>
                                 </a>
                             </li>
                         </ul>
@@ -140,8 +164,8 @@
                 <div class="card-body">
                     <p class="card-text">
                         <h3><b>Camin:</b> P20</h3>
-                        <ul>
-                            <li style="font-size: 20px">
+                        <ul id="optiuniCaminP20">
+                            <li style="font-size: 19px">
                                 <span>
                                     <b id="textP20" style="font-size: 25px">Lista aplicantilor: </b>
                                     <a href="/admin/camine/P20list">
@@ -149,17 +173,26 @@
                                     </a>
                                 </span>
                             </li>
-                            <li style="font-size: 20px">
+                            <li style="font-size: 19px">
                                 <b style="font-size: 25px">Info camin:</b>
-                                <span th:if="${listOfCamine.get(2).getCapacitate()} == 0" style="color: darkred">needitat</span>
-                                <span th:unless="${listOfCamine.get(2).getCapacitate()} == 0" style="color: greenyellow">editat</span>
+                                <span th:if="${p20.checkIfValuesAreZero()}" style="color: darkred">needitat</span>
+                                <span th:unless="${p20.checkIfValuesAreZero()}" style="color: darkgreen">editat</span>
 
-                                <a th:if="${listOfCamine.get(2).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(2).getId()})}">
+                                <!-- edit and update -->
+                                <a th:if="${p20.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${p20.getId()})}">
                                     <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkred"></i>
                                 </a>
 
-                                <a th:unless="${listOfCamine.get(2).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(2).getId()})}">
-                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: greenyellow"></i>
+                                <a th:unless="${p20.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${p20.getId()})}">
+                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkgreen"></i>
+                                </a>
+
+                                <!-- clear -->
+                                <a th:if="${p20.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${p20.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkred"></i>
+                                </a>
+                                <a th:unless="${p20.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${p20.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkgreen"></i>
                                 </a>
                             </li>
                         </ul>
@@ -170,8 +203,8 @@
                 <div class="card-body">
                     <p class="card-text">
                         <h3><b>Camin:</b> P23</h3>
-                        <ul>
-                            <li style="font-size: 20px">
+                        <ul id="optiuniCaminP23">
+                            <li style="font-size: 19px">
                                 <span>
                                     <b id="textP23" style="font-size: 25px">Lista aplicantilor: </b>
                                     <a href="/admin/camine/P23list">
@@ -179,16 +212,25 @@
                                     </a>
                                 </span>
                             </li>
-                            <li style="font-size: 20px">
+                            <li style="font-size: 19px">
                                 <b style="font-size: 25px">Info camin:</b>
-                                <span th:if="${listOfCamine.get(3).getCapacitate()} == 0" style="color: darkred">needitat</span>
-                                <span th:unless="${listOfCamine.get(3).getCapacitate()} == 0" style="color: greenyellow">editat</span>
+                                <span th:if="${p23.checkIfValuesAreZero()}" style="color: darkred">needitat</span>
+                                <span th:unless="${p23.checkIfValuesAreZero()}" style="color: darkgreen">editat</span>
 
-                                <a th:if="${listOfCamine.get(3).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(3).getId()})}">
+                                <!-- edit and update -->
+                                <a th:if="${p23.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${p23.getId()})}">
                                     <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkred"></i>
                                 </a>
-                                <a th:unless="${listOfCamine.get(3).getCapacitate()} == 0" th:href="@{/admin/camine/edit/{caminId}(caminId=${listOfCamine.get(3).getId()})}">
-                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: greenyellow"></i>
+                                <a th:unless="${p23.checkIfValuesAreZero()}" th:href="@{/admin/camine/edit/{caminId}(caminId=${p23.getId()})}">
+                                    <i class="fas fa-sliders-h ml-2 fa-lg" style="color: darkgreen"></i>
+                                </a>
+
+                                <!-- clear -->
+                                <a th:if="${p23.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${p23.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkred"></i>
+                                </a>
+                                <a th:unless="${p23.checkIfValuesAreZero()}" th:href="@{/admin/camine/clear/{caminId}(caminId=${p23.getId()})}">
+                                    <i class="fas fa-eraser ml-2 fa-lg" style="color: darkgreen"></i>
                                 </a>
                             </li>
                         </ul>

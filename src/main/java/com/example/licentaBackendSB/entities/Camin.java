@@ -171,4 +171,14 @@ public class Camin {
 
         return hardcodedListOfCamine;
     }
+
+    public Boolean checkIfValuesAreZero()
+    {
+        return (this.capacitate.equals(0))
+                && (this.nrCamereTotal.equals(0))
+                && (this.nrCamereUnStudent.equals(0))
+                && (this.nrCamereDoiStudenti.equals(0))
+                && (this.nrCamereTreiStudenti.equals(0))
+                && (this.nrCamerePatruStudenti.equals(0));
+    }
 }

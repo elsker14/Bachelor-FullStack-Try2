@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layouts/header :: myheader"></div>
 
+<style>
+    #update-btn.center, #back-btn.center
+    {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    #edit-image
+    {
+        width: 300px;
+        height: 300px;
+
+    }
+</style>
+
+<!-- ------------------------------------ ABOVE IS STYLING, DOWN IS INFO ------------------------------------ -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">Update Camin</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/admin/camine/update/{caminId}(caminId=${selectedCamintById.getId()})}" th:object="${selectedCamintById}" method="post">
+                <div class="row">
+                    <!-- TEORIE: for = "id_camp_in_frontend" tre sa fie acelasi cu id="id_camp_in_frontend" -->
+                    <div class="col-md-6">
+                        <!-- update nume -->
+                            <div class="form-group row-md-6">
+                                <label for="capacitate" class="col-form-label"><b>Capacitate maxima de studenti:</b></label>
+                                <input type="text" th:field="*{capacitate}" class="form-control" id="capacitate" placeholder="capacitate">
+                                <span th:if="${#fields.hasErrors('capacitate')}" th:errors="*{capacitate}" class="text-danger"></span>
+                            </div>
+
+                        <!-- update nrCamereTotal -->
+                        <div class="form-group row-md-6">
+                            <label for="nrCamereTotal" class="col-form-label"><b>Nr Camere total:</b></label>
+                            <input type="text" th:field="*{nrCamereTotal}" class="form-control" id="nrCamereTotal" placeholder="nrCamereTotal">
+                            <span th:if="${#fields.hasErrors('nrCamereTotal')}" th:errors="*{nrCamereTotal}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- update nrCamereUnStudent -->
+                        <div class="form-group row-md-6">
+                            <label for="nrCamereUnStudent" class="col-form-label"><b>Nr Camere pentru un student:</b></label>
+                            <input type="text" th:field="*{nrCamereUnStudent}" class="form-control" id="nrCamereUnStudent" placeholder="nrCamereUnStudent">
+                            <span th:if="${#fields.hasErrors('nrCamereUnStudent')}" th:errors="*{nrCamereUnStudent}" class="text-danger"></span>
+                        </div>
+
+                        <!-- update nrCamereDoiStudenti -->
+                        <div class="form-group row-md-6">
+                            <label for="nrCamereDoiStudenti" class="col-form-label"><b>Nr Camere pentru doi studenti:</b></label>
+                            <input type="text" th:field="*{nrCamereDoiStudenti}" class="form-control" id="nrCamereDoiStudenti" placeholder="nrCamereDoiStudenti">
+                            <span th:if="${#fields.hasErrors('nrCamereDoiStudenti')}" th:errors="*{nrCamereDoiStudenti}" class="text-danger"></span>
+                        </div>
+
+                        <!-- update nrCamereTreiStudenti -->
+                        <div class="form-group row-md-6">
+                            <label for="nrCamereTreiStudenti" class="col-form-label"><b>Nr Camere pentru trei studenti:</b></label>
+                            <input type="text" th:field="*{nrCamereTreiStudenti}" class="form-control" id="nrCamereTreiStudenti" placeholder="nrCamereTreiStudenti">
+                            <span th:if="${#fields.hasErrors('nrCamereTreiStudenti')}" th:errors="*{nrCamereTreiStudenti}" class="text-danger"></span>
+                        </div>
+
+                        <!-- update nrCamerePatruStudenti -->
+                        <div class="form-group row-md-6">
+                            <label for="nrCamerePatruStudenti" class="col-form-label"><b>Nr Camere pentru patru studenti:</b></label>
+                            <input type="text" th:field="*{nrCamerePatruStudenti}" class="form-control" id="nrCamerePatruStudenti" placeholder="nrCamerePatruStudenti">
+                            <span th:if="${#fields.hasErrors('nrCamerePatruStudenti')}" th:errors="*{nrCamerePatruStudenti}" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input id="update-btn" type="submit" class="btn btn-primary center" value="Update Camin">
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <input id="back-btn" type="submit" class="btn btn-warning center" value="Back to camine" href="/camine">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
