@@ -49,7 +49,7 @@ public class AdminController {
         model.addAttribute("listOfStudents", studentsDB);
         model.addAttribute("isAdmin", "admin");
 
-        return "pages/layer 4/students_list";
+        return "pages/layer 4/students table/students_list";
     }
 
     /* ~~~~~~~~~~~ Dev Admin Page ~~~~~~~~~~~ */
@@ -58,7 +58,7 @@ public class AdminController {
     public String getDevAdminPage(Model model)
     {
         //todo adauga campuri si fa frumos devAdminPage
-        return "pages/layer 4/info pages/devAdminPage";
+        return "pages/layer 4/info pages/developer/devAdminPage";
     }
 
     /* ~~~~~~~~~~~ Register New Admin/Assistant ~~~~~~~~~~~ */
@@ -99,7 +99,7 @@ public class AdminController {
         Student selectedStudent = studentService.editStudent(studentId);        //getting student by id
         model.addAttribute("selectedStudentById", selectedStudent);
 
-        return "pages/layer 4/crud students_list/update_student";
+        return "pages/layer 4/students table/crud students/update_student";
     }
 
     /* ~~~~~~~~~~~ Update Student and Redirect to Student List ~~~~~~~~~~~ */

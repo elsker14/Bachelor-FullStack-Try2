@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,7 +73,7 @@ public class MyPageController {
                 model.addAttribute("yourFriend", secondStudent);
         }
 
-        return "pages/layer 4/info pages/mypage";
+        return "pages/layer 4/info pages/student/mypage";
     }
 
     /* ~~~~~~~~~~~ Get Student knowing the ID for setting the Friend Token ~~~~~~~~~~~ */
@@ -88,7 +86,7 @@ public class MyPageController {
         model.addAttribute("selectedStudentById", selectedStudent);
 
         if(selectedStudent.getFriendToken().equals("null"))
-            return "pages/layer 4/info pages/update_friendToken/update_friendToken";
+            return "pages/layer 4/info pages/student/crud mypage/update_friendToken";
 
         return "redirect:/student/mypage";
     }
@@ -168,9 +166,8 @@ public class MyPageController {
 
         if(selectedStudent.getCaminPreferat().equals("null"))
         {
-            return "pages/layer 4/info pages/update_camin/update_camin";
+            return "pages/layer 4/info pages/student/crud mypage/update_camin";
         }
-
 
         return "redirect:/student/mypage";
     }

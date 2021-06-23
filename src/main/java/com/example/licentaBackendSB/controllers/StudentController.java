@@ -1,7 +1,6 @@
 package com.example.licentaBackendSB.controllers;
 
 import com.example.licentaBackendSB.entities.Student;
-import com.example.licentaBackendSB.entities.StudentAccount;
 import com.example.licentaBackendSB.others.LoggedAccount;
 import com.example.licentaBackendSB.services.StudentAccountService;
 import com.example.licentaBackendSB.services.StudentService;
@@ -51,7 +50,7 @@ public class StudentController {
         model.addAttribute("listOfStudents", studentsDB);
         model.addAttribute("isAdmin", "student");
 
-        return "pages/layer 4/students_list";
+        return "pages/layer 4/students table/students_list";
     }
 
     /* ~~~~~~~~~~~ Get devStudentPage View ~~~~~~~~~~~ */
@@ -59,6 +58,6 @@ public class StudentController {
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public String getDevStudentPage(Model model)
     {
-        return "pages/layer 4/info pages/devStudentPage";
+        return "pages/layer 4/info pages/developer/devStudentPage";
     }
 }

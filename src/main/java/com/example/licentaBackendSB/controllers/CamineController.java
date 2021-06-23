@@ -40,7 +40,7 @@ public class CamineController {
         List<Camin> camineList = caminService.getCamine();
         model.addAttribute("listOfCamine", camineList);
 
-        return "pages/layer 4/camine_page";
+        return "pages/layer 4/camine/camine_page";
     }
 
     /* ~~~~~~~~~~~ LeuA List ~~~~~~~~~~~ */
@@ -51,7 +51,7 @@ public class CamineController {
         List <CaminLeuA> caminLeuAList = caminLeuAService.getLeuAStudents();
         model.addAttribute("listOfLeuAStudents", caminLeuAList);
 
-        return "pages/layer 4/camine/leuAlist";
+        return "pages/layer 4/camine/tables/leuAlist";
     }
 
     /* ~~~~~~~~~~~ LeuC List ~~~~~~~~~~~ */
@@ -62,7 +62,7 @@ public class CamineController {
         List <CaminLeuC> caminLeuCList = caminLeuCService.getLeuCStudents();
         model.addAttribute("listOfLeuCStudents", caminLeuCList);
 
-        return "pages/layer 4/camine/leuClist";
+        return "pages/layer 4/camine/tables/leuClist";
     }
 
     /* ~~~~~~~~~~~ LeuC List ~~~~~~~~~~~ */
@@ -73,7 +73,7 @@ public class CamineController {
         List <CaminP20> caminP20List = caminP20Service.getP20Students();
         model.addAttribute("listOfP20Students", caminP20List);
 
-        return "pages/layer 4/camine/P20list";
+        return "pages/layer 4/camine/tables/P20list";
     }
 
     /* ~~~~~~~~~~~ LeuA List ~~~~~~~~~~~ */
@@ -84,6 +84,6 @@ public class CamineController {
         List <CaminP23> caminP23List = caminP23Service.getP23Students();
         model.addAttribute("listOfP23Students", caminP23List);
 
-        return "pages/layer 4/camine/P23list";
+        return "pages/layer 4/camine/tables/P23list";
     }
 }
