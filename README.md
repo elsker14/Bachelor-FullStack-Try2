@@ -1,4 +1,4 @@
-# Etti Bachelor Thesis
+#  Bachelor Project Try2
 
 Back-end: SpringBoot, PostgreSQL
 
